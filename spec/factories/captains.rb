@@ -12,8 +12,6 @@ FactoryGirl.define do
   end
 end
 
-can you do
-
 FactoryGirl.define do
   factory :william, class: Captain do
     name "William Kyd"
