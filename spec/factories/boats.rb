@@ -3,7 +3,7 @@ FactoryGirl.define do
     name "H 28"
     length 27
     before :create do |boat|
-      boat.captain = FactoryGirl.create(:captain_name_goes_here)
+      boat.captain = FactoryGirl.create(:cook)
     end
     after :create do |boat|
       boat.classifications << [Factory(:ketch), Factory(:sailboat)]
@@ -14,7 +14,7 @@ FactoryGirl.define do
     name "Nacra 17"
     length 17
     before :create do |boat|
-      boat.captain = FactoryGirl.create(:captain_name_goes_here)
+      boat.captain = FactoryGirl.create(:kidd)
     end
     after :create do |boat|
       boat.classifications << [Factory(:catamaran), Factory(:sloop), Factory(:sailboat)]
@@ -25,7 +25,7 @@ FactoryGirl.define do
     name "Regulator 34SS"
     length 34
     before :create do |boat|
-      boat.captain = FactoryGirl.create(:captain_name_goes_here)
+      boat.captain = FactoryGirl.create(:william)
     end
     after :create do |boat|
       boat.classifications << [Factory(:motorboat), Factory(:center)]
@@ -36,7 +36,7 @@ FactoryGirl.define do
     name "Zodiac C27"
     length 24
     before :create do |boat|
-      boat.captain = FactoryGirl.create(:captain_name_goes_here)
+      boat.captain = FactoryGirl.create(:arel)
     end
     after :create do |boat|
       boat.classifications << [Factory(:rib), Factory(:motorboat), Factory(:center)]
@@ -47,7 +47,7 @@ FactoryGirl.define do
     name "Boston Whaler"
     length 13
     before :create do |boat|
-      boat.captain = FactoryGirl.create(:captain_name_goes_here)
+      boat.captain = FactoryGirl.create(:henry)
     end
     after :create do |boat|
       boat.classifications << [Factory(:motorboat)]
@@ -58,7 +58,7 @@ FactoryGirl.define do
     name "49er"
     length 16
     before :create do |boat|
-      boat.captain = FactoryGirl.create(:captain_name_goes_here)
+      boat.captain = FactoryGirl.create(:samuel)
     end
     after :create do |boat|
       boat.classifications << [Factory(:sailboat), Factory(:sloop)]
@@ -69,7 +69,7 @@ FactoryGirl.define do
     name "Cape Dory"
     length 28
     before :create do |boat|
-      boat.captain = FactoryGirl.create(:captain_name_goes_here)
+      boat.captain = FactoryGirl.create(:cook)
     end
     after :create do |boat|
       boat.classifications << [Factory(:motorboat), Factory(:trawler)]
@@ -80,7 +80,7 @@ FactoryGirl.define do
     name "Laser"
     length 14
     before :create do |boat|
-      boat.captain = FactoryGirl.create(:captain_name_goes_here)
+      boat.captain = FactoryGirl.create(:cook)
     end
     after :create do |boat|
       boat.classifications << [Factory(:sailboat), Factory(:cat_rig)]
@@ -91,7 +91,7 @@ FactoryGirl.define do
     name "Triton 21 TRX"
     length 21
     before :create do |boat|
-      boat.captain = FactoryGirl.create(:captain_name_goes_here)
+      boat.captain = FactoryGirl.create(:arel)
     end
     after :create do |boat|
       boat.classifications << [Factory(:motorboat), Factory(:bass)]
@@ -102,7 +102,7 @@ FactoryGirl.define do
     name "Sun Tracker Regency 254 XP3"
     length 27
     before :create do |boat|
-      boat.captain = FactoryGirl.create(:captain_name_goes_here)
+      boat.captain = FactoryGirl.create(:samuel)
     end
     after :create do |boat|
       boat.classifications << [Factory(:motorboat), Factory(:pontoon)]
