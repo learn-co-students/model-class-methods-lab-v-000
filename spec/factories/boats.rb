@@ -5,6 +5,9 @@ FactoryGirl.define do
     before :create do |boat|
       boat.captain = FactoryGirl.create(:captain_name_goes_here)
     end
+    after :create do |boat|
+      boat.classifications << [Factory(:ketch), Factory(:sailboat)]
+    end
   end
 
   factory :nacra_17, class: Boat do
@@ -12,6 +15,9 @@ FactoryGirl.define do
     length 17
     before :create do |boat|
       boat.captain = FactoryGirl.create(:captain_name_goes_here)
+    end
+    after :create do |boat|
+      boat.classifications << [Factory(:catamaran), Factory(:sloop), Factory(:sailboat)]
     end
   end
 
@@ -21,6 +27,9 @@ FactoryGirl.define do
     before :create do |boat|
       boat.captain = FactoryGirl.create(:captain_name_goes_here)
     end
+    after :create do |boat|
+      boat.classifications << [Factory(:motorboat), Factory(:center)]
+    end
   end
 
   factory :zodiac, class: Boat do
@@ -28,6 +37,9 @@ FactoryGirl.define do
     length 24
     before :create do |boat|
       boat.captain = FactoryGirl.create(:captain_name_goes_here)
+    end
+    after :create do |boat|
+      boat.classifications << [Factory(:rib), Factory(:motorboat), Factory(:center)]
     end
   end
 
@@ -37,6 +49,9 @@ FactoryGirl.define do
     before :create do |boat|
       boat.captain = FactoryGirl.create(:captain_name_goes_here)
     end
+    after :create do |boat|
+      boat.classifications << [Factory(:motorboat)]
+    end
   end
 
   factory :forty_niner, class: Boat do
@@ -44,6 +59,9 @@ FactoryGirl.define do
     length 16
     before :create do |boat|
       boat.captain = FactoryGirl.create(:captain_name_goes_here)
+    end
+    after :create do |boat|
+      boat.classifications << [Factory(:sailboat), Factory(:sloop)]
     end
   end
 
@@ -53,6 +71,9 @@ FactoryGirl.define do
     before :create do |boat|
       boat.captain = FactoryGirl.create(:captain_name_goes_here)
     end
+    after :create do |boat|
+      boat.classifications << [Factory(:motorboat), Factory(:trawler)]
+    end
   end
 
   factory :laser, class: Boat do
@@ -60,6 +81,9 @@ FactoryGirl.define do
     length 14
     before :create do |boat|
       boat.captain = FactoryGirl.create(:captain_name_goes_here)
+    end
+    after :create do |boat|
+      boat.classifications << [Factory(:sailboat), Factory(:cat_rig)]
     end
   end
 
@@ -69,6 +93,9 @@ FactoryGirl.define do
     before :create do |boat|
       boat.captain = FactoryGirl.create(:captain_name_goes_here)
     end
+    after :create do |boat|
+      boat.classifications << [Factory(:motorboat), Factory(:bass)]
+    end
   end
 
   factory :sun_tracker, class: Boat do
@@ -77,21 +104,24 @@ FactoryGirl.define do
     before :create do |boat|
       boat.captain = FactoryGirl.create(:captain_name_goes_here)
     end
+    after :create do |boat|
+      boat.classifications << [Factory(:motorboat), Factory(:pontoon)]
+    end
   end
 
   factory :harpoon, class: Boat do
     name "Harpoon 4.7"
     length 16
-    before :create do |boat|
-      boat.captain = FactoryGirl.create(:captain_name_goes_here)
+    after :create do |boat|
+      boat.classifications << [Factory(:sailboat), Factory(:sloop)]
     end
   end
 
   factory :sunfish, class: Boat do
     name "Sunfish"
     length 14
-    before :create do |boat|
-      boat.captain = FactoryGirl.create(:captain_name_goes_here)
+    after :create do |boat|
+      boat.classifications << [Factory(:sailboat), Factory(:cat_rig)]
     end
   end
 end
