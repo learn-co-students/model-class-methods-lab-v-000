@@ -3,12 +3,14 @@ require 'spec_helper'
 describe Boat do
   describe "::first_five" do
     it "returns the first five Boats" do
+
     end
   end
 
   describe "#sailboats" do
     it "returns all boats that are sailboats" do
-      
+      boat = Boat.find_by(name: "Whatever this is supposed to be")
+      expect(Boat.first).to eq(boat)
     end
   end
 
