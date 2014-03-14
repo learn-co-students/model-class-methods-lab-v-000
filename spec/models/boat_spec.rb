@@ -3,12 +3,13 @@ require 'spec_helper'
 describe Boat do
   describe "::first_five" do
     it "returns the first five Boats" do
+      binding.pry
     end
   end
 
   describe "#sailboats" do
     it "returns all boats that are sailboats" do
-      
+      binding.pry
     end
   end
 
