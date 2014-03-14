@@ -1,7 +1,7 @@
 ---
 tags: active record, arel, querying, database
 languages: ruby
-WIP
+WIP:
 ---
 
 # AREL Lab
