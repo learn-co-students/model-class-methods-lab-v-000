@@ -25,8 +25,8 @@ describe Boat do
   describe "#sailboats" do
     it "returns all boats that are sailboats" do
       boats = ["H 28", "Nacra 17", "49er", "Laser", "Harpoon 4.7", "Sunfish"]
-      expect(Boat.includes(:classifications).where(classifications: {id: Classification.sailboats}).uniq.pluck(:name)).to eq(boats)
-      # Hint: You'll need to write a scope on Classification
+      expect(Boat.sailboats.pluck(:name)).to eq(boats)
+      # Boat.includes(:classifications).where(classifications: { name: 'Sailboat' }).pluck(:name).uniq
     end
   end
 
@@ -38,19 +38,16 @@ describe Boat do
 
   describe "#last_three_alphabetically" do
     it "returns last three boats in alphabetical order" do
-
-    end
-  end
-
-  describe "#unique_captain_names" do
-    it "returns only boats with unique captains" do
-
+      boats = ["Zodiac CZ7", "Triton 21 TRX", "Sunfish", "Sun Tracker Regency 254 XP3", "Regulator 34SS"]
+      expect(Boat.last_three_alphabetically).to eq(boats)
     end
   end
 
   describe "#without_a_captain" do
     it "returns boats without a captain" do
-
+      boats = ["Harpoon 4.7", "Sunfish"]
+      expect(Boat.without_a_captain).to eq(boats)
+      # Boat.where(captain_id: nil).pluck(:name).uniq
     end
   end
 end
