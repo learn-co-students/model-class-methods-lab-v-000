@@ -28,7 +28,10 @@ class Boat < ActiveRecord::Base
   end
 
   def self.with_three_classifications
-    joins(:classifications).group("boats.id").having("COUNT(*) = 3").select("boats.*")
+    includes(:classifications).group("boats.id").having("COUNT(*) = 3").select("boats.*")
   end
 
+  def self.non_sailboats
+    where("id NOT IN (?)", Boat.sailboats.collect(&:id))
+  end
 end
