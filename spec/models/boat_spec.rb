@@ -22,21 +22,35 @@ describe Boat do
     end
   end
 
+<<<<<<< HEAD
   describe "::last_three_alphabetically" do
     it "returns last three boats in alphabetical order" do
       boats = ["Zodiac CZ7", "Triton 21 TRX", "Sunfish", "Sun Tracker Regency 254 XP3", "Regulator 34SS"]
+=======
+  describe "#last_three_alphabetically" do
+    it "returns last three boats in alphabetical order" do
+      boats = ["Zodiac CZ7", "Triton 21 TRX", "Sunfish"]
+>>>>>>> solution
       expect(Boat.last_three_alphabetically.pluck(:name)).to eq(boats)
     end
   end
 
+<<<<<<< HEAD
   describe "::without_a_captain" do
+=======
+  describe "#without_a_captain" do
+>>>>>>> solution
     it "returns boats without a captain" do
       boats = ["Harpoon 4.7", "Sunfish"]
       expect(Boat.without_a_captain.pluck(:name)).to eq(boats)
     end
   end
 
+<<<<<<< HEAD
   describe "::sailboats" do
+=======
+  describe "#sailboats" do
+>>>>>>> solution
     it "returns all boats that are sailboats" do
       boats = ["H 28", "Nacra 17", "49er", "Laser", "Harpoon 4.7", "Sunfish"]
       expect(Boat.sailboats.pluck(:name)).to eq(boats)
