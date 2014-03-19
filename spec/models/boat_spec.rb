@@ -45,7 +45,7 @@ describe Boat do
 
   describe "::with_three_classifications" do
     it "returns boats with three classifications" do
-      boats = ["Nacra 17", "Zodiac CZ7"]
+      boats = ["Nacra 17", "Zodiac CZ7", "Sun Tracker Regency 254 XP3"]
       expect(Boat.with_three_classifications.pluck(:name)).to eq(boats)
     end
   end

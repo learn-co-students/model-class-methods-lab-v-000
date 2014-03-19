@@ -95,7 +95,7 @@ def set_up_database
   cape_dory.classifications << [motorboat, trawler]
   laser.classifications << [sailboat, cat_rig]
   triton.classifications << [motorboat, bass]
-  sun_tracker.classifications << [motorboat, pontoon]
+  sun_tracker.classifications << [motorboat, pontoon, catamaran]
   harpoon.classifications << [sailboat, sloop]
   sunfish.classifications << [sailboat, cat_rig]
 end
