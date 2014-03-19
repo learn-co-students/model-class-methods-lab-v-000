@@ -6,18 +6,19 @@ class Captain < ActiveRecord::Base
   end
 
   def self.sailors
-    includes(boats: :classifications).where(classifications: {name: "Sailboat"}).distinct
+    includes(boats: :classifications).where(classifications: {name: "Sailboat"}).uniq
   end
 
-  def self.motorboat_operators
+  def self.motorboaters
     includes(boats: :classifications).where(classifications: {name: "Motorboat"})
   end
 
-  def self.talented_seafarers
-    where("id IN (?)", self.sailors.pluck(:id) & self.motorboat_operators.pluck(:id))
+  def self.talented_seamen
+    where("id IN (?)", Captain.sailors.pluck(:id) & Captain.motorboaters.pluck(:id))
   end
 
   def self.non_sailors
-    where.not("id IN (?)", self.sailors.pluck(:id))
+    where("id NOT IN (?)", Captain.sailors.pluck(:id))
   end
+
 end
