@@ -32,7 +32,7 @@ class Boat < ActiveRecord::Base
   end
 
   def self.non_sailboats
-    where("id NOT IN (?)", Boat.sailboats.collect(&:id))
+    where("id NOT IN (?)", self.sailboats.collect(&:id))
   end
 
   def self.longest
