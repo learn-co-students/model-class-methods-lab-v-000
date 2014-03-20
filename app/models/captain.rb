@@ -14,11 +14,11 @@ class Captain < ActiveRecord::Base
   end
 
   def self.talented_seamen
-    where("id IN (?)", Captain.sailors.pluck(:id) & Captain.motorboaters.pluck(:id))
+    where("id IN (?)", self.sailors.pluck(:id) & self.motorboaters.pluck(:id))
   end
 
   def self.non_sailors
-    where("id NOT IN (?)", Captain.sailors.pluck(:id))
+    where("id NOT IN (?)", self.sailors.pluck(:id))
   end
 
 end
