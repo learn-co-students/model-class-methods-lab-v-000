@@ -1,5 +1,5 @@
 ---
-tags: active record, arel, querying, database
+tags: activerecord, arel, querying, database
 languages: ruby
 ---
 
