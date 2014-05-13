@@ -1,6 +1,6 @@
 ---
-tags: activerecord, arel, querying, database
-languages: ruby
+  tags: activerecord, arel, querying, database
+  languages: ruby
   resources: 2
 ---
 
