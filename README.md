@@ -4,7 +4,7 @@
   resources: 2
 ---
 
-# AREL Lab
+## AREL Lab
 
 Get all the tests passing.
 
