@@ -4,7 +4,8 @@ class CreateBoats < ActiveRecord::Migration
       t.string  :name
       t.integer :length
       t.integer :captain_id
-      t.timestamps
+
+      t.timestamps null: false
     end
   end
 end

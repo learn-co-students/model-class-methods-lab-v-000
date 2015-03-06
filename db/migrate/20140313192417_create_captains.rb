@@ -3,7 +3,8 @@ class CreateCaptains < ActiveRecord::Migration
     create_table :captains do |t|
       t.string  :name
       t.boolean :admiral
-      t.timestamps
+
+      t.timestamps null: false
     end
   end
 end
