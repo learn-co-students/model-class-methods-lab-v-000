@@ -1,8 +1,4 @@
----
-  tags: activerecord, arel, querying, database
-  languages: ruby
-  resources: 2
----
+
 
 # AREL Lab
 
