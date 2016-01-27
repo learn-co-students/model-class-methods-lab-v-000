@@ -1,5 +1,5 @@
 
-# AREL Lab
+# Model Class Methods Lab
 
 ## Instructions
 
