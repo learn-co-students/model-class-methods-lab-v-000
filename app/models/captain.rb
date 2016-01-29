@@ -14,10 +14,10 @@ class Captain < ActiveRecord::Base
   end
 
   def self.talented_seamen
-    where("name IN (?)", self.sailors.pluck(:name) & self.motorboaters.pluck(:name))
+    where("name in (?)", self.sailors.pluck(:name) & self.motorboaters.pluck(:name))
   end
 
   def self.non_sailors
-    where.not("name IN (?)", self.sailors.pluck(:name))
+    where("name not in (?)", self.sailors.pluck(:name))
   end
 end
