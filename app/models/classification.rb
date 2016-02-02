@@ -7,6 +7,6 @@ class Classification < ActiveRecord::Base
   end
 
   def self.longest
-    joins(:boats).where('length IS ?', Boat.longest)
+    includes(:boats).where('length IS ?', Boat.longest)
   end
 end
