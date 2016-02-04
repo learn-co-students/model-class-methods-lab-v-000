@@ -2,15 +2,15 @@ class Captain < ActiveRecord::Base
   has_many :boats
 
   def self.catamaran_operators
-    self.includes(boats: :classifications).where(classifications:{name: 'Catamaran'})
+    self.joins(boats: :classifications).where(classifications:{name: 'Catamaran'})
   end
 
   def self.sailors
-    self.includes(boats: :classifications).where(classifications:{name: 'Sailboat'}).group('captains.id')
+    self.joins(boats: :classifications).where(classifications:{name: 'Sailboat'}).group('captains.id')
   end
 
   def self.motorboats
-    self.includes(boats: :classifications).where(classifications:{name: 'Motorboat'}).group("captains.id")
+    self.joins(boats: :classifications).where(classifications:{name: 'Motorboat'}).group("captains.id")
   end
 
   def self.talented_seamen
