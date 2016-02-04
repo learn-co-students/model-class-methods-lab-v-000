@@ -18,6 +18,6 @@ class Captain < ActiveRecord::Base
   end
 
   def self.non_sailors
-    self.where.not(:id => sailors.map(&:id))
+    self.where.not(id: self.sailors)
   end
 end
