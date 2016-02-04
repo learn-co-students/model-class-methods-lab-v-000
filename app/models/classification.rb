@@ -3,7 +3,7 @@ class Classification < ActiveRecord::Base
   has_many :boats, through: :boat_classifications
 
   def self.my_all
-    self.all.group(:id)
+    all.distinct
   end
 
   def self.longest

@@ -2,22 +2,22 @@ class Captain < ActiveRecord::Base
   has_many :boats
 
   def self.catamaran_operators
-    self.joins(boats: :classifications).where(classifications:{name: 'Catamaran'})
+    joins(boats: :classifications).where(classifications:{name: 'Catamaran'})
   end
 
   def self.sailors
-    self.joins(boats: :classifications).where(classifications:{name: 'Sailboat'}).group('captains.id')
+    joins(boats: :classifications).where(classifications:{name: 'Sailboat'}).group(:captain_id)
   end
 
   def self.motorboats
-    self.joins(boats: :classifications).where(classifications:{name: 'Motorboat'}).group("captains.id")
+    joins(boats: :classifications).where(classifications:{name: 'Motorboat'}).group(:captain_id)
   end
 
   def self.talented_seamen
-    self.where(:id => self.motorboats & self.sailors)
+    where(id: motorboats & sailors)
   end
 
   def self.non_sailors
-    self.where.not(id: self.sailors)
+    where.not(id: sailors)
   end
 end
