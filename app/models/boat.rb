@@ -31,9 +31,4 @@ class Boat < ActiveRecord::Base
     joins(:classifications).group(:boat_id).having('COUNT(*) = 3')
   end
 
- 
-
-
-
-
 end ## class end

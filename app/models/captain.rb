@@ -23,8 +23,4 @@ class Captain < ActiveRecord::Base
     where.not(id: sailors)
   end
 
-
-
-
-
 end ## class end
