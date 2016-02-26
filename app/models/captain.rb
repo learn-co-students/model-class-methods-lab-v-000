@@ -27,8 +27,17 @@ class Captain < ActiveRecord::Base
   end
 
   def self.talented_seamen
-    binding.pry
-    Classification.where("name = ? OR name = ?", "Sailboat", "Motorboat")
+    # binding.pry
+    #looking for captains of motorboats and sailboats.  retrning captains of either motorboats or sailboats
+    arr = []
+    Classification.where("name = ? OR name = ?", "Sailboat", "Motorboat").map do |classification|
+      classification.boats.each do |boat|
+        arr << boat.captain
+      end
+    end
+    arr.compact!
+    self.where(id: arr.map(&:id))
+
   end
 
   def self.non_sailors
