@@ -28,11 +28,6 @@ class Boat < ActiveRecord::Base
   end
   
   def self.with_three_classifications
-
-    # arr = self.all.select do |boat|
-    #   boat.classifications.count == 3
-    # end
-
     Boat.joins(:boat_classifications).group(:boat_id).having("count(boat_id) = ?", 3)
   end
   
