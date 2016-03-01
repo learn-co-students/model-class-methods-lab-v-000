@@ -18,4 +18,10 @@ class Classification < ActiveRecord::Base
   	joins(:boats).where(boats: {length: max_length})
   end
 
+  def self.length_between
+    joins(:boats).where(boats: {length: 20..30}).pluck("boats.name").uniq.sort
+  end
+
+  
+
 end

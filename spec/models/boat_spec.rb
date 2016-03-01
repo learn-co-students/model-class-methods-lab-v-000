@@ -50,4 +50,20 @@ describe Boat do
     end
   end
 
+  #new tests
+
+  # describe "::name without a number" do
+  #   it "returns boats that don't have any numbers in their name" do
+  #     boats = ["Boston Whaler", "Cape Dory", "Laser", "Sunfish"]
+  #     expect (Boat.name_without_a_number.pluck(:name)).to eq(boats)
+  #   end
+  # end
+
+  # describe "::boaty_classification" do
+  #   it "returns all classifications that have 'boat' in their name" do
+  #     classifications = ["Sailboat", "Motorboat", "Cat Rig Boat", "Bass Boat", "Pontoon Boat"]
+  #     expect(Boat.boaty_classification).to eq(classifications)
+  #   end
+  # end
+
 end

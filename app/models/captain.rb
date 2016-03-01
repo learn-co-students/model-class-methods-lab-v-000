@@ -50,5 +50,13 @@ class Captain < ActiveRecord::Base
   	captain_sailboats.collect { |m| m.captain_id }
   end
 
+  def self.struggling_captains
+    joins(:boats).select("captain.*, count(boats) as boat_count").group(:captain_id).having("count(boats) <= ?", "2")
+  end
+
+  # def self.long_boats
+  #   Captain.joins(:boats).select("captains.*, sum(boats.length) as boats_length").group("captain_id").having("boats_length > 40") 
+  # end
+
 
 end

@@ -34,4 +34,8 @@ class Boat < ActiveRecord::Base
   def self.boat
   	Boat.arel_table
   end
+
+  def self.boaty_classification
+    Boat.joins(:classifications).where("classifications.name like ?", "%boat%").pluck('classifications.name').uniq
+  end
 end
