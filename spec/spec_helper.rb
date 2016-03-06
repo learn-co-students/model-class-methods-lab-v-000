@@ -13,6 +13,7 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 # ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 
 RSpec.configure do |config|
+  config.color = true
   config.before do
     ActiveRecord::Migrator.migrate("db/migrate") if ActiveRecord::Migrator.needs_migration?
 
