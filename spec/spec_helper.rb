@@ -10,25 +10,20 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
 # Checks for pending migrations before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
-# ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
+ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 
 RSpec.configure do |config|
-  config.before do
-    ActiveRecord::Migrator.migrate("db/migrate") if ActiveRecord::Migrator.needs_migration?
+  config.use_transactional_fixtures = false
+  config.infer_base_class_for_anonymous_controllers = false
+  config.order = "default"
 
+  config.before do
     set_up_database
   end
 
   config.after do
-    db = ActiveRecord::Base.connection
-    db.tables.each do |table|
-      db.execute("DROP TABLE #{table};")
-    end
+    ActiveRecord::Base.subclasses.each(&:delete_all)
   end
-
-  config.use_transactional_fixtures = false
-  config.infer_base_class_for_anonymous_controllers = false
-  config.order = "default"
 end
 
 def set_up_database
