@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.2.0'
+ruby '2.1.5'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2'
@@ -39,3 +39,5 @@ group :test, :development do
   gem "database_cleaner"
   gem "pry"
 end
+
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
