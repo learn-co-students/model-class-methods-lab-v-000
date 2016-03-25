@@ -4,7 +4,7 @@ class Boat < ActiveRecord::Base
   has_many    :classifications, through: :boat_classifications
 
   def self.first_five
-    where("id <= 5")
+    all.limit(5)
   end
 
   def self.dinghy
@@ -33,6 +33,10 @@ class Boat < ActiveRecord::Base
 
   def self.catamarans
     joins(:classifications).where(:classifications => {name: 'Catamaran'})
+  end
+
+  def self.longest
+    order('length DESC').first
   end
 
 
