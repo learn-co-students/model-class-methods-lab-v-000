@@ -18,11 +18,11 @@ RSpec.configure do |config|
   config.order = "default"
 
   config.before do
-    set_up_database
+    Rails.application.load_seed
   end
 
   config.after do
-    ActiveRecord::Base.subclasses.each(&:delete_all)
+    (ActiveRecord::Base.subclasses - [ActiveRecord::SchemaMigration]).each(&:delete_all)
   end
 end
 
