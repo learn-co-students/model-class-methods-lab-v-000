@@ -8,11 +8,11 @@ class Boat < ActiveRecord::Base
   end
 
   def self.dinghy
-    where("length < ?", 20) 
+    where("length < 20") 
   end
 
   def self.ship
-    where(length: 20..Float::INFINITY)
+    where("length >= 20")
   end
 
   def self.last_three_alphabetically
@@ -24,7 +24,8 @@ class Boat < ActiveRecord::Base
   end
 
   def self.sailboats
-    joins(:classifications).where("classifications.name"=> "Sailboat") 
+    # joins(:classifications).where("classifications.name"=> "Sailboat") 
+    includes(:classifications).where(classifications: { name: 'Sailboat' })
   end
 
   def self.with_three_classifications
