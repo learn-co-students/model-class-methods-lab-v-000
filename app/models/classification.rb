@@ -10,4 +10,5 @@ class Classification < ActiveRecord::Base
     max_length = self.joins(:boats).maximum("boats.length")
     self.joins(:boats).where("boats.length" => max_length) 
   end
+  
 end
