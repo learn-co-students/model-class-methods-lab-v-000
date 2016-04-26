@@ -1,4 +1,3 @@
-
 # Model Class Methods Lab
 
 ## Instructions
