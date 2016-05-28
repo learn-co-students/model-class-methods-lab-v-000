@@ -32,4 +32,8 @@ class Boat < ActiveRecord::Base
     joins(:boat_classifications).group('boats.id').
       having('count(boat_classifications.id) = ?', 3)
   end
+
+  def self.longest
+    order(length: :desc).limit(1)
+  end
 end
