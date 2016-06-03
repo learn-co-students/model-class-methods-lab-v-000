@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe Boat do
+
   describe "::first_five" do
     it "returns the first five Boats" do
       boats = ["H 28", "Nacra 17", "Regulator 34SS", "Zodiac CZ7", "Boston Whaler"]
