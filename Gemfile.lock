@@ -175,6 +175,3 @@ DEPENDENCIES
   sdoc
   sqlite3
   uglifier (>= 1.3.0)
-
-BUNDLED WITH
-   1.11.2
