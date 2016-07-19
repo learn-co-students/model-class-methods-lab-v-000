@@ -4,6 +4,32 @@ class Boat < ActiveRecord::Base
   has_many    :classifications, through: :boat_classifications
 
   def self.first_five
-    where("id <=?",5)
+    order(:id).limit(5)
   end
+
+  def self.dinghy
+    where("length < ?", 20)
+  end
+
+  def self.ship
+    where("length >= ?", 20)
+  end
+
+  def self.last_three_alphabetically
+    order('name DESC').limit(3)
+  end
+
+  def self.without_a_captain
+    where('captain_id IS NULL')
+  end
+
+  def self.sailboats
+    joins(:classifications).where(classifications: {name: "Sailboat"})
+  end
+
+  def self.with_three_classifications
+    joins(:classifications).group('boat_id').having("count('boat_id') = 3")
+  end
+    
 end
+
