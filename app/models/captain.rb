@@ -9,11 +9,20 @@ class Captain < ActiveRecord::Base
     joins(boats: :classifications).where(classifications: {name: "Sailboat"}).uniq
   end
 
+  def self.motorboats
+    joins(boats: :classifications).where(classifications: {name: "Motorboat"}).uniq
+  end
+
+
   def self.talented_seamen
-    Captain.joins(boats: :classifications).where(classifications: {name: "Sailboat"}).uniq & Captain.joins(boats: :classifications).where(classifications:  {name: "Motorboat"}).uniq
+    Captain.where('captain_id IN (?) AND (?)', Captain.sailors, Captain.motorboats)
+
+    #Captain.joins(boats: :classifications).where(classifications: {name: "Sailboat"}).uniq & Captain.joins(boats: :classifications).where(classifications:  {name: "Motorboat"}).uniq
     #Captain.joins(boats: :classifications).where(classifications: {name: "Sailboat", name: "Motorboat"}).uniq
 
   end
 end
+
+Captain.where('captain_id IN (?) AND (?)', Captain.sailors, Captain.motorboats)
 
 
