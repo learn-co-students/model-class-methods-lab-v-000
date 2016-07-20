@@ -38,4 +38,5 @@ group :test, :development do
   gem "factory_girl_rails"
   gem "database_cleaner"
   gem "pry"
+  gem "learn-co"
 end
