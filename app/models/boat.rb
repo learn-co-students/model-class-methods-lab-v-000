@@ -28,8 +28,12 @@ class Boat < ActiveRecord::Base
     joins(:classifications).where('classifications.name = ?', "Sailboat")
   end
 
-    def self.with_three_classifications
+  def self.with_three_classifications
     joins(:classifications).group("boats.id").having("COUNT(*) = 3")
+  end
+
+  def self.longest
+    order("length DESC").limit(1)
   end
 
 end
