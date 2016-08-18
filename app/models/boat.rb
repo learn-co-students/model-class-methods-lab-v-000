@@ -54,4 +54,8 @@ class Boat < ActiveRecord::Base
     #   HAVING count(classifications.id) = 3
   end
 
+  def self.longest
+    order('length DESC').first
+  end
+
 end

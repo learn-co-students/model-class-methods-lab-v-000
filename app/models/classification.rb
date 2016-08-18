@@ -3,12 +3,15 @@ class Classification < ActiveRecord::Base
   has_many :boats, through: :boat_classifications
 
   def self.my_all
-    self.all.uniq
+    all.uniq
 
     # SELECT DISTINCT classifications.* FROM classifications
   end
 
   def self.longest
+    # One way of doing it (using Boat::longest method)...
+    # Boat.longest.classifications
+
     max_length = Boat.maximum('length')
     includes(:boats).where(boats: {length: max_length})
 
