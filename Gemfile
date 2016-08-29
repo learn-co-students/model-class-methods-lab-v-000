@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+#use ActiveRecord Union gem
+gem 'active_record_union'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2'
 
