@@ -29,9 +29,20 @@ class Boat < ActiveRecord::Base
     Boat.joins(:classifications).where(classifications: {name: "Sailboat"})
   end
 
+  def self.motorboats
+    # learn.co answer:
+    # Boat.includes(:classifications).where(classifications: { name: 'Sailboat' })
+    Boat.joins(:classifications).where(classifications: {name: "Motorboat"})
+  end
+
+
   def self.with_three_classifications
     # http://stackoverflow.com/questions/20183710/find-all-records-which-have-a-count-of-an-association-greater-than-zero
     Boat.joins(:classifications).group('boats.id').having('count(boat_id) = 3')
+  end
+
+  def self.longest
+    order('length DESC').first
   end
 
 end

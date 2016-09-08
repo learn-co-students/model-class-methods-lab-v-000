@@ -11,20 +11,25 @@ class Captain < ActiveRecord::Base
     Captain.joins(:boats => :classifications).where(classifications: {name: "Sailboat"}).uniq
   end
 
+  def self.motorboaters
+    includes(boats: :classifications).where(classifications: {name: "Motorboat"})
+  end
+
   def self.talented_seamen
-    Captain.joins(:boats => :classifications).where(classifications: {name: "Motorboat"}, classifications: {name: "Sailboat"})
-    # Captain.joins(:boats => :classifications).where('(classifications.name = ? AND classifications.name = ?)', "Sailboat", "Motorboat")
+    Captain.where("id IN (?)", Captain.all.pluck(:id) & Boat.sailboats.pluck(:captain_id) & Captain.all.pluck(:id) & Boat.motorboats.pluck(:captain_id))
+    # better answer:
+    # Captain.where("id IN (?)", self.sailors.pluck(:id) & self.motorboaters.pluck(:id))
 
+    # pluck - http://apidock.com/rails/ActiveRecord/Calculations/pluck
+  end
 
-
+  def self.non_sailors
+    Captain.where("id NOT IN (?)", Captain.all.pluck(:id) & Boat.sailboats.pluck(:captain_id))
+    # better answer:
+    # Captain.where.not("id IN (?)", self.sailors.pluck(:id))
   end
 
 end
 
 
 
-# Category.includes(articles: [{ comments: :guest }, :tags]).find(1)
-
-
-# Author.joins("INNER JOIN posts ON posts.author_id = authors.id AND posts.published = 't'")
-# Person.where("first_name = ? AND last_name = ?", first_name, last_name)
