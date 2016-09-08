@@ -10,12 +10,14 @@ class Captain < ActiveRecord::Base
   end
 
   def self.talented_seamen
-    joins(:boats => :classifications).where("classifications.name" => "Sailboat").merge(Classifications.where("classifications.name" => "Motorboat"))
-#     captains = self.arel_table
-#     sailors = self.sailors
-#     skipper = self.joins(:boats => :classifications).where("classifications.name" => "Motorboat")
-#     query = self.where(sailors.and(skipper))
-# #    joins(:boats => :classifications).where("classifications.name = ? AND classifications.name = ?", "Sailboat", "Motorboat")
+    skippers = self.joins(:boats => :classifications).where("classifications.name" => "Motorboat")
+    sailors  = self.joins(:boats => :classifications).where("classifications.name" => "Sailboat")
+    from("(#{sailors.to_sql} INTERSECT #{skippers.to_sql}) AS captains")
+  end
+
+  def self.non_sailors
+    sailors  = self.joins(:boats => :classifications).where("classifications.name" => "Sailboat")
+    from("(#{self.all.to_sql} EXCEPT #{sailors.to_sql}) AS captains")
   end
 
 end
