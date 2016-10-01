@@ -11,10 +11,14 @@ class Captain < ActiveRecord::Base
   end
 
   def self.talented_seamen
+    where(id: (sailors.to_a & motorboaters.to_a).map(&:id))
+  end
 
+  def self.motorboaters
+    joins(:classifications).where("classifications.name =?", "Motorboat").uniq
   end
 
   def self.non_sailors
-
+    where.not(id: sailors.to_a.map(&:id))
   end
 end
