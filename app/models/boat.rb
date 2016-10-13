@@ -12,7 +12,12 @@ class Boat < ActiveRecord::Base
     self.where(:length => [0..19])
   end
 
-  def self.dinghy
-    self.where(:length => [0..19])
+  def self.ship
+    self.where("length > ?", 20)
   end
+
+  def self.last_three_alphabetically
+    self.order(:name).last(3)
+  end
+
 end
