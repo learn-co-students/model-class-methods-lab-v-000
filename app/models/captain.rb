@@ -15,9 +15,12 @@ class Captain < ActiveRecord::Base
   end
 
   def self.talented_seamen
-    binding.pry
-    sailors
+    names = self.motorboaters.pluck(:name) & self.sailors.pluck(:name)
+    self.where(name: names)
+  end
 
-    motorboaters
+  def self.non_sailors
+    names = self.pluck(:name) - self.sailors.pluck(:name)
+    self.where(name: names)
   end
 end
