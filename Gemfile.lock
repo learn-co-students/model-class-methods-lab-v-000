@@ -52,9 +52,6 @@ GEM
     execjs (2.6.0)
     factory_girl (4.7.0)
       activesupport (>= 3.0.0)
-    factory_girl_rails (4.7.0)
-      factory_girl (~> 4.7.0)
-      railties (>= 3.0.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     hike (1.2.3)
@@ -156,7 +153,7 @@ GEM
     tilt (1.4.1)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
-    uglifier (3.0.0)
+    uglifier (3.0.3)
       execjs (>= 0.3.0, < 3)
 
 PLATFORMS
@@ -165,7 +162,7 @@ PLATFORMS
 DEPENDENCIES
   coffee-rails (~> 4.0.0)
   database_cleaner
-  factory_girl_rails
+  factory_girl
   jbuilder (~> 1.2)
   jquery-rails
   pry
