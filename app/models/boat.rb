@@ -16,7 +16,7 @@ class Boat < ActiveRecord::Base
   end
 
   def self.last_three_alphabetically
-    self.limit(3).order('name desc')
+     all.order(name: :desc).limit(3)
   end
 
   def self.without_a_captain
@@ -24,7 +24,7 @@ class Boat < ActiveRecord::Base
   end
 
   def self.sailboats
-     includes(:classifications).where(classifications: {:name => "Sailboat"})
+     includes(:classifications).where( classifications: {:name => "Sailboat"} )
   end
 
   def self.with_three_classifications
