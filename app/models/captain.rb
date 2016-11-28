@@ -1,5 +1,6 @@
 class Captain < ActiveRecord::Base
   has_many :boats
+<<<<<<< HEAD
 
   def self.catamaran_operators
     # Solution #1
@@ -55,4 +56,6 @@ class Captain < ActiveRecord::Base
     where.not("id IN (?)", self.sailors.pluck(:id))
   end
 
+=======
+>>>>>>> 4971cb53f290a9e7272e339aeb997b5c1f31444a
 end
