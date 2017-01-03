@@ -3,10 +3,11 @@ class Captain < ActiveRecord::Base
   has_many :boats
 
   def self.catamaran_operators
-      @test = includes(boats: :classifications).where(classifications: {name: 'Catamaran'})
-    binding.pry
+    includes(boats: :classifications).where(classifications: {name: 'Catamaran'})
+
   end
-  def self.sailors
+  def self.sailors 
+    includes(boats: :classifications).where(classifications: {name: 'Sailboat'})
 
   end
   def self.talented_seamen
