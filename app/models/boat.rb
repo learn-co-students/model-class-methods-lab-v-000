@@ -32,7 +32,7 @@ class Boat < ActiveRecord::Base
     order('length DESC').first
   end
   def self.non_sailors
-    
-    @non = includes(:classifications).where.not(classifications: {name: 'Sailboat'})
+
+    includes(:classifications).where.not(classifications: {name: 'Sailboat'})
   end
 end
