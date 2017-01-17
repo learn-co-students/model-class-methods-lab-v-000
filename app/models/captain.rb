@@ -9,16 +9,18 @@ class Captain < ActiveRecord::Base
     joins(boats: :classifications).where('classifications.name == ?', 'Sailboat').uniq
   end
 
+  def self.motors
+    joins(boats: :classifications).where('classifications.name == ?', 'Motorboat').uniq
+  end
+
   def self.talented_seamen
-    motor_guys = joins(boats: :classifications).where('classifications.name == ?', 'Motorboat').uniq
-    sailboat_guys = joins(boats: :classifications).where('classifications.name == ?', 'Sailboat').uniq
-    motor_guys & sailboat_guys
+    talent_ids = sailors.pluck(:id) & motors.pluck(:id)
+    where('id == ? or id == ?', talent_ids[0], talent_ids[1])
   end
 
   def self.non_sailors
-    no_sailboat_guys = joins(boats: :classifications).where.not('classifications.name == ?', 'Sailboat').uniq
-    sailboat_guys = joins(boats: :classifications).where('classifications.name == ?', 'Sailboat').uniq
-    no_sailboat_guys - sailboat_guys
+    non_sail_ids = joins(boats: :classifications).where.not('classifications.name == ?', 'Sailboat').uniq.pluck(:id) - sailors.pluck(:id)
+    where('id == ? or id == ? or id == ?', non_sail_ids[0], non_sail_ids[1], non_sail_ids[2])
   end
 
 end

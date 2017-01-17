@@ -7,7 +7,7 @@ class Classification < ActiveRecord::Base
   end
 
   def self.longest
-    joins(:boats).limit(1).order('length desc')
+    joins(:boats).limit(2).order('length desc')
   end
 
 end
