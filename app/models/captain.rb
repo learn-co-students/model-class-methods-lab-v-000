@@ -17,6 +17,10 @@ class Captain < ActiveRecord::Base
      joins(boats: [boat_classifications: :classification]).where('classifications.name = "Motorboat"').distinct
    end
 
+   def self.non_sailors
+     where.not(id: sailors)
+   end
+
 
 
 end
