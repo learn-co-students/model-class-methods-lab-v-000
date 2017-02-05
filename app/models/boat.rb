@@ -1,4 +1,3 @@
-require 'pry'
 class Boat < ActiveRecord::Base
   belongs_to  :captain
   has_many    :boat_classifications
@@ -29,19 +28,6 @@ class Boat < ActiveRecord::Base
   end
 
   def self.with_three_classifications
-    binding.pry
+    joins(:classifications).group('boats.id').having("count(classifications.id) = ?",3)
   end
-
-
-
-
-
-
-
 end
-
-
-
-
-
-
