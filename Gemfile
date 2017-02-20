@@ -38,3 +38,5 @@ group :test, :development do
   gem "database_cleaner"
   gem "pry"
 end
+
+gem 'learn-co'
