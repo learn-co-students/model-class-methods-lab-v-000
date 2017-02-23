@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'learn-co', '~> 1.0', '>= 1.0.4'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2'
 
