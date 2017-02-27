@@ -14,23 +14,19 @@ class Captain < ActiveRecord::Base
   end
 
   def self.motorboats
-  	self.select("captains.name").joins(:boats).joins(Boat.joins(:boat_classifications).join_sources)
+  	self.joins(:boats).joins(Boat.joins(:boat_classifications).join_sources)
   		.joins(BoatClassification.joins(:classification).join_sources)
   		.where("classifications.name = 'Motorboat'").distinct
   end
 
   def self.talented_seamen
-  	sailor_array = []
-  	motorboat_array = []
-  	sailors.each do |sailor|
-  		sailor_array << sailor.name
-  	end
+  	both_array = (sailors.collect do |sailor|
+  		sailor.name
+  	end) & (motorboats.collect do |motorboat|
+  		 motorboat.name
+  	end)
 
-  	motorboats.each do |motorboat|
-  		motorboat_array << motorboat.name
-  	end
   	both_string = ""
-  	both_array = motorboat_array & sailor_array
   	both_array.each do |name|
   		both_string += "captains.name = '#{name}' OR "
   	end
