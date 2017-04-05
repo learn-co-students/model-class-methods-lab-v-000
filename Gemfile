@@ -33,6 +33,7 @@ group :doc do
 end
 
 group :test, :development do
+    gem "hirb"
   gem "rspec-rails"
   gem "factory_girl_rails"
   gem "database_cleaner"
