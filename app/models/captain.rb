@@ -5,6 +5,10 @@ class Captain < ActiveRecord::Base
     self.joins(boats: :classifications).where(classifications: {name: "Catamaran"}).distinct
   end
 
+  def self.motorboaters
+    self.joins(boats: :classifications).where(classifications: {name: "Motorboat"}).distinct
+  end
+
   def self.non_sailors
     self.where("id not in (?)", self.sailors.pluck(:id))
   end
@@ -14,7 +18,7 @@ class Captain < ActiveRecord::Base
   end
 
   def self.talented_seamen
-    self.joins(boats: :classifications).where(classifications: {name: ['Motorboat', 'Sailboat']}).distinct
+    self.where("id in (?)", self.motorboaters.pluck(:id) & self.sailors.pluck(:id))
   end
 
 end
