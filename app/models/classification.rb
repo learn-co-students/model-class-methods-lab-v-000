@@ -11,4 +11,8 @@ class Classification < ActiveRecord::Base
     all.joins(:boats).where("boats.id = ?", longest_id)
   end
 
+  def hats
+    puts "hats"
+  end
+
 end
