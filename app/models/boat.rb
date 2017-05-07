@@ -16,7 +16,8 @@ class Boat < ActiveRecord::Base
   end
 
   def self.last_three_alphabetically
- 	order("name").reverse_order.limit(3)
+ 	#order("name").reverse_order.limit(3)  - Either OR Will Work
+ 	order("name desc").limit(3)
   end
 
   def self.without_a_captain
@@ -32,7 +33,8 @@ class Boat < ActiveRecord::Base
   end
 
   def self.longest
-  	order("length desc").limit(1)
+  #	order("length desc").limit(1)  - Either OR Will Work
+  	order("length").reverse_order.limit(1)
   end
 
 end
