@@ -24,7 +24,11 @@ class Boat < ActiveRecord::Base
   end
 
   def self.sailboats
-    
+    Boat.joins(:classifications).where(classifications: {name: "Sailboat"})
+  end
+
+  def self.with_three_classifications
+    Boat.joins(:classifications).group(:boat_id).having("Count() = 3")
   end
 
 end
