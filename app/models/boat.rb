@@ -31,4 +31,8 @@ class Boat < ActiveRecord::Base
     joins(:boat_classifications).group(:boat_id).having('count(classification_id) =?', 3)
     # joins(:boat_classifications).group(:'classification_id').having('count(classification_id)>2')
   end
+
+  def self.order_length
+    joins(:classifications).group(:name).order("length DESC").limit(2)
+  end
 end
