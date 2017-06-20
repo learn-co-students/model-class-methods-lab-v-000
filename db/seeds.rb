@@ -19,15 +19,15 @@ harpoon = Boat.create(name: "Harpoon 4.7", length: 15.5)
 sunfish = Boat.create(name: "Sunfish", length: 13.7)
 
 h_28.captain = cook
-nacra_17.captain = kidd
-regulator.captain = william
-zodiac.captain = arel
-boston_whaler.captain = henry
-forty_niner.captain = samuel
 cape_dory.captain = cook
 laser.captain = cook
-triton.captain = arel
+nacra_17.captain = kidd
+regulator.captain = william
+boston_whaler.captain = henry
+forty_niner.captain = samuel
 sun_tracker.captain = samuel
+triton.captain = arel
+zodiac.captain = arel
 
 h_28.save
 nacra_17.save
