@@ -11,12 +11,16 @@ class Captain < ActiveRecord::Base
     # joins(:classifications).where(:classifications => {:name => "Sailboat"}).uniq
   end
 
+  def self.motorboaters
+    includes(boats: :classifications).where("classifications.name" => "Motorboat").uniq
+  end
+
   def self.talented_seamen
-    joins(:classifications).where("name = ? AND name = ?", "Sailboat", "Motorboat")
+    where("id IN (?)", self.sailors.pluck(:id) & self.motorboaters.pluck(:id))
   end
 
   def self.non_sailors
-    includes(boats: :classifications).where.not(classifications: {name: "Sailboat"}).uniq
+    where.not("id IN (?)", self.sailors.pluck(:id))
     # sail = "Sailboat"
     # joins(:classifications).where('name != ?', sail)
     # joins(:classifications).where.not(:classifications => {:name => "Sailboat"} ).uniq

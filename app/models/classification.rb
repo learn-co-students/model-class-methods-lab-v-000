@@ -7,7 +7,7 @@ class Classification < ActiveRecord::Base
   end
 
   def self.longest
-    Boat.order_length
+    includes(boats: :classifications).order("boats.length DESC").limit(2).uniq
   end
 
 end
