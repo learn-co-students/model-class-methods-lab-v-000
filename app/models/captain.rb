@@ -16,7 +16,7 @@ class Captain < ActiveRecord::Base
   end
  
   def self.non_sailors
-    Captain.left_outer_joins(:boats).where( boats: { id: nil } )
+    Captain.where.not(id: Captain.sailors.pluck(:id))
   end
    
 end
