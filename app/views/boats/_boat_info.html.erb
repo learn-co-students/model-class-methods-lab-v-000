@@ -1,0 +1,10 @@
+<div>
+  <h2><%= link_to boat.name, boat_path(boat) %></h2>
+  <ul>
+    <li><%= display_captain(boat) %></li>
+    <li><%= boat.length %> feet</li>
+    <% boat.classifications.each do |type|%>
+      <li><%= link_to type.name, classification_path(type) %></li>
+    <% end %> 
+  </ul>
+</div>
