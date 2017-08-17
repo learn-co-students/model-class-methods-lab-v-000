@@ -1,0 +1,14 @@
+<h1>Boats</h1>
+
+<table>
+  <tr>
+    <td>Name</td>
+    <td>Length</td>
+  </tr>
+  <% @boats.each do |boat| %>
+  <tr>
+    <td><%= link_to boat.name, boat_path(boat) %></td>
+    <td><%= boat.length %> feet</td>
+  </tr>
+  <% end %>
+</ul>
