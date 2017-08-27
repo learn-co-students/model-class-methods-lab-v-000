@@ -18,7 +18,7 @@ class Captain < ActiveRecord::Base
   end
 
   def self.non_sailors
-    Captain.where.not(name: self.sailors.pluck(:name)).group("captains.name").order(id: :asc)
+    self.where.not(name: self.sailors.pluck(:name)).group("captains.name").order(id: :asc)
   end
   
 end
