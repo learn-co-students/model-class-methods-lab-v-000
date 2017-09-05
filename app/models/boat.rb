@@ -8,7 +8,14 @@ class Boat < ActiveRecord::Base
   end
 
   def self.dinghy
-    Boat.where(Boat.arel_table[:length].lteq(20))
+    Boat.where(Boat.arel_table[:length].lt(20))
   end
 
+  def self.ship
+    Boat.where(Boat.arel_table[:length].gteq(20))
+  end
+
+  def self.last_three_alphabetically
+    Boat.order(Boat.arel_table[:name].desc).take(3)
+  end
 end
