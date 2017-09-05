@@ -3,12 +3,6 @@ class Boat < ActiveRecord::Base
   has_many    :boat_classifications
   has_many    :classifications, through: :boat_classifications
 
-  def table
-    Boat.arel_table
-  end
-
-  boats = Arel::Table.new(:boats)
-
   def self.first_five
     Boat.where(Boat.arel_table[:id].lteq(5))
   end
