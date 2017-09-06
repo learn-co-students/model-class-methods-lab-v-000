@@ -8,8 +8,8 @@ class Classification < ActiveRecord::Base
 
   def self.longest
     binding.pry
-    self.includes(:boats).order(boats: :length)
-
+    Boat.longest.classifications
+    
     
   end
 end
