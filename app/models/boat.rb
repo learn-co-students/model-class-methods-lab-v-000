@@ -24,6 +24,12 @@ class Boat < ActiveRecord::Base
   end
 
   def self.sailboats
-  	where('classification = "sailboat"')
+    includes(:classifications).where(classifications: {name: 'Sailboat'})
+  end
+
+  def self.with_three_classifications
+    joins(:classifications).having('COUNT(classifications)').group('boats.name')
   end
 end
+
+#User.joins(:members).select("users.email, members.software, members.files").where(members: {region_id: params[:id]})
