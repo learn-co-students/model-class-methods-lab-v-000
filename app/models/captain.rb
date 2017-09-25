@@ -16,4 +16,13 @@ class Captain < ActiveRecord::Base
     all = motorboat_operators.pluck(:id) & self.sailors.pluck(:id)
     self.where(id: all)
   end
+
+  def self.non_sailors
+    not_sailboats = Classification.where.not(name: "Sailboat").pluck(:name)
+    sailors = self.sailors.pluck(:id)
+    not_sailors = self.includes(boats: :classifications).where(:classifications => {:name => not_sailboats}).distinct.pluck(:id)
+    rest = not_sailors - sailors
+    self.where(id: rest)
+  end
+
 end
