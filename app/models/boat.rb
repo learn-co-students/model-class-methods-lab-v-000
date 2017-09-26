@@ -28,8 +28,9 @@ class Boat < ActiveRecord::Base
   end
 
   def self.with_three_classifications
-    joins(:classifications).having('COUNT(classifications)').group('boats.name')
+    Boat.joins(:classifications).includes(:classifications).group('boats.id').having('count(*) = 3')
   end
 end
 
-#User.joins(:members).select("users.email, members.software, members.files").where(members: {region_id: params[:id]})
+#includes(:classifications).group(classifications[:name]).having(classifications[:name].count.eq(3))
+#joins(:classifications).group('classifications').having('count(classifications.name) = 3')
