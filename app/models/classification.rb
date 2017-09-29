@@ -5,4 +5,8 @@ class Classification < ActiveRecord::Base
   def self.my_all
   	all
   end
+
+  def self.longest
+  	includes(:boats).order('boats.length DESC').limit(1)
+  end
 end
