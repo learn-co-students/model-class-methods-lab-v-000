@@ -11,6 +11,13 @@ class Captain < ActiveRecord::Base
     joins(:boats, :boat_classifications, :classifications).where('classifications.name = ?', 'Sailboat').distinct
   end
 
+  def self.talented_seamen
+    sailors = joins(:boats, :boat_classifications, :classifications).where('classifications.name = ?', 'Sailboat').distinct
+    motorers = joins(:boats, :boat_classifications, :classifications).where('classifications.name = ?', 'Motorboat').distinct
+    intersection = sailors & motorers
+    intersection.map {|i| i.name }
+  end
+
   # def self.talented_seamen
   #   select (<<-SQL
   #   SELECT captains.name, GROUP_CONCAT(classifications.name) AS classifications_names from captains
@@ -37,7 +44,8 @@ class Captain < ActiveRecord::Base
   # end
 
   def self.non_sailors
-    joins(:boats, :boat_classifications, :classifications).where.not('classifications.name = ?', 'sailboat').distinct
+    sailors = joins(:boats, :boat_classifications, :classifications).where('classifications.name = ?', 'Sailboat').distinct.pluck(:name)
+    all.pluck(:name) - sailors
   end
 
 end
