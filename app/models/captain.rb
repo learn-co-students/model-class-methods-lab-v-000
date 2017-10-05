@@ -44,9 +44,8 @@ class Captain < ActiveRecord::Base
   # end
 
   def self.non_sailors
-
     sailors = joins(:boats, :boat_classifications, :classifications).where('classifications.name = ?', 'Sailboat')
-    all - sailors
+    (all - sailors).map { |i| i.name }
   end
 
 end
