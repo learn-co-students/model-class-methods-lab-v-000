@@ -19,28 +19,23 @@ class Captain < ActiveRecord::Base
   end
 
   # def self.talented_seamen
-  #   select (<<-SQL
-  #   SELECT captains.name, GROUP_CONCAT(classifications.name) AS classifications_names from captains
-  #   INNER JOIN boats
-  #     ON boats.captain_id = captains.id
-  #   INNER JOIN boat_classifications
-  #     ON boats.id = boat_classifications.id
-  #   INNER JOIN classifications
-  #     ON boat_classifications.classification_id = classifications.id
-  #   GROUP BY (captains.id)
-  #     HAVING classifications_names LIKE '%Motorboat%'
-  #     AND classifications_names LIKE '%Sailboat%'
+  #   connection.execute(<<-SQL
+  #     SELECT
+  #       cap.name,
+  #       (
+  #         SELECT GROUP_CONCAT(classifications.name)
+  #         from boats
+  #          inner join boat_classifications ON boat_classifications.boat_id = boats.id
+  #          inner join classifications ON classifications.id = boat_classifications.id
+  #        WHERE 1=1
+  #         AND boats.captain_id = cap.id
+  #      ) AS classifications
+  #     FROM captains cap
+  #     WHERE 1=1
+  #       AND classifications LIKE '%Sailboat%'
+  #       AND classifications LIKE '%Motorboat%'
   #   SQL
-  #   )
-  # end
-
-  # def self.talented_seamen
-  #   boats = Boat.arel_table
-  #   captains = Captain.arel_table
-  #   unwanted_classifications = ["Ketch", "Sloop", "Center Console", "Catamaran", "Bass Boat", "Pontoon Boat", "Cat Rig Boat", "Trawler", "RIB"]
-  #   unwanted_captain_ids = Captain.joins(:boats).select(captains[:id]).where(boats[:classifications].in(unwanted_classifications))
-  #   target_captain_ids = captains.project(captains[:id]).except(unwanted_classifications)
-  #   Captain.where(captains[:id].in(target_captain_ids))
+  #   ).map { |captain| captain["name"] }
   # end
 
   def self.non_sailors
