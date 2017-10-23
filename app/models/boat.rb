@@ -25,6 +25,20 @@ class Boat < ActiveRecord::Base
   end
 
   def self.sailboats
-    self.where(classification: "Sailboat")
+    self.includes(:classifications).where(classifications: { name: 'Sailboat' })
   end
+
+  def self.with_three_classifications
+    self.joins(:classifications).group("boats.id").having("COUNT(*) = 3").select("boats.*")
+  end
+
+  def self.non_sailboats
+    self.where("id NOT IN (?)", self.sailboats.pluck(:id))
+  end
+
+  def self.longest
+    self.order(:length).reverse_order.limit(1)
+  end
+
+
 end
