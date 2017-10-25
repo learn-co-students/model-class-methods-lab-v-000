@@ -4,7 +4,7 @@ class Boat < ActiveRecord::Base
   has_many    :classifications, through: :boat_classifications
 
   def self.first_five
-    Boat.first(5)
+    Boat.all.order(id: :asc).limit(5)
   end
 
   def self.dinghy
@@ -16,7 +16,7 @@ class Boat < ActiveRecord::Base
   end
 
   def self.last_three_alphabetically
-    Boat.last(3).sort_by{|boat|boat.name}
+    Boat.all.order(name: :desc).limit(3)
   end
 
   def self.without_a_captain
