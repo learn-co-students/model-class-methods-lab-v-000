@@ -1,0 +1,10 @@
+<h2>Filter Boats</h2>
+
+<%= form_tag("/boats", method: "get") do %>
+  <label></label>
+  <%= select_tag "first_5" %> 
+  <%= submit_tag "Filter" %>
+<% end %>
+
+<%# #    options_from_collection_for_select(@boats, "id", "name"), 
+    include_blank: true %>
