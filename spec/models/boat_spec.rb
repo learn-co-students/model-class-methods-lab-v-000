@@ -32,6 +32,7 @@ describe Boat do
   describe "::without_a_captain" do
     it "returns boats without a captain" do
       boats = ["Harpoon 4.7", "Sunfish"]
+      # binding.pry
       expect(Boat.without_a_captain.pluck(:name)).to eq(boats)
     end
   end
@@ -39,6 +40,7 @@ describe Boat do
   describe "::sailboats" do
     it "returns all boats that are sailboats" do
       boats = ["H 28", "Nacra 17", "49er", "Laser", "Harpoon 4.7", "Sunfish"]
+      # binding.pry
       expect(Boat.sailboats.pluck(:name)).to eq(boats)
     end
   end
