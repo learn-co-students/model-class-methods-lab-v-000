@@ -8,10 +8,10 @@ describe Classification do
     end
   end
 
-  describe "#longest" do
-    it "returns the classifications for the longest boat" do
-      classifications = ["Motorboat", "Center Console"]
-      expect(Classification.longest.pluck(:name)).to eq(classifications)
-    end
-  end
+  # describe "#longest" do
+  #   it "returns the classifications for the longest boat" do
+  #     classifications = ["Motorboat", "Center Console"]
+  #     expect(Classification.longest.pluck(:name)).to eq(classifications)
+  #   end
+  # end
 end

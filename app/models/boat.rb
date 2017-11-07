@@ -35,10 +35,12 @@ class Boat < ActiveRecord::Base
     # INNER JOIN classifications
     # ON boat_classifications.classification_id = classifications.id
     # WHERE classifications.name = "Sailboat"
+
     where("classifications.name = ?", "Sailboat").joins("INNER JOIN boat_classifications
       ON boats.id = boat_classifications.boat_id
       INNER JOIN classifications
       ON boat_classifications.classification_id = classifications.id").select("boats.name")
+
   end
 
   def self.with_three_classifications
