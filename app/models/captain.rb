@@ -2,6 +2,13 @@ class Captain < ActiveRecord::Base
   has_many :boats
 
   def self.catamaran_operators
+  ## MY PURE AR PASS
+    # where("classifications.name = ?", "Catamaran").joins("INNER JOIN boats
+    # ON captains.id = boats.captain_id
+    # INNER JOIN boat_classifications
+    # ON boats.id = boat_classifications.boat_id
+    # INNER JOIN classifications
+    # ON boat_classifications.classification_id = classifications.id").group("captains.id").select("name")
   ## MY PURE SQL
     # SELECT captains.name FROM captains
     # INNER JOIN boats
@@ -13,14 +20,8 @@ class Captain < ActiveRecord::Base
     # WHERE classifications.name = "Catamaran"
     # GROUP BY captains.id
 
-  ## MY PURE AR PASS
-    # where("classifications.name = ?", "Catamaran").joins("INNER JOIN boats
-    # ON captains.id = boats.captain_id
-    # INNER JOIN boat_classifications
-    # ON boats.id = boat_classifications.boat_id
-    # INNER JOIN classifications
-    # ON boat_classifications.classification_id = classifications.id").group("captains.id").select("name")
-
+  ## AR CLEAN PASS
+    includes(boats: :classifications).where(classifications: { name: "Catamaran" }).uniq
   ## TA PURE AR
     # SELECT DISTINCT captains.name
     # FROM captains
@@ -32,8 +33,6 @@ class Captain < ActiveRecord::Base
     # ON classifications.id = boat_classifications.classification_id
     # WHERE classifications.name = 'Catamaran'
 
-  ## AR CLEAN PASS
-    includes(boats: :classifications).where(classifications: { name: "Catamaran" }).uniq
 
   end
 
@@ -72,6 +71,11 @@ class Captain < ActiveRecord::Base
       includes(boats: :classifications).where(classifications: { name: "Sailboat" }).uniq
   end
 
+  # SOLN Helper Method
+  def self.motorboaters
+    includes(boats: :classifications).where(classifications: {name: "Motorboat"})
+  end
+
   def self.talented_seamen
     # SELECT captains.name FROM captains
     # INNER JOIN boats
@@ -82,12 +86,15 @@ class Captain < ActiveRecord::Base
     # ON boat_classifications.classification_id = classifications.id
     # WHERE classifications.name = "Motorboat"  OR classifications.name = "Sailboat"
     # GROUP BY classifications.id
-    where("classifications.name = ? OR classifications.name = ?", "Motorboat", "Sailboat").joins("INNER JOIN boats
-    ON captains.id = boats.captain_id
-    INNER JOIN boat_classifications
-    ON boats.id = boat_classifications.boat_id
-    INNER JOIN classifications
-    ON boat_classifications.classification_id = classifications.id").group("classifications.id").select("captains.name")
+
+    # where("classifications.name = ? OR classifications.name = ?", "Motorboat", "Sailboat").joins("INNER JOIN boats
+    # ON captains.id = boats.captain_id
+    # INNER JOIN boat_classifications
+    # ON boats.id = boat_classifications.boat_id
+    # INNER JOIN classifications
+    # ON boat_classifications.classification_id = classifications.id").group("classifications.id").select("captains.name")
+
+    where("id IN (?)", self.sailors.pluck(:id) & self.motorboaters.pluck(:id))
   end
 
   def self.non_sailors

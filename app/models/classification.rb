@@ -23,6 +23,12 @@ class Classification < ActiveRecord::Base
     # ON boats.id = boat_classifications.boat_id
     # ORDER BY boats.length DESC
 
+      # SELECT "classifications".* FROM "classifications"
+      # INNER JOIN "boat_classifications"
+      # ON "classifications"."id" = "boat_classifications"."classification_id"
+      # WHERE "boat_classifications"."boat_id" = ?  [["boat_id", 3]]
+    Boat.longest.classifications
+
 
   end
 end
