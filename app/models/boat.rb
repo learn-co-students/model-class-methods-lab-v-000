@@ -30,7 +30,7 @@ class Boat < ActiveRecord::Base
   end
 
   def self.with_three_classifications
-    self.joins(:boat_classifications).select(:boat_id).group(:boat_id).having("count(*) IS 3")
+    self.joins(:boat_classifications).group(:boat_id).having("count(*) IS 3")
   end
 
   def self.max_length
