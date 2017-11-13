@@ -7,7 +7,7 @@ describe Boat do
       expect(Boat.first_five.pluck(:name)).to eq(boats)
     end
   end
-
+ 
   describe "::dinghy" do
     it "returns boats shorter than 20 feet" do
       boats = ["Nacra 17", "Boston Whaler", "49er", "Laser", "Harpoon 4.7", "Sunfish"]
