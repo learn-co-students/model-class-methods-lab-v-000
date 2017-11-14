@@ -12,7 +12,7 @@ class Boat < ActiveRecord::Base
   end
 
   def self.ship
-    where("lenght >= ?", 20)#Now what if that number could vary, say as an argument from somewhere,http://guides.rubyonrails.org/active_record_querying.html#conditions
+    where("length >= ?", 20)#Now what if that number could vary, say as an argument from somewhere,http://guides.rubyonrails.org/active_record_querying.html#conditions
   end
 
   def self.last_three_alphabetically
@@ -21,6 +21,6 @@ class Boat < ActiveRecord::Base
   end
 
   def self.without_a_captain
-    where("captain_id = ?",nil)
+    where("captain_id IS ?",nil)
   end
 end
