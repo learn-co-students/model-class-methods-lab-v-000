@@ -1,5 +1,5 @@
 
-# Model Class Methods Lab
+yata yata yata# Model Class Methods Lab
 
 ## Instructions
 
