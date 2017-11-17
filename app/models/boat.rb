@@ -28,5 +28,12 @@ class Boat < ActiveRecord::Base
     #binding.pry
     joins(:classifications).where(classifications: { name: 'Sailboat' })
   end
-  
+
+  def self.with_three_classifications
+    joins(:classifications).group("boats.id").having('count(classification_id) = 3')
+    #return a Boat object for all boats with classifications by joins call
+    #return collection of boats_id by group call
+    #return boats with specified expression (count(classification_id = 3)) on the GROUP BY fields
+    #binding.pry
+  end
 end
