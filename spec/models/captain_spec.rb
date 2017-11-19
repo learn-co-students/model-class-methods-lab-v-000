@@ -3,6 +3,7 @@ require 'spec_helper'
 describe Captain do
   describe "::catamaran_operators" do
     it "returns all captains of catamarans" do
+      #binding.pry
       captains = ["Captain Kidd", "Samuel Axe"]
       expect(Captain.catamaran_operators.pluck(:name)).to eq(captains)
     end
@@ -10,7 +11,9 @@ describe Captain do
 
   describe "::sailors" do
     it "returns captains with sailboats" do
+      #binding.pry
       captains = ["Captain Cook", "Captain Kidd", "Samuel Axe"]
+      #binding.pry
       expect(Captain.sailors.pluck(:name)).to eq(captains)
     end
   end

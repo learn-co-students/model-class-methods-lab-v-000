@@ -33,7 +33,11 @@ class Boat < ActiveRecord::Base
     joins(:classifications).group("boats.id").having('count(classification_id) = 3')
     #return a Boat object for all boats with classifications by joins call
     #return collection of boats_id by group call
-    #return boats with specified expression (count(classification_id = 3)) on the GROUP BY fields
+    #return boats with specified expression Having (count(classification_id = 3)) on the GROUP BY fields
     #binding.pry
+  end
+
+  def self.longest
+   order('length DESC').first
   end
 end
