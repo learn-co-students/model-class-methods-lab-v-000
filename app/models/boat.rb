@@ -40,4 +40,8 @@ class Boat < ActiveRecord::Base
     joins(:classifications).where("classifications.name = ?", "Motorboat")
   end
 
+  def self.longest
+    order(:length).limit(1)
+  end
+
 end
