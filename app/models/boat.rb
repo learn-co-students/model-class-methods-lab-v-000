@@ -24,4 +24,8 @@ class Boat < ActiveRecord::Base
     where("captain_id IS NULL")
   end
 
+  def self.sailboats
+    joins(:classifications).where("name = sailboat")
+  end
+
 end
