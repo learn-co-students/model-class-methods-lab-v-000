@@ -38,4 +38,19 @@ class Captain < ActiveRecord::Base
     where("id IN (?)", captain_ids)
   end
 
+  def self.non_sailors
+    captain_ids = []
+    sailboat_ids = []
+
+    Boat.sailboats.each do |boat|
+      sailboat_ids << boat.captain_id
+    end
+    Captain.all.each do |captain|
+      if !sailboat_ids.include?(captain.id)
+        captain_ids << captain.id
+      end
+    end
+    where("id IN (?)", captain_ids)
+  end
+
 end
