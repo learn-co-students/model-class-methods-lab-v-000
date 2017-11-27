@@ -4,7 +4,7 @@ class Boat < ActiveRecord::Base
   has_many    :classifications, through: :boat_classifications
 
   def self.first_five
-    binding.pry
+    #binding.pry
     order(:id).limit(5)
   end
 
@@ -18,6 +18,10 @@ class Boat < ActiveRecord::Base
 
   def self.last_three_alphabetically
     order(name: :desc).limit(3)
+  end
+
+  def self.without_a_captain
+    where("captain_id IS NULL")
   end
 
 end
