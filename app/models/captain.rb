@@ -17,8 +17,8 @@ class Captain < ActiveRecord::Base
 
   def self.non_sailors
     #try double where clause
-    # self.where(id: Classification.captain_id_join.group(:captain_id).having("count(DISTINCT classifications.name) >= 2").where.not(['classifications.name = ?', "Sailboat"]))
-    # Classification.captain_id_join.group(:captain_id).having("classifications.name != 'Sailboat'")
+
+    self.where(id: Classification.captain_id_join.group(:captain_id).having("COUNT(classifications.name IN('Sailboat') OR NULL) = 0"))
   end
 
   private

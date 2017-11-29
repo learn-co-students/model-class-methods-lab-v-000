@@ -14,4 +14,5 @@ class Classification < ActiveRecord::Base
     #returns join table of captain ids
     self.joins(:boats).select("boats.captain_id")
   end
+
 end
