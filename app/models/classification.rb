@@ -9,4 +9,9 @@ class Classification < ActiveRecord::Base
   def self.longest
     self.where(id: Boat.joins(:classifications).select("classifications.id").where(["boats.length = ?" ,Boat.maximum(:length)]))
   end
+
+  def self.captain_id_join
+    #returns join table of captain ids
+    self.joins(:boats).select("boats.captain_id")
+  end
 end
