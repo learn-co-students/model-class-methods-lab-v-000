@@ -27,4 +27,12 @@ class Boat < ActiveRecord::Base
     includes(:classifications).where("classifications.name = ?", "Sailboat")
   end
 
+  def self.with_three_classifications
+    includes(:boat_classifications).group(:boat_id).having("COUNT(*) = ?", 3)
+  end
+
+  def self.longest
+    order("length DESC").first
+  end
+
 end
