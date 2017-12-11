@@ -27,8 +27,17 @@ class Boat < ActiveRecord::Base
   def self.sailboats 
     sailboat_id = Classification.where(name: 'Sailboat')
     boat_ids = BoatClassification.where(classification_id: sailboat_id).pluck(:boat_id)
-    boats = Boat.where(id: boat_ids)
+    boats = all.where(id: boat_ids)
     boats
   end
+
+  def self.with_three_classifications
+    a = BoatClassification.group(:boat_id).having("count(boat_id) = 3")
+    id_ary = a.pluck(:boat_id)
+
+    all.where(id: id_ary)
+  end
+
+
 
 end

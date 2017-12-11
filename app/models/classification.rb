@@ -3,4 +3,15 @@ class Classification < ActiveRecord::Base
   has_many :boats, through: :boat_classifications
 
 
+  def self.my_all
+    self.all
+  end
+
+  def self.longest
+    # binding.pry
+    boat = Boat.where(length: Boat.maximum("length"))
+    boat[0].classifications
+  end
+
+
 end
