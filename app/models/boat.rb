@@ -28,6 +28,7 @@ class Boat < ActiveRecord::Base
   end
 
   def self.with_three_classifications
-    # includes(:classifications).where(boat[:classifications].eq(3))
+    binding.pry
+    includes(:classifications).where(boat).having[:classifications].eq(3))
   end
 end
