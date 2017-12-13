@@ -12,6 +12,7 @@ class Boat < ActiveRecord::Base
   end
 
   def self.ship
+    # "SELECT * FROM 'boat' WHERE 'length' > 20;"
     where('length > 20' )
   end
 
@@ -24,11 +25,17 @@ class Boat < ActiveRecord::Base
   end
 
   def self.sailboats
-    includes(:classifications).where(:classifications => {:name => "Sailboat"})
+    joins(:classifications).where(:classifications => {:name => "Sailboat"})
   end
 
   def self.with_three_classifications
-    binding.pry
-    includes(:classifications).where(boat).having[:classifications].eq(3))
+    joins(:classifications).group('boats.id').having('COUNT(*) = 3')
   end
+
+# catagories
+  def self.longest
+     order(:length => :desc).first.classifications
+  end
+
+
 end
