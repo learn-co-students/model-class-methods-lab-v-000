@@ -5,6 +5,8 @@ class Boat < ActiveRecord::Base
 
   def self.first_five
     limit(5)
+    # OR
+    # all.limit(5)
   end
 
   def self.dinghy
@@ -17,6 +19,8 @@ class Boat < ActiveRecord::Base
 
   def self.last_three_alphabetically
     order(name: :desc).limit(3)
+    # OR
+    # all.order(name: :desc).limit(3)
   end
 
   def self.without_a_captain
@@ -29,6 +33,8 @@ class Boat < ActiveRecord::Base
 
   def self.with_three_classifications
     joins(:boat_classifications).group("boats.name").having("COUNT(boats.id) = 3")
+    # OR
+    # joins(:classifications).group("boats.id").having("COUNT(*) = 3").select("boats.*")
   end
 
   def self.longest
