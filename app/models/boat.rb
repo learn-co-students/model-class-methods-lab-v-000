@@ -30,7 +30,7 @@ class Boat < ActiveRecord::Base
   
   
   def self.with_three_classifications
-    select('boats.name,count(boats.name) as thecount').joins(:classifications).group("boats.name").having("thecount = ?",3)
+    select('boats.name,count(boats.name)').joins(:classifications).group("boats.name").having("count(boats.name) = ?",3)
     #better option just check count of classifciations
     #self.all.select{|e| e.classifications.size == 3}
   end
