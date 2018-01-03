@@ -1,0 +1,8 @@
+<h1>Boats</h1>
+<% @boats.each do |boat| %>
+  <div>
+    <h2>Name: <%= boat.name %></h2>
+    <ul>length: <%= boat.length %></ul>
+    <ul><%= boat.captain.name if boat.captain != nil%></ul>
+  </div>
+<% end %>
