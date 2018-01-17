@@ -21,7 +21,7 @@ class Boat < ActiveRecord::Base
   
   def self.without_a_captain
     #Boat.all.select{|boat| boat.captain_id == nil}
-    self.where("captain_id IS NULL")
+    where("captain_id IS NULL")
   end
   
   def self.sailboats
@@ -33,7 +33,4 @@ class Boat < ActiveRecord::Base
     includes(:classifications).having("COUNT(*) = ?", 3).group('boat_id').references(:classifications)
   end
     
-  # User.joins(:posts).where("posts.created_at < ?", Time.now)
-  # Order.having('SUM(price) > 30').group('user_id')
-  # Boat.joins(:captains, :classifications).where("classifications.name = ?", 'Catamaran') 
 end

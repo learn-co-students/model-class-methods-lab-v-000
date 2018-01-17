@@ -11,7 +11,7 @@ class Captain < ActiveRecord::Base
   end
   
   def self.talented_seamen
-    self.where(id: self.sailors.pluck(:id)).where(id: self.motorboaters.pluck(:id)).distinct
+    where(id: self.sailors.pluck(:id)).where(id: self.motorboaters.pluck(:id)).distinct
   end
   
   def self.motorboaters
@@ -19,7 +19,7 @@ class Captain < ActiveRecord::Base
   end
   
   def self.non_sailors
-    self.where.not(id: self.sailors.pluck(:id)).distinct
+    where.not(id: self.sailors.pluck(:id)).distinct
   end
   
   
