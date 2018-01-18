@@ -1,0 +1,47 @@
+[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[31mF[0m[31mF[0m[31mF[0m[31mF[0m
+
+Failures:
+
+  1) Captain::talented_seamen returns captains of motorboats and sailboats
+     [31mFailure/Error: [0mexpect([1;34;4mCaptain[0m.talented_seamen.pluck([33m:name[0m)).to eq(captains)[0m
+     [31m[0m
+     [31m  expected: ["Captain Cook", "Samuel Axe"][0m
+     [31m       got: ["Captain Cook", "Captain Cook", "Captain Kidd", "Samuel Axe"][0m
+     [31m[0m
+     [31m  (compared using ==)[0m
+     [36m# ./spec/models/captain_spec.rb:21:in `block (3 levels) in <top (required)>'[0m
+
+  2) Captain::non_sailors returns people who are not captains of sailboats
+     [31mFailure/Error: [0mexpect([1;34;4mCaptain[0m.non_sailors.pluck([33m:name[0m)).to eq(captains)[0m
+     [31m[0m
+     [31mNoMethodError:[0m
+     [31m  undefined method `non_sailors' for #<Class:0x00000003c4d350>[0m
+     [36m# /usr/local/rvm/gems/ruby-2.3.3/gems/activerecord-4.2.0/lib/active_record/dynamic_matchers.rb:26:in `method_missing'[0m
+     [36m# ./spec/models/captain_spec.rb:28:in `block (3 levels) in <top (required)>'[0m
+
+  3) Classification::my_all returns all classifications
+     [31mFailure/Error: [0mexpect([1;34;4mClassification[0m.my_all.pluck([33m:name[0m).uniq).to eq(classifications)[0m
+     [31m[0m
+     [31mNoMethodError:[0m
+     [31m  undefined method `my_all' for #<Class:0x00000003b46830>[0m
+     [36m# /usr/local/rvm/gems/ruby-2.3.3/gems/activerecord-4.2.0/lib/active_record/dynamic_matchers.rb:26:in `method_missing'[0m
+     [36m# ./spec/models/classification_spec.rb:7:in `block (3 levels) in <top (required)>'[0m
+
+  4) Classification#longest returns the classifications for the longest boat
+     [31mFailure/Error: [0mexpect([1;34;4mClassification[0m.longest.pluck([33m:name[0m)).to eq(classifications)[0m
+     [31m[0m
+     [31mNoMethodError:[0m
+     [31m  undefined method `longest' for #<Class:0x00000003b46830>[0m
+     [36m# /usr/local/rvm/gems/ruby-2.3.3/gems/activerecord-4.2.0/lib/active_record/dynamic_matchers.rb:26:in `method_missing'[0m
+     [36m# ./spec/models/classification_spec.rb:14:in `block (3 levels) in <top (required)>'[0m
+
+Finished in 10.4 seconds (files took 3 seconds to load)
+[31m13 examples, 4 failures[0m
+
+Failed examples:
+
+[31mrspec ./spec/models/captain_spec.rb:19[0m [36m# Captain::talented_seamen returns captains of motorboats and sailboats[0m
+[31mrspec ./spec/models/captain_spec.rb:26[0m [36m# Captain::non_sailors returns people who are not captains of sailboats[0m
+[31mrspec ./spec/models/classification_spec.rb:5[0m [36m# Classification::my_all returns all classifications[0m
+[31mrspec ./spec/models/classification_spec.rb:12[0m [36m# Classification#longest returns the classifications for the longest boat[0m
+
