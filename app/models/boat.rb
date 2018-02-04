@@ -32,6 +32,10 @@ class Boat < ActiveRecord::Base
     def with_three_classifications
       joins(:classifications).group("boats.id").having("count(classification_id) > 2")
     end
+
+    def longest
+      order('length DESC').first
+    end
   end
 end
 
