@@ -5,7 +5,7 @@ class Classification < ActiveRecord::Base
   class << self
     
     def my_all
-      self.all
+      all
     end
 
     def longest
