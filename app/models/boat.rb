@@ -6,4 +6,8 @@ class Boat < ActiveRecord::Base
   def self.first_five
     all.limit(5)
   end
+
+  def self.dinghy
+    where("length < 20")
+  end
 end
