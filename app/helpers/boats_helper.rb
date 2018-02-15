@@ -1,0 +1,4 @@
+module BoatsHelper
+
+  
+end
