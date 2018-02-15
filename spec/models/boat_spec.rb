@@ -1,5 +1,5 @@
 require 'spec_helper'
-
+require 'pry'
 describe Boat do
   describe "::first_five" do
     it "returns the first five Boats" do
@@ -25,6 +25,7 @@ describe Boat do
   describe "::last_three_alphabetically" do
     it "returns last three boats in alphabetical order" do
       boats = ["Zodiac CZ7", "Triton 21 TRX", "Sunfish"]
+    
       expect(Boat.last_three_alphabetically.pluck(:name)).to eq(boats)
     end
   end

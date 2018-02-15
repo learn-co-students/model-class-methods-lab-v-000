@@ -1,4 +1,40 @@
 ArelLab::Application.routes.draw do
+  get 'classifications/index'
+
+  get 'classifications/new'
+
+  get 'classifications/create'
+
+  get 'classifications/edit'
+
+  get 'classifications/update'
+
+  get 'classifications/show'
+
+  get 'captians/index'
+
+  get 'captians/new'
+
+  get 'captians/create'
+
+  get 'captians/edit'
+
+  get 'captians/update'
+
+  get 'captians/show'
+
+  get 'boats/index'
+
+  get 'boats/new'
+
+  get 'boats/create'
+
+  get 'boats/edit'
+
+  get 'boats/update'
+
+  get 'boats/show'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
