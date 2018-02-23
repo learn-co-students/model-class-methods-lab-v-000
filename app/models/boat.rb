@@ -27,22 +27,6 @@ class Boat < ActiveRecord::Base
 #returns boats without a captain
   def self.without_a_captain
     Boat.where(captain_id: nil)
-    #Boat.where(:captain_id).nil? => false
-    #Boat.where("captain_id").empty? => false
-    #Boat.where("captain_id" == nil)
-    #Boat.where(:captain_id == nil)
-    #Boat.where(captain_id: == nil)
-    #Boat.where(Boat[!captain_id:])
-    #Boat.where(Boat[!:captain_id])
-    #Boat.where(!:captain_id)
-    #Boat.where(!"captain_id")
-    #Boat.where(!captain_id:)
-    #Boat.group(Boat[:captain_id]).!having(Boat[:captain_id])
-    #Boat.group(Boat[:captain_id]).having(Boat![:captain_id])
-    #Boat.group(Boat[:captain_id]).having(Boat[!:captain_id])
-    #Boat.group(Boat[!"captain_id"])
-    #Boat.group(Boat[!captain_id:])
-    #Boat.group(Boat[!:captain_id])
   end
 
 #returns all boats that are sailboats
