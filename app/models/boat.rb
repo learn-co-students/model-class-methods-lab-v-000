@@ -31,11 +31,11 @@ class Boat < ActiveRecord::Base
 
 #returns all boats that are sailboats
   def self.sailboats
-
+    Boat.includes(:classifications).where(classifications: {name: "Sailboat"})
   end
 
 #returns boats with three classifications
   def self.with_three_classifications
-
+    Boat.joins(:classifications).group("boats.id").having("COUNT(*)=3")
   end
 end
