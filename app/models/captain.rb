@@ -24,7 +24,6 @@ class Captain < ActiveRecord::Base
 
 #returns people who are not captains of sailboats
   def self.non_sailors
-    !Captain.includes(boats: :classifications).where(classifications: {name: "Sailboat"})
-
+    Captain.where.not("id IN (?)",Captain.sailors.pluck(:id))
   end
 end
