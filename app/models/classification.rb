@@ -4,7 +4,7 @@ class Classification < ActiveRecord::Base
 
 #returns all classifications
   def self.my_all
-
+    Classification.select(:name).distinct
   end
 
 #returns the classifications for the longest boat
