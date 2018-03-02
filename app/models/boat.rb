@@ -28,11 +28,15 @@ class Boat < ActiveRecord::Base
   end
 
   def self.with_three_classifications
-    joins(:classifications).group('classifications').having("count")
+    joins(:classifications).group("boats.id").having("COUNT(*) = 3").select("boats.*")
   end
 
-# 
-# Order.select("date(created_at) as ordered_date, sum(price) as total_price").
-#   group("date(created_at)").having("sum(price) > ?", 100)
+  def self.non_sailboats
+    where("id NOT IN (?)", self.sailboats.pluck(:id))
+  end
+
+  def self.longest_boat
+    all.order(length: :desc).first
+  end
 
 end
