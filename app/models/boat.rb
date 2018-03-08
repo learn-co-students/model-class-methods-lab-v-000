@@ -26,8 +26,11 @@ class Boat < ActiveRecord::Base
   end
 
   def self.sailboats
-    sailboat_id = Classification.find_by(:name => "Sailboat").id
-    ids = BoatClassification.where("classification_id = #{sailboat_id}").map(&:boat_id)
+    where(:id => Classification.find_by(name: "Sailboat").boat_ids.to_a)
+  end
+
+  def self.with_three_classifications
+    ids = BoatClassification.group(:boat_id).count(:boat_id).select{|id, count| count == 3 }.keys
     where(:id => ids)
   end
 end
