@@ -16,12 +16,18 @@ class Captain < ActiveRecord::Base
     includes(boats: :classifications).where(classifications: {name: "Sailboat"})
   end
 
-  def self.talented_seafarers
-    binding.pry
-    where("id IN (?)", self.sailors.pluck(:id) & self.motorboaters.pluck(:id))	
+  def self.motorboat_operators
+    includes(boats: :classifications).where(classifications: {name: "Motorboat"})
   end
-  def self.non_sailors
-    binding.pry
+  def self.talented_seafarers
+#binding.pry
+    # grab the ids of captiains of sailboats
+    # grab the ids of captains of motorboats
+    where("id IN (?)", self.sailors.pluck(:id) & self.motorboat_operators.pluck(:id))
   end
 
+  def self.non_sailors
+binding.pry
+    where.not("id IN (?)", self.sailors.pluck(:id))
+  end
 end
