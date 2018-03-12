@@ -1,0 +1,13 @@
+<h1>Boats, Boats, Boats! </h1>
+
+<h3> Filter boats:</h3>
+<%= form_tag("/boats", method: "get") do %>
+  <%= select_tag "name", options_for_select(["First Five"]), include_blank: true %>
+  <%= submit_tag "Filter" %>
+<% end %>
+
+<ul>
+<% @boats.each do |boat| %>
+  <li><%= boat.name %></li>
+<% end %>
+</ul>
