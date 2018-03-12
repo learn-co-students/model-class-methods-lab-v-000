@@ -87,14 +87,10 @@ class Boat < ActiveRecord::Base
             # =>      captain_id: 1002,
             # =>      created_at: Mon, 12 Mar 2018 02:20:57 UTC +00:00,
             # =>      updated_at: Mon, 12 Mar 2018 02:20:58 UTC +00:00>]
-
-
-
-
-
-
-
-
-
   end
+  def self.longest
+      all.order(name: :desc).limit(1)
+      #order(name: :desc).first
+  end
+
 end

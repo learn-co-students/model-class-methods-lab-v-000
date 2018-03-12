@@ -13,7 +13,8 @@ class Captain < ActiveRecord::Base
   def self.sailors
   #  binding.pry
   #using the boats and classifications tables, lets see the Captains that have a boat with a classification named "Sailboat"
-    includes(boats: :classifications).where(classifications: {name: "Sailboat"})
+    includes(boats: :classifications).where(classifications: {name: "Sailboat"}).uniq
+
   end
 
   def self.motorboat_operators
@@ -27,7 +28,7 @@ class Captain < ActiveRecord::Base
   end
 
   def self.non_sailors
-binding.pry
+#binding.pry
     where.not("id IN (?)", self.sailors.pluck(:id))
   end
 end
