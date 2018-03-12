@@ -35,6 +35,8 @@ end
 group :test, :development do
   gem "rspec-rails"
   gem "factory_girl_rails"
+  #below gem added factory_bot
+  gem "factory_bot"
   gem "database_cleaner"
   gem "pry"
 end
