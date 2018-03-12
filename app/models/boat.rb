@@ -89,8 +89,11 @@ class Boat < ActiveRecord::Base
             # =>      updated_at: Mon, 12 Mar 2018 02:20:58 UTC +00:00>]
   end
   def self.longest
-      all.order(name: :desc).limit(1)
+      order('length DESC').first
       #order(name: :desc).first
+  end
+  def self.non_sailboats
+      where("id NOT IN (?)", self.sailboats.pluck(:id))
   end
 
 end
