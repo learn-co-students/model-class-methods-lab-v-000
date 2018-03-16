@@ -1,3 +1,7 @@
+Captain.destroy_all
+Boat.destroy_all
+Classification.destroy_all
+
 cook = Captain.create(name: "Captain Cook", admiral: true)
 kidd = Captain.create(name: "Captain Kidd", admiral: true)
 william = Captain.create(name: "William Kyd", admiral: false)
@@ -52,7 +56,7 @@ cat_rig = Classification.create(name: "Cat Rig Boat")
 bass = Classification.create(name: "Bass Boat")
 pontoon = Classification.create(name: "Pontoon Boat")
 
-h_28.classifications << [ketch, sailboat]
+h_28.classifications << [motorboat, sailboat]
 nacra_17.classifications << [catamaran, sloop, sailboat]
 regulator.classifications << [motorboat, center]
 zodiac.classifications << [rib, motorboat, center]
