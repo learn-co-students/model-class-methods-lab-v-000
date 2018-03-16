@@ -1,0 +1,6 @@
+<h1>Boats Index Page</h1>
+<ul>
+  <% @boats.limit(5).each do |boat| %>
+    <li><%= boat.name  %></li><br>
+  <% end %>
+</ul>
