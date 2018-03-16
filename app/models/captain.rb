@@ -1,5 +1,8 @@
 class Captain < ActiveRecord::Base
   has_many :boats
+  has_many :boat_classifications, through: :boats
+  has_many :classifications, through: :boat_classifications
+
 
   def self.catamaran_operators
     # catamaran = Classification.find_by(name: 'Catamaran')
@@ -15,7 +18,7 @@ class Captain < ActiveRecord::Base
     # all.find_all do |captain|
     #   captain.boats.any? { |boat| boat.has_c('Sailboat') }
     # end
-    Classification.find_by(name: 'Sailboat').captains
+    Classification.find_by(name: 'Sailboat').captains.distinct
   end
 
   def self.talented_seafarers
@@ -26,13 +29,13 @@ class Captain < ActiveRecord::Base
     #   has_sailboat = captain.boats.any? { |boat| boat.classifications.include?(sailboat) }
     #   has_motorboat && has_sailboat
     # end
-    Classification.where(name: %w[Sailboat Motorboat]).captains
+    includes(:classifications).where(classifications: { name: %w[Sailboat Motorboat] })
   end
 
   def self.non_sailors
     # all.reject do |captain|
     #   captain.boats.any? { |boat| boat.has_c('Sailboat') }
     # end
-    Classification.where.not(name: 'Sailboat').captains
+    includes(:classifications).where.not(classifications: { name: %w[Sailboat Motorboat] })
   end
 end
