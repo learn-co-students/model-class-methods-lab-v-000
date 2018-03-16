@@ -2,12 +2,13 @@ class Captain < ActiveRecord::Base
   has_many :boats
 
   def self.catamaran_operators
-    catamaran = Classification.find_by(name: 'Catamaran')
-    all.find_all do |captain|
-      captain.boats.any? do |boat|
-        boat.classifications.include?(catamaran)
-      end
-    end
+    # catamaran = Classification.find_by(name: 'Catamaran')
+    # all.find_all do |captain|
+    #   captain.boats.any? do |boat|
+    #     boat.classifications.include?(catamaran)
+    #   end
+    # end
+    Classification.find_by(name: 'Catamaran').captains
   end
 
   def self.sailors
