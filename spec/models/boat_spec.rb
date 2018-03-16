@@ -51,3 +51,4 @@ describe Boat do
   end
 
 end
+ 
