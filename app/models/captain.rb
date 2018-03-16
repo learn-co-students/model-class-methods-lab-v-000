@@ -3,7 +3,6 @@ class Captain < ActiveRecord::Base
   has_many :boat_classifications, through: :boats
   has_many :classifications, through: :boat_classifications
 
-
   def self.catamaran_operators
     # catamaran = Classification.find_by(name: 'Catamaran')
     # all.find_all do |captain|
@@ -29,13 +28,18 @@ class Captain < ActiveRecord::Base
     #   has_sailboat = captain.boats.any? { |boat| boat.classifications.include?(sailboat) }
     #   has_motorboat && has_sailboat
     # end
-    includes(:classifications).where(classifications: { name: %w[Sailboat Motorboat] })
+    ids = all.find_all do |captain|
+      names = captain.classifications.pluck(:name)
+      names.include?('Sailboat') && names.include?('Motorboat')
+    end.map(&:id)
+
+    where(id: ids)
   end
 
   def self.non_sailors
     # all.reject do |captain|
     #   captain.boats.any? { |boat| boat.has_c('Sailboat') }
     # end
-    includes(:classifications).where.not(classifications: { name: %w[Sailboat Motorboat] })
+    includes(:classifications).where.not(classifications: { name: 'Sailboat' })
   end
 end
