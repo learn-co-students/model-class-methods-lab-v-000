@@ -18,7 +18,7 @@ class Captain < ActiveRecord::Base
     # all.find_all do |captain|
     #   captain.boats.any? { |boat| boat.has_c('Sailboat') }
     # end
-    Classification.find_by(name: 'Sailboat').captains.uniq
+    Classification.find_by(name: 'Sailboat').captains
   end
 
   def self.talented_seafarers
