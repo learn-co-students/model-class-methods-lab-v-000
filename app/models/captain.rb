@@ -18,8 +18,7 @@ class Captain < ActiveRecord::Base
     # all.find_all do |captain|
     #   captain.boats.any? { |boat| boat.has_c('Sailboat') }
     # end
-    # Classification.find_by(name: 'Sailboat').captains
-    includes(:classifications).where(classifications: { name: 'Sailboat' })
+    Classification.find_by(name: 'Sailboat').captains.group('captains.name')
   end
 
   def self.talented_seafarers
