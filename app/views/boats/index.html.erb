@@ -1,0 +1,9 @@
+
+
+<h1> All Boats </h1>
+
+<ul> <% @boats.each do |boat| %>
+  <li>Name: <%= boat.name %></li>
+  <li>Length <%= boat.length %> </li>
+<% end %>
+</ul>
