@@ -37,10 +37,14 @@ class Captain < ActiveRecord::Base
   end
 
   def self.non_sailors
-    result = all.reject do |captain|
-      captain.boats.any? { |boat| boat.has_c('Sailboat') }
-    end
+    # all.reject do |captain|
+    #   captain.boats.any? { |boat| boat.has_c('Sailboat') }
+    # end
+    ids = all.reject do |captain|
+      names = captain.classifications.pluck(:name)
+      names.include?('Sailboat')
+    end.map(&:id)
 
-    where(id: result.map(&:id))
+    where(id: ids)
   end
 end
