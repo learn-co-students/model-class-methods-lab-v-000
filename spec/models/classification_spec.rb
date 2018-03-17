@@ -14,4 +14,15 @@ describe Classification do
       expect(Classification.longest.pluck(:name)).to eq(classifications)
     end
   end
+
+  #new test
+
+  # describe 'length_between' do
+  #   it "returns boats with a length between 20 and 30" do
+  #     boats =  ["Triton 21 TRX", "Zodiac CZ7", "H 28", "Sun Tracker Regency 254 XP3", "Cape Dory"].sort
+  #     expect(Classification.length_between).to eq(boats)
+  #   end
+  # end
+
+
 end
