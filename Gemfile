@@ -1,5 +1,9 @@
 source 'https://rubygems.org'
 
+<<<<<<< HEAD
+gem 'pry'
+=======
+>>>>>>> 4971cb53f290a9e7272e339aeb997b5c1f31444a
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2'
 

@@ -2,7 +2,6 @@ class Boat < ActiveRecord::Base
   belongs_to  :captain
   has_many    :boat_classifications
   has_many    :classifications, through: :boat_classifications
-<<<<<<< HEAD
 
   def self.first_five
     all.limit(5)
@@ -50,6 +49,4 @@ class Boat < ActiveRecord::Base
     #
     # Boat.joins(:classifications).group("boats.id").select("boats.*").having("count(*) = 3")
   end
-=======
->>>>>>> 4971cb53f290a9e7272e339aeb997b5c1f31444a
 end
