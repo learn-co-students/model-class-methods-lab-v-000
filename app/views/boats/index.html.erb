@@ -1,0 +1,16 @@
+<h1>All Boats</h1>
+
+<div>
+  <h3>Filter Boats:</h3>
+  <%= form_tag("/boats", method: "get") do %>
+
+    <%= select_tag "filter_by", options_for_select(["First 5", "Dinghy", "Ship", "Last Three", "No Captain", "Sailboats", "Three Classifications"]), include_blank: true %>
+
+    <%= submit_tag "Filter" %>
+  <% end %>
+
+</div><br>
+
+<% @boats.each do |boat| %>
+  <%= boat.name %><br>
+<% end %>

@@ -1,0 +1,16 @@
+<h1>All Captains</h1>
+
+<div>
+  <h3>Filter Captain:</h3>
+  <%= form_tag("/captains", method: "get") do %>
+
+    <%= select_tag "filter_by", options_for_select(["Catamaran Operators"]), include_blank: true %>
+
+    <%= submit_tag "Filter" %>
+  <% end %>
+
+</div><br>
+
+<% @captains.each do |captain| %>
+  <%= captain.name %><br>
+<% end %>
