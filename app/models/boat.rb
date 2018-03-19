@@ -28,8 +28,10 @@ class Boat < ActiveRecord::Base
   end
 
   def self.sailboats
-    binding.pry
-    self.joins(:classifications).where("name IS 'Sailboat'")
-    # ["H 28", "Nacra 17", "49er", "Laser", "Harpoon 4.7", "Sunfish"]
+    Classification.where(name: "Sailboat")[0].boats
+  end
+
+  def self.with_three_classifications
+    self.joins(:classifications).group('boats.id').having('COUNT(*) = 3')
   end
 end
