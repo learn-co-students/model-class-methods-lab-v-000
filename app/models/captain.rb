@@ -15,6 +15,7 @@ class Captain < ActiveRecord::Base
 
   def self.non_sailors
     binding.pry
-    self.joins(boats: [:classifications]).group("captains.name").having("classifications.name != 'Sailboat'")
+    self.joins(boats: [:boat_classifications]).group("boat_classifications.classification_id").where("boat_classifications.classification_id IS NOT 6712")
+    #["William Kyd", "Arel English", "Henry Hudson"]
   end
 end
