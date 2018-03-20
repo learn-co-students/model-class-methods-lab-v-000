@@ -11,6 +11,7 @@ describe Classification do
   describe "#longest" do
     it "returns the classifications for the longest boat" do
       classifications = ["Motorboat", "Center Console"]
+      # binding.pry
       expect(Classification.longest.pluck(:name)).to eq(classifications)
     end
   end
