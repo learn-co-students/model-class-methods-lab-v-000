@@ -4,8 +4,7 @@ class Boat < ActiveRecord::Base
   has_many    :classifications, through: :boat_classifications
 
   def self.first_five
-   where("id <= ?", 5)
-
+   # where("id ")
   end
 
   def self.dinghy
@@ -17,11 +16,14 @@ class Boat < ActiveRecord::Base
   end
 
   def self.last_three_alphabetically
-    # where()
   end
 
   def self.without_a_captain
     where("captain_id is null")
+  end
+
+  def self.sailboats
+    where("name == ?", 'Sailboat')
   end
 
 end
