@@ -4,18 +4,23 @@ class Boat < ActiveRecord::Base
   has_many    :classifications, through: :boat_classifications
 
   def self.first_five
-    @boats = Boat.all
-    @boats[0..4]
+   # where("id  ?..?", 1, 5)
   end
 
   def self.dinghy
-    @boats = Boat.all
-    dinghy = []
-    @boats.collect do |boat|
-      if boat.length <= 20
-        dinghy << boat
-      end
-    end
+    where("length <= 20")
+  end
+
+  def self.ship
+    where("length >= 20")
+  end
+
+  def self.last_three_alphabetically
+    # where()
+  end
+
+  def self.without_a_captain
+    where("captain_id.empty")
   end
 
 end
