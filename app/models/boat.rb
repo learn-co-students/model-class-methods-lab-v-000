@@ -4,7 +4,7 @@ class Boat < ActiveRecord::Base
   has_many    :classifications, through: :boat_classifications
 
   def self.first_five
-   # where("id ")
+    self.limit(5)
   end
 
   def self.dinghy
@@ -16,6 +16,7 @@ class Boat < ActiveRecord::Base
   end
 
   def self.last_three_alphabetically
+    self.order("name DESC").limit(3)
   end
 
   def self.without_a_captain
@@ -23,7 +24,7 @@ class Boat < ActiveRecord::Base
   end
 
   def self.sailboats
-    where("name == ?", 'Sailboat')
+    self.joins(:classifications).where("classification[:name] == ?", "Sailboat")
   end
 
 end
