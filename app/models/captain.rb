@@ -7,4 +7,11 @@ class Captain < ActiveRecord::Base
     self.joins(:classifications).where("classifications.name == ?", "Catamaran")
   end
 
+  def self.sailors
+    self.joins(:classifications).where("classifications.name == ?", "Sailboat").group("captain_id")
+  end
+
+  def self.talented_seafarers
+    self.joins(:classifications).where("classifications.name == ?", "Sailboat").or(self.joins(:classifications).where("classifications.name == ?", "Motorboat")).group("captain_id")
+  end
 end
