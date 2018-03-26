@@ -28,7 +28,9 @@ class Boat < ActiveRecord::Base
   end
 
   def self.with_three_classifications
-      self.joins(:classifications)
-      .where("(classifications[:name]).count <= ?", 3)
+    self.joins(:classifications)
+    .count("classifications.name")
+    # .order("DESC")
   end
+
 end
