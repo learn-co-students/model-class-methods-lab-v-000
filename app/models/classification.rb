@@ -3,11 +3,11 @@ class Classification < ActiveRecord::Base
   has_many :boats, through: :boat_classifications
 
   def self.my_all
-    self.all
+    all
   end
 
   def self.longest
-    self.joins(:boats).order("boats.length DESC").limit(2)
+    Boat.longest.classifications
   end
 
 

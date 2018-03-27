@@ -4,7 +4,7 @@ class Boat < ActiveRecord::Base
   has_many    :classifications, through: :boat_classifications
 
   def self.first_five
-    self.limit(5)
+    limit(5)
   end
 
   def self.dinghy
@@ -16,7 +16,7 @@ class Boat < ActiveRecord::Base
   end
 
   def self.last_three_alphabetically
-    self.order("name DESC").limit(3)
+    order("name DESC").limit(3)
   end
 
   def self.without_a_captain
@@ -24,12 +24,16 @@ class Boat < ActiveRecord::Base
   end
 
   def self.sailboats
-    self.joins(:classifications).where("classifications.name == ?", "Sailboat")
+    joins(:classifications).where("classifications.name == ?", "Sailboat")
   end
 
   def self.with_three_classifications
-    self.joins(:boat_classifications)
+    joins(:boat_classifications)
     .having('COUNT(boat_classifications.classification_id) > 2').group('boat_id')
+  end
+
+  def self.longest
+    order('length DESC').first
   end
 
 end
