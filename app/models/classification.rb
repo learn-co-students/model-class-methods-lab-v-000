@@ -7,7 +7,7 @@ class Classification < ActiveRecord::Base
   end
 
   def self.longest
-    includes(:boats).where(boats: {"length", "value DESC"}).first
+    Boat.longest.classifications
   end
 end
 
