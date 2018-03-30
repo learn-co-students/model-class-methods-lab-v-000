@@ -22,10 +22,11 @@ class Boat < ActiveRecord::Base
   end
 
   def self.without_a_captain
-    where(:captain_id == nil)
+    where(captain_id: nil)
   end
 
   def self.sailboats
+    joins(:boat_classifications).where({"classification.name" => "sailboat"})
   end
 
   def self.with_three_classifications
@@ -33,3 +34,5 @@ class Boat < ActiveRecord::Base
 
 
 end
+
+
