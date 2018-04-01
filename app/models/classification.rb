@@ -4,7 +4,6 @@ class Classification < ActiveRecord::Base
   
   def self.my_all
     Classification.all.uniq
- 
   end
-
+  
 end
