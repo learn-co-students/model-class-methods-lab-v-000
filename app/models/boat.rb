@@ -18,4 +18,12 @@ class Boat < ActiveRecord::Base
   def self.last_three_alphabetically
     Boat.all.order("name desc").limit(3)
   end
+  
+  def self.without_a_captain
+    Boat.all.where(captain_id: [nil, ""])
+  end
+  
+  def self.sailboats
+    Boat.all.where("Classification.name = sailboat")
+  end
 end
