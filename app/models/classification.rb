@@ -6,4 +6,9 @@ class Classification < ActiveRecord::Base
     Classification.all.uniq
   end
   
+  def self.longest
+    joins(:boats).select("max(length)")
+  
+   
+  end
 end
