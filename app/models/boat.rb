@@ -38,5 +38,9 @@ class Boat < ActiveRecord::Base
        
   end
   
+  def self.biggest
+    order("length desc").first
+  end
+  
 end
 
