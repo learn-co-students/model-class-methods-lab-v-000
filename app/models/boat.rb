@@ -27,7 +27,17 @@ class Boat < ActiveRecord::Base
      self.where(captain: nil)
    end
 
+   #returns all boats that are sailboats
+  def self.sailboats
+    #binding.pry
+   includes(:classifications).where(classifications: {name: "Sailboat"})
+  end
 
+  #returns boats with three classifications
+  def self.with_three_classifications
+    #binding.pry
+    joins(:classifications).group("boats.id").having("COUNT(*) = 3").select("boats.*")
+  end
 
 
 
