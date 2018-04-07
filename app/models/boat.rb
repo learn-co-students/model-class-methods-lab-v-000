@@ -1,7 +1,7 @@
 class Boat < ActiveRecord::Base
   belongs_to  :captain
   has_many    :boat_classifications
-  has_many    :classifications, through: :boat_classifications
+  has_many    :classifications , through: :boat_classifications
 
   def self.first_five
     all.limit(5)
@@ -15,31 +15,36 @@ class Boat < ActiveRecord::Base
     where("length >= ?", 20)
   end
 
+  def self.longest
+    order(length: :desc).limit(1)
+  end
+
+
+  def self.longest
+    order('length DESC').first
+  end
+
   def self.last_three_alphabetically
-    Boat.order(name: :desc).limit(3)
+    order(name: :desc).limit(3)
   end
 
   def self.without_a_captain
-    Boat.where(captain: nil)
+    where(captain: nil)
   end
 
   def self.sailboats
+    includes(:classifications).where(classifications: {name: 'Sailboat'})
+  #  OR: Boat.joins(:classifications).where(classifications: {name: 'Sailboat'})
+  end
 
+  def self.with_three_classifications
+    joins(:classifications).group(:boat_id).having('count(*)= ?', 3)
   end
 
 end
 
 
-# describe "::sailboats" do
-#   it "returns all boats that are sailboats" do
-#     boats = ["H 28", "Nacra 17", "49er", "Laser", "Harpoon 4.7", "Sunfish"]
-#     expect(Boat.sailboats.pluck(:name)).to eq(boats)
-#   end
-# end
+# COMMENTS ON QUERYING WITH HAS_MANY THROUGH:
+# cf. self.sailboats:
+ # only specify (classifications): no need to specify boat_classifications because it's done on line 4
 #
-# describe "::with_three_classifications" do
-#   it "returns boats with three classifications" do
-#     boats = ["Nacra 17", "Zodiac CZ7", "Sun Tracker Regency 254 XP3"].sort
-#     expect(Boat.with_three_classifications.pluck(:name).sort).to eq(boats)
-#   end
-# end
