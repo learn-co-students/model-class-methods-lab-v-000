@@ -16,7 +16,7 @@ class Captain < ActiveRecord::Base
     includes(boats: :classifications).where(classifications: {name: "Motorboat"})
   end
 
-  def self.talented_seamen
+  def self.talented_seafarers
     where("id IN (?)", self.sailors.pluck(:id) & self.motorboaters.pluck(:id))
     # captain_ids1 = Boat.sailboats.collect {|i| i.captain_id}
     # captain_ids2 = Boat.motorboats.collect {|i| i.captain_id}
