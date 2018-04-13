@@ -13,8 +13,14 @@ class Boat < ActiveRecord::Base
     self.where('length >= 20')
   end
   def self.last_three_alphabetically
-    binding.pry
-    self.last(3).order("name")
+    # binding.pry
+    self.order("name").last(3)
+  end
+  def self.without_a_captain
+    self.includes(:captain).where({captain: nil})
+  end
+  def self.sailboats
+
   end
 
 end
