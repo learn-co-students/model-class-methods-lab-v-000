@@ -28,9 +28,8 @@ class Boat < ActiveRecord::Base
     self.joins(:classifications).where(classifications: {name: 'Sailboat'})
   end
 
-#really fancy join hmmm
+#really fancy join hmmm, how do to find count?
   def self.with_three_classifications
-
 
   end
 end
