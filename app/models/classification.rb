@@ -6,7 +6,7 @@ class Classification < ActiveRecord::Base
     self.all
   end
   def self.longest
-    # binding.pry
-  
+    binding.pry
+    self.joins(:boats).select(:boats,MAX(:length))
   end
 end
