@@ -7,6 +7,7 @@ class Classification < ActiveRecord::Base
   end
   def self.longest
     # binding.pry
-    self.joins(:boats).where('boats.length >' => 20)
+    # needs modification
+    self.joins(:boats).where('boats.length >= ?', 30)
   end
 end

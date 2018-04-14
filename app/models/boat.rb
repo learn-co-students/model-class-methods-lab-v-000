@@ -20,7 +20,9 @@ class Boat < ActiveRecord::Base
     self.includes(:captain).where({captain: nil})
   end
   def self.sailboats
-
+    self.joins(:classifications).where('classifications.name = ?', 'Sailboat')
+  end
+  def self.with_three_classifications
   end
 
 end
