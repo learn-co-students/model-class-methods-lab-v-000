@@ -14,6 +14,7 @@ class Boat < ActiveRecord::Base
   end
   def self.last_three_alphabetically
     # binding.pry
+    # needs work
     self.order("name").last(3)
   end
   def self.without_a_captain
@@ -25,6 +26,9 @@ class Boat < ActiveRecord::Base
   def self.with_three_classifications
     # binding.pry
     self.joins(:classifications).having('count(classifications.name) = ?', 3).group('boats.id')
+  end
+  def self.catamarans
+    self.joins(:classifications).where('classifications.name = ?', 'Catamaran')
   end
 
 end
