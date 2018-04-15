@@ -27,10 +27,13 @@ class Boat < ActiveRecord::Base
       Boat.order(length: :desc).first #works returns boat instance
     end
     def self.with_three_classifications
-      SELECT boats.name from boats
-INNER JOIN boat_classifications ON boat_classifications.boat_id = boats.id
-INNER JOIN classifications ON classifications.id= boat_classifications.classification_id
-GROUP BY boat_classifications.boat_id HAVING COUNT(boat_classifications.classification_id) = 3;
+#       SELECT boats.* from boats
+# INNER JOIN boat_classifications ON boat_classifications.boat_id = boats.id
+# INNER JOIN classifications ON classifications.id= boat_classifications.classification_id
+# GROUP BY boat_classifications.boat_id HAVING COUNT(boat_classifications.classification_id) = 3;
+
+Boat.select("boats.*").joins(:boat_classifications).group("boat_classifications.boat_id").having("count (boat_classifications.classification_id)=3")
+
 
     end
 

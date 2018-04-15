@@ -9,6 +9,6 @@ class Classification < ActiveRecord::Base
     # Classification.all.map do |c|
     #   c.name
     # end
-    Classification.pluck(:name)
+    Classification.all
   end
 end
