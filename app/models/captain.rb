@@ -12,7 +12,6 @@ class Captain < ActiveRecord::Base
     self.joins(boats: :classifications).where(classifications: {name: ['Sailboat', 'Motorboat']}).group('classifications.id').uniq
   end
   def self.non_sailors
-    # binding.pry
-    self.joins(boats: :classifications).where('classifications.name != ?', 'Sailboat').order('classifications.id').uniq
+    self.where.not(id: self.sailors.pluck(:id))
   end
 end
