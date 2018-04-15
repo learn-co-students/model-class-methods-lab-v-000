@@ -25,6 +25,12 @@ class Boat < ActiveRecord::Base
     def self.longest
     #  Boat.order(length: :desc).limit(1) #doesnt work because returns a relation not the boat instnce
       Boat.order(length: :desc).first #works returns boat instance
+    end
+    def self.with_three_classifications
+      SELECT boats.name from boats
+INNER JOIN boat_classifications ON boat_classifications.boat_id = boats.id
+INNER JOIN classifications ON classifications.id= boat_classifications.classification_id
+GROUP BY boat_classifications.boat_id HAVING COUNT(boat_classifications.classification_id) = 3;
 
     end
 
