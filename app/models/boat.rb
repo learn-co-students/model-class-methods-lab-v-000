@@ -5,7 +5,7 @@ class Boat < ActiveRecord::Base
 
 
   def self.first_five 
-    order(created_at: :asc).limit(5)
+    limit(5)
   end
 
   def self.dinghy
@@ -28,6 +28,9 @@ class Boat < ActiveRecord::Base
     includes(:classifications).where(classifications: {name: "Sailboat"})
   end
 
-  
+  def self.with_three_classifications
+    binding.pry
+    includes(:boat_classifications).where("count(classification_id) = ?", 3)
+  end
 
 end
