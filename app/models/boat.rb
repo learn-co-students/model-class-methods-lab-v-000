@@ -20,8 +20,7 @@ class Boat < ActiveRecord::Base
     self.all.where(captain_id: nil)
   end
   def self.sailboats
-    sailboat = Classification.find_by(name:"Sailboat")
-    sailboat.boats
+    Classification.find_by(name:"Sailboat").boats
   end
   def self.with_three_classifications
     self.joins(:classifications).group("boats.id").having("COUNT(*) = 3").select("boats.*")
