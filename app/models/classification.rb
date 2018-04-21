@@ -7,6 +7,8 @@ class Classification < ActiveRecord::Base
   end
 
   def self.longest
-    joins(:boats).group("boats.id").having("Max(boats.length)")
+    binding.pry
+    joins(:boats).group("classifications.name").having("MAX(boats.length)").order("boats.length DESC") 
+    # .group(:id).having("Max(boats.length)")
   end
 end
