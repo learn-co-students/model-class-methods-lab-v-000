@@ -9,7 +9,19 @@ class Captain < ActiveRecord::Base
     includes(boats: :classifications).where(classifications: {name: 'Sailboat'}).uniq
   end
 
-  def self.talented_seafarers
-    includes(boats: :classifications).where('classifications.name = ?', ['Sailboat', 'motorboat'])
+  def self.motor_boats
+    includes(boats: :classifications).where(classifications: {name: 'Motorboat'}).uniq
   end
+
+  def self.talented_seafarers
+    ids = sailors.pluck(:id) & motor_boats.pluck(:id)
+    where(id: ids)
+  end
+
+  def self.non_sailors
+    # binding.pry
+    where.not("id IN (?)", self.sailors.pluck(:id))
+  end
+
+
 end
