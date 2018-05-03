@@ -24,7 +24,6 @@ class Boat < ActiveRecord::Base
  	end 
 
  	def self.sailboats 
- 		# binding.pry
  		includes(:classifications).where(classifications:{name: "Sailboat"})
  	end 
 
@@ -34,5 +33,9 @@ class Boat < ActiveRecord::Base
 
  	def self.catamarans 
  		includes(:classifications).where(classifications:{name: "Catamaran"})
+ 	end 
+
+ 	def self.longest 
+ 		Boat.order(length: :desc).limit(1).first
  	end 
 end
