@@ -10,10 +10,13 @@ class Captain < ActiveRecord::Base
   end
 
   def self.talented_seafarers
-    self.joins(:classifications).where(classifications: {name: "Sailboat" AND "Motorboat"}).uniq
+    q = self.joins(:classifications).where(classifications: {name: "Motorboat"}).uniq
+    l = self.sailors
+    where("id IN (?)", q.ids & l.ids).uniq
   end
 
   def self.non_sailors
-    self.joins(:classifications).where.not(classifications: {name: "Sailboat"})
+    l = self.sailors
+    where.not("id IN (?)", l.ids).uniq
   end
 end
