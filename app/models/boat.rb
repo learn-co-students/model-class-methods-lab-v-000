@@ -20,6 +20,6 @@ class Boat < ActiveRecord::Base
   end
 
   def self.without_a_captain
-    self.select(:captain)
+    self.all.select { |m| m.captain == nil }
   end
 end
