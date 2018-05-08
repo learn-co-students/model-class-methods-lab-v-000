@@ -20,6 +20,7 @@ class Captain < ActiveRecord::Base
   end
 
   def self.talented_seafarers
-    byebug
+    #returns captains of motorboats and sailboats
+    joins(boats: :classifications).where(classifications: { name: ['Sailboat','Motorboat'] }).select("captains.*").distinct
   end
 end
