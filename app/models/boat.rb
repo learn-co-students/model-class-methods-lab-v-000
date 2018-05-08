@@ -16,7 +16,10 @@ class Boat < ActiveRecord::Base
   end
 
   def self.last_three_alphabetically
-    byebug
     self.order(name: :desc).limit(3)
+  end
+
+  def self.without_a_captain
+    self.select(:captain)
   end
 end
