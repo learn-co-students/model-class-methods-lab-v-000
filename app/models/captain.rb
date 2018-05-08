@@ -2,32 +2,20 @@ class Captain < ActiveRecord::Base
   has_many :boats
 
   def self.catamaran_operators
-    #byebug
-    #Boat.catamarans
-    #returns all captains of catamarans
+    #you have the ability to directly join onto the boats table because of the has_many relationships
+    #you can join onto a nested table, a table that boats can join on to, in this case classifcations
+    #joining onto classifcations also joins you to the join table boat_classifications
 
-    joins(boats: :classifications)
-=begin
-      all.collect do |captain|
-        captain.boats.collect do |boat|
-          boat.classifications.collect do |classification|
-            classification.name == "Catamaran"
-          end
-        end
-      end
-=end
-    #return all captains whose boats are classified as catamarans
-    #you need the classifications for each boat :boat_classifications table
-    #you need the classification name :classifications table
-    #you need to limit the list by classification name : 'Catamaran'
-    #you need to return a list of captains
+    #the boat_classifications table: gives you access to the relationships between boats and classifications
+    #the classifications table: will give you access to the classification name
 
-    #the boat has a list of it's classifications
-    #a captiains boats, each knows about it's classifications
-    #joins(:classifications).group("boats.id").having("COUNT(*) = 3").select("boats.*")
+    #from that large pool of data, return a collection where
+    #in the classifications table the name column is equal to 'Catamaran'
+    joins(boats: :classifications).where(classifications: { name: 'Catamaran' }).select("captains.*")
+  end
 
-
-
-
+  def self.sailors
+    #returns captains with sailboats
+    joins(boats: :classifications).where(classifications: { name: 'Sailboat' }).select("captains.*")
   end
 end
