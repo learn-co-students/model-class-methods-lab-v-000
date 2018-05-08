@@ -5,6 +5,9 @@ class Captain < ActiveRecord::Base
     #byebug
     #Boat.catamarans
     #returns all captains of catamarans
+
+    joins(boats: :classifications)
+=begin
       all.collect do |captain|
         captain.boats.collect do |boat|
           boat.classifications.collect do |classification|
@@ -12,7 +15,7 @@ class Captain < ActiveRecord::Base
           end
         end
       end
-    end
+=end
     #return all captains whose boats are classified as catamarans
     #you need the classifications for each boat :boat_classifications table
     #you need the classification name :classifications table
