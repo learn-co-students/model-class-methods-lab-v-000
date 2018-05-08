@@ -11,11 +11,20 @@ class Captain < ActiveRecord::Base
     self.includes(boats: :classifications).where(classifications: {name: "Sailboat"}).uniq
   end
 
+  def self.motorboats
+    self.includes(boats: :classifications).where(classifications: {name: "Motorboat"}).uniq
+  end
+
   def self.talented_seafarers
-    binding.pry
-    #self.sailors
+    #binding.pry
+    where("id IN (?)", self.sailors.pluck(:id) & self.motorboats.pluck(:id))
     #self.includes(boats: :classifications).where(classifications: {name: "Sailboat" & "Motorboat"}).uniq
-    self.includes(boats: :classifications).where('name = ? AND name = ?', "Sailboat" AND "Motorboat").uniq
+    #self.includes(boats: :classifications).where('name = ? AND name = ?', "Sailboat" AND "Motorboat").uniq
+  end
+
+  def self.non_sailors
+    #binding.pry
+    where.not("id IN (?)", self.sailors.pluck(:id)).uniq
   end
 
 end
