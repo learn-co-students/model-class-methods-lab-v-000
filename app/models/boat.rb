@@ -28,6 +28,14 @@ class Boat < ActiveRecord::Base
   end
 
   def self.sailboats
+    #all boats where classifications includes a classifcation that has a name of 'Sailboat'
     self.includes(:classifications).where('classifications.name = ?', 'Sailboat').references(:classifications)
+  end
+
+  def self.with_three_classifications
+    #all of the boats where the number of classifications is equal to 3
+    #where the size of the classifications collection is 3
+    byebug
+    self.includes(:classifications).where('classifications.size > ?', '3').references(:classifications)
   end
 end
