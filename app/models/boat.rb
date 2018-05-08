@@ -33,6 +33,10 @@ class Boat < ActiveRecord::Base
     includes(:classifications).where(classifications: { name: 'Sailboat' })
   end
 
+  def self.catamarans
+    includes(:classifications).where(classifications: { name: 'Catamaran' })
+  end
+
   def self.with_three_classifications
     #all of the boats where the number of classifications is equal to 3
     #where the size of the classifications collection is 3

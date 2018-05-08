@@ -3,6 +3,16 @@ class Captain < ActiveRecord::Base
 
   def self.catamaran_operators
     #byebug
+    #Boat.catamarans
+    #returns all captains of catamarans
+      all.collect do |captain|
+        captain.boats.collect do |boat|
+          boat.classifications.collect do |classification|
+            classification.name == "Catamaran"
+          end
+        end
+      end
+    end
     #return all captains whose boats are classified as catamarans
     #you need the classifications for each boat :boat_classifications table
     #you need the classification name :classifications table
@@ -13,7 +23,8 @@ class Captain < ActiveRecord::Base
     #a captiains boats, each knows about it's classifications
     #joins(:classifications).group("boats.id").having("COUNT(*) = 3").select("boats.*")
 
-    includes(:classifications).where(classifications: { name: 'Catamaran' })
+
+
 
   end
 end
