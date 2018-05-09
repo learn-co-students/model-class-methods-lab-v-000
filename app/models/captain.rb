@@ -14,6 +14,10 @@ class Captain < ActiveRecord::Base
     joins(boats: :classifications).where(classifications: { name: 'Catamaran' }).select("captains.*")
   end
 
+  def self.motorboat_operators
+    joins(boats: :classifications).where(classifications: { name: 'Motorboat' }).select("captains.*").distinct
+  end
+
   def self.sailors
     #returns captains with sailboats
     joins(boats: :classifications).where(classifications: { name: 'Sailboat' }).select("captains.*").distinct
@@ -21,9 +25,11 @@ class Captain < ActiveRecord::Base
 
   def self.talented_seafarers
     #returns captains of motorboats and sailboats
+    #returning a collection that references both the captains and the boats table and the classifications(boat_classifications)tables
     #joins(boats: :classifications).where(classifications: { name: ['Sailboat','Motorboat'] }).select("captains.*").distinct
-    byebug
-    Client.where(orders_count: [1,3,5])
-    SELECT * FROM clients WHERE (clients.orders_count IN (1,3,5))
+    where("id IN (?)", self.sailors.pluck(:id) & self.motorboat_operators.pluck(:id))
+    #IN allows you to test if an expression matches any value in a list of values.
+    #return captains whose id is in the following list of values, the id's from the sailors method and the id's from the motorboat_operators method
+
   end
 end
