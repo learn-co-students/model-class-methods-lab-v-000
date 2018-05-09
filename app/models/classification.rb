@@ -11,9 +11,12 @@ class Classification < ActiveRecord::Base
     #returns the classifications for the longest boat
     #return classifications
     #limit by boat.length
-    #find the boat that has the greatest length
     #find the classifications for that boat
-    Boat.longest_boat
+
     byebug
+    @boat = Boat.longest_boat #find the boat that has the greatest length
+    @boat_name = @boat[0].name
+    includes(:boats).where(boats: { name: @boat_name })
+
   end
 end
