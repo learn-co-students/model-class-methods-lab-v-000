@@ -32,4 +32,10 @@ class Captain < ActiveRecord::Base
     #return captains whose id is in the following list of values, the id's from the sailors method and the id's from the motorboat_operators method
 
   end
+
+  def non_sailors
+    #returns people who are not captains of sailboats
+    byebug
+    where.not("id IN (?)", self.sailors.pluck(:id)
+  end
 end
