@@ -21,6 +21,9 @@ class Captain < ActiveRecord::Base
 
   def self.talented_seafarers
     #returns captains of motorboats and sailboats
-    joins(boats: :classifications).where(classifications: { name: ['Sailboat','Motorboat'] }).select("captains.*").distinct
+    #joins(boats: :classifications).where(classifications: { name: ['Sailboat','Motorboat'] }).select("captains.*").distinct
+    byebug
+    Client.where(orders_count: [1,3,5])
+    SELECT * FROM clients WHERE (clients.orders_count IN (1,3,5))
   end
 end
