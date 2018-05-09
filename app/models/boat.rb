@@ -48,8 +48,6 @@ class Boat < ActiveRecord::Base
   end
 
   def self.longest_boat
-    byebug
-    #order by length
-    #get the first one
+    all.order(length: :desc).limit(1)
   end
 end

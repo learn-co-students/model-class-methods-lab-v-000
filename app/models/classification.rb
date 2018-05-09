@@ -14,5 +14,6 @@ class Classification < ActiveRecord::Base
     #find the boat that has the greatest length
     #find the classifications for that boat
     Boat.longest_boat
+    byebug
   end
 end
