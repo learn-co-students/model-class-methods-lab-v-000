@@ -3,6 +3,7 @@ class Classification < ActiveRecord::Base
   has_many :boats, through: :boat_classifications
 
   def self.my_all
-    byebug
+    #returns all classifications
+    all
   end
 end
