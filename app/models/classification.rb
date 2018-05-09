@@ -6,4 +6,13 @@ class Classification < ActiveRecord::Base
     #returns all classifications
     all
   end
+
+  def self.longest
+    #returns the classifications for the longest boat
+    #return classifications
+    #limit by boat.length
+    #find the boat that has the greatest length
+    #find the classifications for that boat
+    Boat.longest_boat
+  end
 end
