@@ -26,4 +26,8 @@ class Boat < ActiveRecord::Base
   def self.sailboats
     self.includes(:classifications).where(classifications: {name: "Sailboat"} )
   end
+
+  def self.with_three_classifications
+    self.joins(:classifications).having('COUNT(boat_classifications.classification_id) > 2').group("boats.id")
+  end
 end
