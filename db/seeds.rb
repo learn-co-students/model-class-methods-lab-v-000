@@ -5,6 +5,7 @@ arel = Captain.create(name: "Arel English", admiral: true)
 henry = Captain.create(name: "Henry Hudson", admiral: false)
 samuel = Captain.create(name: "Samuel Axe", admiral: false)
 
+
 h_28 = Boat.create(name: "H 28", length: 27)
 nacra_17 = Boat.create(name: "Nacra 17", length: 17)
 regulator = Boat.create(name: "Regulator 34SS", length: 34)
