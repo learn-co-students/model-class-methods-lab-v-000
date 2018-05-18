@@ -20,9 +20,13 @@ class Boat < ActiveRecord::Base
   end
 
   def self.without_a_captain
+    self.where("captain" => nil)
   end
 
   def self.sailboats
+    binding.pry
+    self.where(name: (classifications: "Sailboat"))
+     {|b| b.classifications.where("name" => "Sailboat")}
   end
 
   def self.with_three_classifications
