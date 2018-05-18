@@ -2,7 +2,7 @@ class Captain < ActiveRecord::Base
   has_many :boats
 
   def self.catamaran_operators
-    joins(boats: {boat_classifications: :classification}).where(classifications: {name: "Catamaran"}).uniq
+    joins(boats: :classification).where(classifications: {name: "Catamaran"}).uniq
   end
   
   def self.sailors
