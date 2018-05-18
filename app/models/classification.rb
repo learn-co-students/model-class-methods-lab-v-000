@@ -7,6 +7,6 @@ class Classification < ActiveRecord::Base
   end
 
   def self.longest
-    joins(:boats).where(boats: {id: Boat.longest_boat.pluck(:id)})
+    joins(:boats).where(boats: {id: Boat.longest.pluck(:id)})
   end
 end

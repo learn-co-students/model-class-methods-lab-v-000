@@ -31,8 +31,7 @@ class Boat < ActiveRecord::Base
     joins(:classifications).group('boats.id').having('count(boat_id) = 3')
   end
 
-
-  def self.longest_boat
+  def self.longest
     where(length: maximum(:length))
   end
 
