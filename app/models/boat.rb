@@ -1,3 +1,4 @@
+require 'arel-helpers'
 class Boat < ActiveRecord::Base
   belongs_to  :captain
   has_many    :boat_classifications
@@ -8,27 +9,30 @@ class Boat < ActiveRecord::Base
   end
 
   def self.dinghy
-    self.where("length < ?", 20)
+    where("length < ?", 20)
   end
 
   def self.ship
-    self.where("length >= ?", 20)
+    where("length >= ?", 20)
+  end
+
+  def self.longest
+    order('length DESC').first
   end
 
   def self.last_three_alphabetically
-    self.order("name desc").limit(3)
+    order("name desc").limit(3)
   end
 
   def self.without_a_captain
-    self.where("captain" => nil)
+    where("captain" => nil)
   end
 
   def self.sailboats
-    binding.pry
-    self.where(name: (classifications: "Sailboat"))
-     {|b| b.classifications.where("name" => "Sailboat")}
+    joins(:classifications).where(classifications: {:name => "Sailboat"})
   end
 
   def self.with_three_classifications
+    joins(:classifications).group('boats.id').having('count(*) = 3')
   end
 end
