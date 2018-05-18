@@ -1,5 +1,4 @@
 require 'spec_helper'
-
 describe Boat do
   describe "::first_five" do
     it "returns the first five Boats" do
