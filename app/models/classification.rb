@@ -7,4 +7,9 @@ class Classification < ActiveRecord::Base
     Boat.longest.classifications
   end
 
+  def self.my_all
+    Classification.all
+  end
+
+
 end
