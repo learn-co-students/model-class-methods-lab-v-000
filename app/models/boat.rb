@@ -4,15 +4,18 @@ class Boat < ActiveRecord::Base
   has_many    :classifications, through: :boat_classifications
   def self.first_five
     all.limit(5)
-    #.map {|b| b.name}
   end
 
   def self.dinghy
-    all.where("length <= ?", 20)
+    all.where("length <= 20")
+    #also works
+    #all.where("length <= ?", 20)
   end
 
   def self.ship
-    all.where("length > ?", 20)
+    all.where("length > 20 ")
+    #also works
+    #all.where("length > ?", 20)
   end
 
   def self.last_three_alphabetically
@@ -20,7 +23,9 @@ class Boat < ActiveRecord::Base
   end
 
   def self.without_a_captain
-    all.where("captain_id is NULL")
+    where(captain_id: nil)
+    #or
+    #all.where("captain_id is NULL")
   end
 
   def self.sailboats
@@ -33,5 +38,6 @@ class Boat < ActiveRecord::Base
 
   def self.with_three_classifications
     all.joins(:classifications).group("boats.id").having("count(*) = ?", 3)
+    #joins(:classifications).group("boats.id").having("COUNT(*) = 3").select("boats.*")
   end
 end
