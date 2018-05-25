@@ -26,4 +26,8 @@ class Boat < ActiveRecord::Base
   def self.sailboats
     Boat.joins(:classifications).where(classifications: {name: "Sailboat"})
   end
+
+  def self.longest
+    all.order("length DESC").first
+  end
 end
