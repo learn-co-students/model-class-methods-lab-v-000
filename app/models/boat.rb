@@ -16,7 +16,7 @@ class Boat < ActiveRecord::Base
   end
 
   def self.last_three_alphabetically
-    all.limit(-3).order("name")
+    all.order("name DESC").limit(3)
   end
 
   def self.without_a_captain
@@ -24,11 +24,11 @@ class Boat < ActiveRecord::Base
   end
 
   def self.sailboats
-    where(classifications: "sailboat")
+    all.joins(:boat_classifications).joins(:classifications).where("classifications.name = 'Sailboat'").uniq
   end
 
   def self.with_three_classifications
-    all.find_all{|b| b.classifications.count == 3}
+    all.joins(:boat_classifications).group("boats.name").having("count(boat_classifications.id) = 3")
   end
 
 end
