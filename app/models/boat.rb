@@ -4,15 +4,8 @@ class Boat < ActiveRecord::Base
   has_many    :classifications, through: :boat_classifications
 
   def self.first_five
-    puts "get first five boats"
-    Boat.where("id < ?", 6)
-    Boat.all.each do |boat|
-      puts "Boat = name: #{boat.name} || length: #{boat.length} || cap: #{boat.captain_id}"
-      if boat.captain_id is nil
-        puts "captain id is nil"
-      end
-    end
-
+    # puts "get first five boats"
+    Boat.limit(5)
   end
 
   def self.dinghy
@@ -26,13 +19,13 @@ class Boat < ActiveRecord::Base
   end
 
   def self.last_three_alphabetically
-    puts "get last three alphabetically"
-    Boat.order(:name).limit(3)
+    # puts "get last three alphabetically"
+    boats = Boat.order(name: :desc).limit(3)
   end
 
   def self.without_a_captain
     puts "get without a captain?"
-    Boat.where("captain_id = ?", nil)
+    Boat.where("captain_id IS NULL")
   end
 
   def self.sailboats
