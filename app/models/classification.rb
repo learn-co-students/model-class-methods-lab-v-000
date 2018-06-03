@@ -7,28 +7,11 @@ class Classification < ActiveRecord::Base
     Classification.all
   end
 
-
-  # NOTE : REFACTOR BELOW METHODS
-
-
-  def self.get_boat_lengths
-    boats = {}
-    Classification.all.each do |classification|
-      classification.boats.each do |boat|
-        boats[boat.name] = boat.length
-      end
-    end
-    boats = boats.sort_by { |name, length| length }
-    boats
-  end
-
   def self.longest
     # puts "get classifications for the longest boat"
-    boats = Classification.get_boat_lengths
-    # puts "boats = #{boats} || last = #{boats.last}"
-    Classification.joins(:boats).where("boats.name == ?", boats.last[0])
 
-    # Classification.joins(:boats).order(boats: length)
+    # NOTE : Since the association exists to the Boat class, can define these methods in that class and call them here
+    Boat.longest.classifications
   end
 
 end

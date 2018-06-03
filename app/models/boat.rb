@@ -44,6 +44,10 @@ class Boat < ActiveRecord::Base
     Boat.joins(:boat_classifications).select("*").group("boat_id").having("COUNT(classification_id) = ?", 3)
   end
 
+  def self.longest
+    Boat.order(length: :desc).first
+  end
+
 end
 
 # rspec spec/models/boat_spec.rb
