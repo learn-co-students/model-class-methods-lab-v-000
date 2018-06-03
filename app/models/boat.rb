@@ -3,3 +3,5 @@ class Boat < ActiveRecord::Base
   has_many    :boat_classifications
   has_many    :classifications, through: :boat_classifications
 end
+
+# rspec spec/models/boat_spec.rb
