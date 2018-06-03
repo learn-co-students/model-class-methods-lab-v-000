@@ -21,6 +21,11 @@ class Captain < ActiveRecord::Base
     Captain.joins(boats: :classifications).where(classifications: { name: "Sailboat" }).distinct
   end
 
+
+
+  # NOTE : REFACTOR BELOW METHODS
+
+
   def self.motors
     # puts "sailors"
     Captain.joins(boats: :classifications).where(classifications: { name: "Motorboat" }).distinct

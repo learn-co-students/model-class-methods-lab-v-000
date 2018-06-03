@@ -7,6 +7,10 @@ class Classification < ActiveRecord::Base
     Classification.all
   end
 
+
+  # NOTE : REFACTOR BELOW METHODS
+
+
   def self.get_boat_lengths
     boats = {}
     Classification.all.each do |classification|
