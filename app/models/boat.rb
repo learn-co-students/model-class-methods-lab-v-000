@@ -6,21 +6,28 @@ class Boat < ActiveRecord::Base
   def self.first_five
     puts "get first five boats"
     Boat.where("id < ?", 6)
+    Boat.all.each do |boat|
+      puts "Boat = name: #{boat.name} || length: #{boat.length} || cap: #{boat.captain_id}"
+      if boat.captain_id is nil
+        puts "captain id is nil"
+      end
+    end
+
   end
 
   def self.dinghy
-    puts "get dinghy?"
+    # puts "get dinghy?"
     Boat.where("length < ?", 20)
   end
 
   def self.ship
-    puts "get ship?"
+    # puts "get ship?"
     Boat.where("length >= ?", 20)
   end
 
   def self.last_three_alphabetically
     puts "get last three alphabetically"
-    Boat.order(:name).first(3)
+    Boat.order(:name).limit(3)
   end
 
   def self.without_a_captain
