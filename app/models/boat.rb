@@ -24,22 +24,24 @@ class Boat < ActiveRecord::Base
   end
 
   def self.without_a_captain
-    puts "get without a captain?"
+    # puts "get without a captain?"
     Boat.where("captain_id IS NULL")
   end
 
   def self.sailboats
-    puts "get sailboats?"
-    Boat.all.each do |boat|
-      puts "Boat = name: #{boat.name} || length: #{boat.length} || cap: #{boat.captain_id}"
-      boat.classifications.each do |c|
-        puts "boat class = #{c.name}"
-      end
-    end
+    # puts "get sailboats?"
+    # Boat.all.each do |boat|
+    #   puts "Boat = name: #{boat.name} || length: #{boat.length} || cap: #{boat.captain_id}"
+    #   boat.classifications.each do |c|
+    #     puts "boat class = #{c.name}"
+    #   end
+    # end
+    Boat.joins(:classifications).where(classifications: { name: "Sailboat" })
   end
 
   def self.with_three_classifications
     puts "get with three classifications?"
+    Boat.joins(:boat_classifications).group("boat_id, COUNT(classification_id) as num_classifications").having("COUNT(classification_id) > ?", 3)
   end
 
 end
