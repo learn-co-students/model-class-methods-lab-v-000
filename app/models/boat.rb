@@ -41,7 +41,7 @@ class Boat < ActiveRecord::Base
 
   def self.with_three_classifications
     puts "get with three classifications?"
-    Boat.joins(:boat_classifications).group("boat_id, COUNT(classification_id) as num_classifications").having("COUNT(classification_id) > ?", 3)
+    Boat.joins(:boat_classifications).select("*").group("boat_id").having("COUNT(classification_id) = ?", 3)
   end
 
 end
