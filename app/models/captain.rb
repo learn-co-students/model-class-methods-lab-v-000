@@ -30,11 +30,18 @@ class Captain < ActiveRecord::Base
     puts "talented_seafarers"
 
     sailors = Captain.sailors.pluck(:name)
+    # puts "Sailors = #{sailors}"
     motors = Captain.motors.pluck(:name)
-    # expected: ["Captain Cook", "Samuel Axe"]
+    # puts "Motors = #{motors}"
 
-    cross = sailors.include?(motors)
-    puts "cross = #{cross}"
+    cross = []
+    sailors.each do |s|
+      if motors.include?(s)
+        cross << s
+      end
+    end
+    # puts "cross = #{cross}"
+    Captain.where(name: cross)
 
   end
 
