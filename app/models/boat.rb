@@ -30,6 +30,12 @@ class Boat < ActiveRecord::Base
 
   def self.sailboats
     puts "get sailboats?"
+    Boat.all.each do |boat|
+      puts "Boat = name: #{boat.name} || length: #{boat.length} || cap: #{boat.captain_id}"
+      boat.classifications.each do |c|
+        puts "boat class = #{c.name}"
+      end
+    end
   end
 
   def self.with_three_classifications
@@ -39,3 +45,6 @@ class Boat < ActiveRecord::Base
 end
 
 # rspec spec/models/boat_spec.rb
+
+
+# https://stackoverflow.com/questions/15590827/activerecord-query-w-check-for-empty-field
