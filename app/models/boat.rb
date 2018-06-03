@@ -5,7 +5,7 @@ class Boat < ActiveRecord::Base
 
   def self.first_five
     puts "get first five boats"
-    Boat.first(5)
+    Boat.where("id < ?", 6)
   end
 
   def self.dinghy
@@ -26,6 +26,14 @@ class Boat < ActiveRecord::Base
   def self.without_a_captain
     puts "get without a captain?"
     Boat.where("captain_id = ?", nil)
+  end
+
+  def self.sailboats
+    puts "get sailboats?"
+  end
+
+  def self.with_three_classifications
+    puts "get with three classifications?"
   end
 
 end
