@@ -3,13 +3,20 @@ class Captain < ActiveRecord::Base
 
   def self.catamaran_operators
     puts "catamaran_operators"
-    Captain.all.each do |c|
-      puts "Captain = name: #{c.name} || admiral?: #{c.admiral}"
-    end
+    Captain.joins(boats: :classifications).where(classifications: { name: "Catamaran" })
   end
 
   def self.sailors
     puts "sailors"
+    # Captain.all.each do |c|
+    #   puts "Captain = name: #{c.name} || admiral?: #{c.admiral}"
+    #   c.boats.each do |b|
+    #     puts "Captain Boat = #{b.name}"
+    #     b.classifications.each do |cl|
+    #       puts "Boat Classification = #{cl.name}"
+    #     end
+    #   end
+    # end
   end
 
   def self.talented_seafarers

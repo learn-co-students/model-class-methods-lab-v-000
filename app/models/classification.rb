@@ -9,7 +9,7 @@ class Classification < ActiveRecord::Base
 
   def self.longest
     puts "get classifications for the longest boat"
-    # Boats.order(:length).limit(1)
+    # Classification.joins(:boats).order(length).limit(1)
   end
 
 end
