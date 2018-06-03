@@ -7,7 +7,7 @@ class Classification < ActiveRecord::Base
     Classification.all
   end
 
-  def self.get_boats
+  def self.get_boat_lengths
     boats = {}
     Classification.all.each do |classification|
       classification.boats.each do |boat|
@@ -19,9 +19,11 @@ class Classification < ActiveRecord::Base
   end
 
   def self.longest
-    puts "get classifications for the longest boat"
-    boats = Classification.get_boats
-    puts "boats = #{boats}"
+    # puts "get classifications for the longest boat"
+    boats = Classification.get_boat_lengths
+    # puts "boats = #{boats} || last = #{boats.last}"
+    Classification.joins(:boats).where("boats.name == ?", boats.last[0])
+
     # Classification.joins(:boats).order(boats: length)
   end
 
