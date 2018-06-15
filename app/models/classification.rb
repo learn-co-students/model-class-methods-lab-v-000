@@ -5,4 +5,11 @@ class Classification < ActiveRecord::Base
   def self.my_all
     select(:name)
   end
+
+  def self.longest
+    Boat.longest_boat.classifications
+  end
+
+
+
 end
