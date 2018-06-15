@@ -20,4 +20,9 @@ class Captain < ActiveRecord::Base
   def self.non_sailors
     where(id: Captain.all - self.sailors)
   end
+
+  #can also do
+  #def self.non_sailors
+  #  where.not(id: self.sailors)
+  #end
 end
