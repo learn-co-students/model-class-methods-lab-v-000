@@ -1,6 +1,7 @@
 class Classification < ActiveRecord::Base
   has_many :boat_classifications
   has_many :boats, through: :boat_classifications
+  scope :with_boats, ->{joins(:boats)}
   
   def self.my_all
     select(:name).distinct
