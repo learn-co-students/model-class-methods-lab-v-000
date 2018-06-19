@@ -2,7 +2,7 @@ class Boat < ActiveRecord::Base
   belongs_to  :captain
   has_many    :boat_classifications
   has_many    :classifications, through: :boat_classifications
-  
+
   def self.first_five
     all.limit(5)
   end
@@ -22,13 +22,17 @@ class Boat < ActiveRecord::Base
   def self.without_a_captain
     where("captain_id is null")
   end
-  
+
   def self.sailboats
     joins(:classifications).where(classifications: {name: "Sailboat"})
   end
-  
+
   def self.with_three_classifications
     group("boat_id").joins(:classifications).having("COUNT(classification_id)=3")
+  end
+
+  def self.longest
+    order(length: :desc).limit(1)[0]
   end
 
 end
