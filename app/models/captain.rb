@@ -17,9 +17,8 @@ class Captain < ActiveRecord::Base
   end
   
   def self.non_sailors
-    group('captains.id').where("classifications.name != 'Sailboat'")
-    # SELECT * FROM (join the tables) GROUP BY captains.id WHERE c.name != 'Sailboat' => all captains of non-sailboats
-    # find captains whose ships does not include a sailboat => group by captains id, where their boats do not include a sailboat
+    sailor_ids = self.sailors.pluck('captains.id')
+    where.not(id: sailor_ids).distinct
   end
 
 end
