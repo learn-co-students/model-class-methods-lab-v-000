@@ -2,6 +2,7 @@ class Boat < ActiveRecord::Base
   belongs_to  :captain
   has_many    :boat_classifications
   has_many    :classifications, through: :boat_classifications
+  scope :with_classifications, ->{joins(:classifications)}
   
   def self.first_five
     limit(5)
@@ -24,11 +25,11 @@ class Boat < ActiveRecord::Base
   end
 
   def self.sailboats
-    joins(:classifications).where("classifications.name = 'Sailboat'")
+    with_classifications.where("classifications.name = 'Sailboat'")
   end
 
   def self.with_three_classifications
-    joins(:classifications).group("boats.id").having("COUNT(classifications.id) = 3")
+    with_classifications.group("boats.id").having("COUNT(classifications.id) = 3")
   end
   
 end
