@@ -22,4 +22,8 @@ class Boat < ActiveRecord::Base
   def self.without_a_captain
     self.where("captain_id is ?", nil)
   end
+
+  def self.sailboats
+    self.includes(:classifications).where('classifications.name = ?', 'Sailboat').references(:classifications)
+  end
 end
