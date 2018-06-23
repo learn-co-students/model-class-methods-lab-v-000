@@ -26,4 +26,8 @@ class Boat < ActiveRecord::Base
   def self.sailboats
     joins(:classifications).where({classifications: { name: "Sailboat" }})
   end
+
+  def self.with_three_classifications
+    joins(:boat_classifications).where.not({boat_classifications: { boat_id: nil }}).pluck(:id)
+  end
 end
