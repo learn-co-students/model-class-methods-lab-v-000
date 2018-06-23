@@ -16,7 +16,8 @@ class Boat < ActiveRecord::Base
   end
 
   # works in console
+  # Error: boat_spec: undefined method `pluck' for ["Sunfish", "Sun Tracker Regency 254 XP3", "Harpoon 4.7"]:Array
   def self.last_three_alphabetically
-    last(3).sort_by { |boat| boat.name }.reverse
+    last(3).map! { |boat| boat.name }.sort.reverse
   end
 end
