@@ -28,6 +28,6 @@ class Boat < ActiveRecord::Base
   end
 
   def self.with_three_classifications
-    joins(:boat_classifications).where.not({boat_classifications: { boat_id: nil }}).pluck(:id)
+    joins(:boat_classifications).group(:boat_id).having("COUNT(boat_id)>=3")
   end
 end
