@@ -2,7 +2,8 @@ class Captain < ActiveRecord::Base
   has_many :boats
 
   def self.catamaran_operators
-    joins(:boats).group(:captain_id).joins(:classifications)
+    catamarans = Boat.joins(:classifications).where({classifications: { name: "Catamaran" }})
+    self.where(id: catamarans.select(:captain_id))
   end
 
 end
