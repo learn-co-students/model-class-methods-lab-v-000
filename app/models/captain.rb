@@ -19,4 +19,8 @@ class Captain < ActiveRecord::Base
   def self.talented_seafarers
     sailors.where('captains.id IN (?)', motorboaters.pluck('id'))
   end
+
+  def self.non_sailors
+    all.where('id NOT IN (?)', sailors.pluck('id'))
+  end
 end
