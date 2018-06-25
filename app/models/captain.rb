@@ -17,25 +17,14 @@ class Captain < ActiveRecord::Base
 
   def self.talented_seafarers
     # 1. Which boats are classified as sailboats and which are motorboats?
-      Boat.joins(:classifications).where({classifications: {name: ["Sailboat", "Motorboat"]}})
     # 2. Who are the captains of those boats?
     # 3. Of those captains, which has more than one boat?
     # 4. Of the captains that have 2+ boats, which boat collections include a sailboat and motorboat?
 
-
-
-
-
-
-      # sail_and_motor_ids = Classification.where(name: ["Sailboat", "Motorboat"]).ids
-
-      Boat.joins(:classifications).where({classifications: {name: ["Sailboat", "Motorboat"]}})
-
-      Captain.joins(:boats).joins(:classifications).where({classifications: {name: ["Sailboat", "Motorboat"]}})
-
-
-
-
+    captains_array = Boat.joins(:classifications).where({classifications: {name: ["Sailboat", "Motorboat"]}}).group(:captain_id).having("COUNT(captain_id)>=2").pluck(:captain_id)
+    # => {1=>3, 4=>2, 6=>2}
+    # => [1, 4, 6]
+    where(id: captains_array) # of these, which have one of each?
   end
 
 end
