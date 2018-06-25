@@ -16,23 +16,26 @@ class Captain < ActiveRecord::Base
   end
 
   def self.talented_seafarers
-    # returns captains of motorboats and sailboats
-    # 1. find all motorboats and sailboats ids
-      # class_ids_array = Classification.where(name: ["Sailboat", "Motorboat"]).pluck(:id) #=> [2, 5]
-    # 2. find all boats that are either motorboats or sailboats
-    # class_ids = Classification.where(name: ["Sailboat", "Motorboat"]).pluck(:id)
-    # boat_class_combos = BoatClassification.where(classification_id: class_ids).pluck(:boat_id)
-
-
-
-      Boat.joins(:classifications).where({classifications: {name: ["Sailboat", "Motorboat"]}}).pluck(:boat_id)
-    # 3. find captains that have more than one boat
-    # 4. captains where at least one of their boats is a motorboat and at least one is a sailboat
+    # 1. Which boats are classified as sailboats and which are motorboats?
+      Boat.joins(:classifications).where({classifications: {name: ["Sailboat", "Motorboat"]}})
+    # 2. Who are the captains of those boats?
+    # 3. Of those captains, which has more than one boat?
+    # 4. Of the captains that have 2+ boats, which boat collections include a sailboat and motorboat?
 
 
 
 
-    # Classification.joins(:boats).where(name: ["Sailboat", "Motorboat"]).group(:boat_id)
+
+
+      # sail_and_motor_ids = Classification.where(name: ["Sailboat", "Motorboat"]).ids
+
+      Boat.joins(:classifications).where({classifications: {name: ["Sailboat", "Motorboat"]}})
+
+      Captain.joins(:boats).joins(:classifications).where({classifications: {name: ["Sailboat", "Motorboat"]}})
+
+
+
+
   end
 
 end
