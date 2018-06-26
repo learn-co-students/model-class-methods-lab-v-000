@@ -33,4 +33,13 @@ Boat.joins(:classifications).where({classifications: { name: "Catamaran" }}).joi
 # captain_array.select { |id| Captain.where(id: id)}
 
 # captain_ids_array = Boat.joins(:classifications).where({classifications: { name: "Catamaran" }}).pluck(:captain_id)
-#captain_ids_array.each { |captain_id| Captain.where(id: captain_id) }             
+#captain_ids_array.each { |captain_id| Captain.where(id: captain_id) }
+
+#################
+
+boat_class_join = Boat.joins(:classifications)
+sail_and_motors = boat_class_join.where({classifications: {name: ["Sailboat", "Motorboat"]}})
+captain_ids = sail_and_motors.group(:captain_id).having("COUNT(captain_id)>=2").pluck(:captain_id)
+boat_ids = Boat.joins(:captain).where(id: captain_ids)
+
+# group_by_captain_id.joins(:captain).order(:captain_id)           
