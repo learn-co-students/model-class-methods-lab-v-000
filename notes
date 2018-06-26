@@ -1,0 +1,45 @@
+Boat.joins(:classifications).where({classifications: { name: "Catamaran" }}).joins(:captain).where({captain: { id: 'captain_id' }} )
+
+# joins(:boats).pluck(:id)
+# SELECT "captains"."name" FROM "captains" INNER JOIN "boats" ON "boats"."captain_id" = "captains"."id"
+# => [1, 2, 3, 4, 5, 6, 1, 1, 4, 6]
+
+###
+
+# joins(:boats).group(:captain_id).pluck(:captain_id)
+
+# SELECT captain_id FROM "captains" INNER JOIN "boats" ON "boats"."captain_id" = "captains"."id" GROUP BY captain_id
+# => [1, 2, 3, 4, 5, 6]
+
+###
+
+# Boat.joins(:classifications).where({classifications: { name: "Catamaran" }}).pluck(:captain_id)
+# => [2, 6]
+
+###
+
+# Boat.joins(:classifications).where({classifications: { name: "Catamaran" }}).joins(:captain)
+# #<ActiveRecord::Relation [#<Boat id: 2, name: "Nacra 17", length: 17, captain_id: 2, created_at: "2018-06-22 15:48:53", updated_at: "2018-06-22 15:48:54">, #<Boat id: 10, name: "Sun Tracker Regency 254 XP3", length: 27, captain_id: 6, created_at: "2018-06-22 15:48:53", updated_at: "2018-06-22 15:48:54">]
+
+###
+
+# catamarans_collection = Boat.joins(:classifications).where({classifications: { name: "Catamaran" }})
+# catamarans_collection.select(:captain_id).each { |catamaran| Captain.find_by(id: :captain_id)}
+
+#  => #<ActiveRecord::Relation [#<Boat id: nil, captain_id: 2>, #<Boat id: nil, captain_id: 6>]>
+
+# boats_and_captains = Boat.joins(:classifications).where({classifications: { name: "Catamaran" }})
+# captain_array = boats_and_captains.pluck(:captain_id) #=> [2, 6]
+# captain_array.select { |id| Captain.where(id: id)}
+
+# captain_ids_array = Boat.joins(:classifications).where({classifications: { name: "Catamaran" }}).pluck(:captain_id)
+#captain_ids_array.each { |captain_id| Captain.where(id: captain_id) }
+
+#################
+
+boat_class_join = Boat.joins(:classifications)
+sail_and_motors = boat_class_join.where({classifications: {name: ["Sailboat", "Motorboat"]}})
+captain_ids = sail_and_motors.group(:captain_id).having("COUNT(captain_id)>=2").pluck(:captain_id)
+boat_ids = Boat.joins(:captain).where(id: captain_ids)
+
+# group_by_captain_id.joins(:captain).order(:captain_id)           
