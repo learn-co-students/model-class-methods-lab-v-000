@@ -22,9 +22,11 @@ class Captain < ActiveRecord::Base
     # 4. Of the captains that have 2+ boats, which boat collections include a sailboat and motorboat?
 
     captains_array = Boat.joins(:classifications).where({classifications: {name: ["Sailboat", "Motorboat"]}}).group(:captain_id).having("COUNT(captain_id)>=2").pluck(:captain_id)
-    # => {1=>3, 4=>2, 6=>2}
-    # => [1, 4, 6]
-    where(id: captains_array) # of these, which have one of each?
+
+    Boat.joins(:captain).where({captains: {id: captains_array}}).order(:captain_id)
+    # => #<Boat id: 7, name: "Cape Dory", length: 28, captain_id: 1, created_at: ...
   end
 
 end
+
+Boat.joins(:classifications).where({classifications: {name: ["Sailboat", "Motorboat"]}}).group(:captain_id).having("COUNT(captain_id)>=2").joins(:captain).order(:captain_id)
