@@ -4,9 +4,6 @@ class Boat < ActiveRecord::Base
   has_many    :classifications, through: :boat_classifications
     
     def self.first_five
-        self.first(4).each do |boat|
-            boat.name
-            binding.pry
-        end 
+       self.pluck(:name)[0..4] 
     end 
 end
