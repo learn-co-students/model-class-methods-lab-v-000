@@ -6,7 +6,7 @@ class Boat < ActiveRecord::Base
     def self.first_five
         self.first(4).each do |boat|
             boat.name
-            #binding.pry
+            binding.pry
         end 
     end 
 end
