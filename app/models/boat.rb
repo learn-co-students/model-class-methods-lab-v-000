@@ -24,8 +24,12 @@ class Boat < ActiveRecord::Base
   end
 
   def self.sailboats
-    # sailboat_id = Classification.find_by_name('sailboat')
-    select(name).where('classification == sailboat')
+    sailboat_class = Classification.find_by(:name => "Sailboat")
+    Boat.joins(:classifications).where('classification_id = ?', sailboat_class.id)
+  end
+
+  def self.with_three_classifications
+    Boat.joins(:classifications).group('boat_id').having("count(classification_id) = ?", 3)
   end
 
 end
