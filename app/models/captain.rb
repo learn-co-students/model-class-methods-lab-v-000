@@ -2,11 +2,11 @@ class Captain < ActiveRecord::Base
   has_many :boats
 
   def self.catamaran_operators
-    a = captains_of("Catamaran")
+    captains_of("Catamaran")
   end
 
   def self.sailors
-    a = captains_of("Sailboat")
+    captains_of("Sailboat")
   end
 
   def self.talented_seafarers
