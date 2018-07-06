@@ -27,4 +27,8 @@ class Boat < ActiveRecord::Base
     Classification.find_by(name: "Sailboat").boats
   end
 
+  def self.with_three_classifications
+    all.select { |b| b.classifications.size == 3 }
+  end
+
 end
