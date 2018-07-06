@@ -28,7 +28,12 @@ class Boat < ActiveRecord::Base
   end
 
   def self.with_three_classifications
-    all.select { |b| b.classifications.size == 3 }
+    where(classifications: 3)
+    #all.select { |b| b.classifications.size == 3 }
+  end
+
+  def classifications
+    self.classifications.size ? self.classifications.first.name : nil
   end
 
 end
