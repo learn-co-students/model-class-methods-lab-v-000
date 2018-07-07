@@ -14,7 +14,10 @@ class Captain < ActiveRecord::Base
   end
 
   def self.non_sailors
-    Captain.joins(boats: :classifications).where(classifications: { name: "Motorboat", name: "Sailboat" }).uniq
+    all = Captain.select(:name)
+    sailors = Captain.joins(boats: :classifications).where(classifications: { name: "Sailboat" }).uniq
+    answer = all - sailors
+    binding.pry
   end
 
 end
