@@ -19,6 +19,20 @@ class Boat < ActiveRecord::Base
     order(name: :desc).limit(3)
   end
 
-  
+  def self.without_a_captain
+    where("captain_id = ?", nil)
+  end
+
+  def self.sailboats
+    includes(:classifications).where('classifications.name = ?', 'Sailboat')
+  end
+
+  def self.catamarans
+    includes(:classifications).where('classifications.name = ?', 'Catamaran')
+  end
+
+  def self.with_three_classifications
+    includes(:classifications).group('boat_id').having('COUNT(classification_id) = ?', 3)
+  end
 
 end
