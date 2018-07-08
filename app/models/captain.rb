@@ -6,4 +6,9 @@ class Captain < ActiveRecord::Base
     Captain.includes(boats: [:classifications]).where('classification_id = ?', catamaran_class.id)
   end
 
+  def self.sailors
+    sailboat_class = Classification.find_by(:name => "Sailboat")
+    Captain.includes(boats: [:classifications]).where('classification_id = ?', sailboat_class.id).distinct
+  end
+
 end
