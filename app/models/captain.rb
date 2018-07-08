@@ -3,7 +3,7 @@ class Captain < ActiveRecord::Base
 
   def self.catamaran_operators
     catamaran_class = Classification.find_by(:name => "Catamaran")
-    Captain.joins(:boats).where('classification_id = ?', catamaran_class.id)
+    Captain.includes(boats: [:classifications]).where('classification_id = ?', catamaran_class.id)
   end
 
 end
