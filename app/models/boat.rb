@@ -28,12 +28,8 @@ class Boat < ActiveRecord::Base
   end
 
   def self.with_three_classifications
-    where(classifications: 3)
+    joins(:classifications).group('boats.id').having('COUNT(*) = 3')
     #all.select { |b| b.classifications.size == 3 }
-  end
-
-  def classifications
-    self.classifications.size ? self.classifications.first.name : nil
   end
 
 end
