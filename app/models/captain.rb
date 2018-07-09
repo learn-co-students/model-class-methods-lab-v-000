@@ -18,7 +18,7 @@ class Captain < ActiveRecord::Base
   end
 
   def self.all_boaters
-    select(:id, :name, :admiral, :created_at, :updated_at).uniq
+    all
   end
 
   def self.non_sailors
