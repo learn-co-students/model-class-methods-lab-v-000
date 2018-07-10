@@ -17,10 +17,11 @@ class Captain < ActiveRecord::Base
   end
 
   def self.talented_seafarers
-    # sailboat_class = Classification.find_by(name: "Sailboat")
-    # motorboat_class = Classification.find_by(name: "Motorboat")
+    Captain.where("id IN (?)", self.motorboat_operators.pluck(:id)).where( "id IN (?)", self.sailors.pluck(:id))
+  end
 
-    where("id IN (?)", self.motorboat_operators.pluck(:id)).where( "id IN (?)", self.sailors.pluck(:id))
+  def self.non_sailors
+    Captain.where.not( "id IN (?)", self.sailors.pluck(:id))
   end
 
 end
