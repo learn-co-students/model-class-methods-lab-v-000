@@ -10,8 +10,7 @@ class Boat < ActiveRecord::Base
 
   def self.first_five
     #binding.pry
-    order(id: :asc)
-    limit(5)
+    order(id: :asc).limit(5)
   end
 
   def self.dinghy
@@ -24,8 +23,16 @@ class Boat < ActiveRecord::Base
 
   def self.last_three_alphabetically
     binding.pry
-    order(name: :desc)
-    limit(3)
+    order(name: :desc).limit(3)
+  end
+
+  def without_a_captain
+
+  end
+
+  def self.sailboats
+    join(Classifcation)
+    on()
   end
 
 
