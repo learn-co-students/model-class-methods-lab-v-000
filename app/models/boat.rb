@@ -37,7 +37,8 @@ class Boat < ActiveRecord::Base
 
   def self.with_three_classifications
     binding.pry
-
+    joins(:classifications)
+    .group("classifications.id")
   end
 
 
