@@ -4,10 +4,6 @@ class Boat < ActiveRecord::Base
   has_many    :classifications, through: :boat_classifications
 
 
-  def boats
-    Boat.arel_table
-  end
-
   def self.first_five
     #binding.pry
     order(id: :asc).limit(5)
@@ -22,17 +18,26 @@ class Boat < ActiveRecord::Base
   end
 
   def self.last_three_alphabetically
-    binding.pry
+    #binding.pry
     order(name: :desc).limit(3)
   end
 
-  def without_a_captain
-
+  def self.without_a_captain
+    #binding.pry
+    #joins(:captain)
+    where(captain_id: nil)
   end
 
   def self.sailboats
-    join(Classifcation)
-    on()
+    #binding.pry
+    joins(:classifications)
+    .where("classifications.name = ?", 'Sailboat')
+    #joins(boat_classifications).on("id = boat_id")
+  end
+
+  def self.with_three_classifications
+    binding.pry
+
   end
 
 
