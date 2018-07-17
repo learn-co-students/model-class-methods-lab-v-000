@@ -4,7 +4,7 @@ class Boat < ActiveRecord::Base
   has_many    :classifications, through: :boat_classifications
 
   def self.first_five
-    Boat.where("id < ? and id > ?", "6", "0")
+    Boat.order('id ASC').limit(5)
   end
 
   def self.dinghy
