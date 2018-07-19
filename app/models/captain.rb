@@ -3,6 +3,8 @@ class Captain < ActiveRecord::Base
 
   def self.catamaran_operators
       binding.pry
-    #   self.joins(:boats).group('boats.classifications').where('classification.name = ?', "catamaran")
+     
+      # Select all Captains
+      #where boats.classifications.name = catamaran
   end
 end
