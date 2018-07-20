@@ -3,18 +3,18 @@ class Captain < ActiveRecord::Base
 
   def self.catamaran_operators
     #returns captains of catamarans
-    self.joins(boats: [:classifications]).where("classifications.name = ?", "Catamaran").uniq
+    joins(boats: [:classifications]).where("classifications.name = ?", "Catamaran").uniq
 
   end
 
   def self.sailors
     #returns captains of sailboats
-    self.joins(boats: [:classifications]).where("classifications.name = ?", "Sailboat").uniq
+    joins(boats: [:classifications]).where("classifications.name = ?", "Sailboat").uniq
 
   end
 
   def self.motorboats
-    self.joins(boats: [:classifications]).where("classifications.name = ?", "Motorboat").uniq
+    joins(boats: [:classifications]).where("classifications.name = ?", "Motorboat").uniq
   end
 
   def self.talented_seafarers
