@@ -10,7 +10,8 @@ class Boat < ActiveRecord::Base
   end
 
   def self.dinghy
-    where("length < ?", 20)
+    #where("length < ?", 20)
+    self.where("length < ?",20)
   end
 
   def self.ship
@@ -36,9 +37,8 @@ class Boat < ActiveRecord::Base
   end
 
   def self.with_three_classifications
-    binding.pry
-    joins(:classifications)
-    .group("classifications.id")
+    #binding.pry
+    self.joins(:classifications).group("boats.id").having("count(*)=?",3)
   end
 
 
