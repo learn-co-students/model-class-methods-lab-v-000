@@ -4,7 +4,7 @@ class Boat < ActiveRecord::Base
   has_many    :classifications, through: :boat_classifications
   
   def self.first_five 
-    @boats = Boat.last(5).reverse
+    @boats = Boat.limit(5) #.reverse
   end
   
   def self.dinghy 
@@ -16,8 +16,7 @@ class Boat < ActiveRecord::Base
   end
   
   def self.last_three_alphabetically
-    five_boats = Boat.last(5)
-    @boats = five_boats.sort
+    @boats = Boat.limit(3).order("name desc")
   end
   
   def self.without_a_captain
@@ -25,7 +24,7 @@ class Boat < ActiveRecord::Base
   end
   
   def self.sailboats 
-    @boats = Boat.classifications.where("name = ?", "sailboat")
+    @boats = Boat.join(:classifications).where("name = ?", "sailboat")
   end 
   
   def self.with_three_classifications
