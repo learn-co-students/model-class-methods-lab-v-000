@@ -25,6 +25,9 @@ class Boat < ActiveRecord::Base
   end
 
   def self.sailboats
+    # Convoluted - Ask boat classifications for boat ids with classification sailboat.
+    # then find the corresponding boats (this will be an array)
+    # then convert to ActiveRecord:Relation so test can use pluck
     sailboat = Classification.find_by(:name => "Sailboat")
     ids = BoatClassification.find_boats_by_category(sailboat.id)
     boats = ids.map { |id| Boat.find(id)}
