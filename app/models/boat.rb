@@ -5,7 +5,8 @@ class Boat < ActiveRecord::Base
   has_many    :classifications, through: :boat_classifications
 
   def self.first_five
-    Boat.where("id <= 5")
+    boats = Boat.first(5) # returns array
+    Boat.where(id: boats.map(&:id))  #convert to activerecord relation
   end
 
   def self.dinghy

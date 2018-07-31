@@ -1,12 +1,12 @@
 require 'spec_helper'
 
 describe Boat do
-  # describe "::first_five" do
-  #   it "returns the first five Boats" do
-  #     boats = ["H 28", "Nacra 17", "Regulator 34SS", "Zodiac CZ7", "Boston Whaler"]
-  #     expect(Boat.first_five.pluck(:name)).to eq(boats)
-  #   end
-  # end
+  describe "::first_five" do
+    it "returns the first five Boats" do
+      boats = ["H 28", "Nacra 17", "Regulator 34SS", "Zodiac CZ7", "Boston Whaler"]
+      expect(Boat.first_five.pluck(:name)).to eq(boats)
+    end
+  end
 
   describe "::dinghy" do
     it "returns boats shorter than 20 feet" do
