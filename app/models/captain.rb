@@ -17,6 +17,8 @@ class Captain < ActiveRecord::Base
   end
 
   def self.non_sailors
+    # inefficient implementation - really want SQL query to pull all the captains that
+    # don't have any sailboats...
     list = self.all - self.sailors
     Captain.where(id: list.map(&:id))
   end
