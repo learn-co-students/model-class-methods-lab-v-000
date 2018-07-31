@@ -25,6 +25,10 @@ class Boat < ActiveRecord::Base
     Boat.where(:captain_id=>nil)
   end
 
+  def self.longest
+    Boat.all.order(length: :desc).limit(1)[0]
+  end
+
   def self.sailboats
     # Convoluted - Ask boat classifications for boats with classification sailboat (this will be an array)
     # then convert to ActiveRecord:Relation so test can use pluck
