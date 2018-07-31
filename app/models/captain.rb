@@ -10,6 +10,12 @@ class Captain < ActiveRecord::Base
     find_captains_by_boat_class("Sailboat")
   end
 
+  def self.talented_seafarers
+    motor_captains = find_captains_by_boat_class("Motorboat")
+    list = motor_captains & self.sailors
+    Captain.where(id: list.map(&:id))
+  end
+
   def self.find_captains_by_boat_class (classification_name)
     # convoluted logic - not sure how to get Classifactions to return ActiveRecord:relation
     search = Classification.find_by(:name => classification_name)
@@ -17,4 +23,5 @@ class Captain < ActiveRecord::Base
     captains = boats.map { | boat | boat.captain }.uniq.compact
     Captain.where(id: captains.map(&:id))
   end
+
 end
