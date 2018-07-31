@@ -17,12 +17,8 @@ class Captain < ActiveRecord::Base
   end
 
   def self.non_sailors
-    # convoluted logic - not sure how to get Classifactions to return ActiveRecord:relation
-    binding.pry
-    sailboat = Classification.find_by(:name => "Sailboat")
-    boats = BoatClassification.find_boats_not_in_classification (sailboat.id)
-    captains = boats.map { | boat | boat.captain }.uniq.compact
-    Captain.where(id: captains.map(&:id))
+    list = self.all - self.sailors
+    Captain.where(id: list.map(&:id))
   end
 
   def self.find_captains_by_boat_class (classification_name)
