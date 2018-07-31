@@ -12,8 +12,10 @@ class Classification < ActiveRecord::Base
     # Find boat with the longest length.  Then get the boatclassifications for that boat.
     # Then map to the corresponding classification records.
     # And then convert back to activerecord relation
-    classifications = BoatClassification.find_by_boat(Boat.longest.id)
-    cs2 = classifications.map { | cs | Classification.find(cs.classification_id) }
-    Classification.where(id: cs2.map(&:id))
+    # classifications = BoatClassification.find_by_boat(Boat.longest.id)
+    # cs2 = classifications.map { | cs | Classification.find(cs.classification_id) }
+    # Classification.where(id: cs2.map(&:id))
+    # Much better implementation
+    Boat.longest.classifications
   end
 end

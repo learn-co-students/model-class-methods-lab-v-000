@@ -5,8 +5,9 @@ class Boat < ActiveRecord::Base
   has_many    :classifications, through: :boat_classifications
 
   def self.first_five
-    boats = Boat.first(5) # returns array
-    Boat.where(id: boats.map(&:id))  #convert to activerecord relation
+    ## boats = Boat.first(5) # returns array
+    ## Boat.where(id: boats.map(&:id))  #convert to activerecord relation
+    Boat.all.limit(5)
   end
 
   def self.dinghy
@@ -26,21 +27,25 @@ class Boat < ActiveRecord::Base
   end
 
   def self.longest
-    Boat.all.order(length: :desc).limit(1)[0]
+    order('length DESC').first
   end
 
   def self.sailboats
     # Convoluted - Ask boat classifications for boats with classification sailboat (this will be an array)
     # then convert to ActiveRecord:Relation so test can use pluck
-    sailboat = Classification.find_by(:name => "Sailboat")
-    boats = BoatClassification.find_boats_by_classification(sailboat.id)
-    Boat.where(id: boats.map(&:id))
+    ## sailboat = Classification.find_by(:name => "Sailboat")
+    ## boats = BoatClassification.find_boats_by_classification(sailboat.id)
+    ## Boat.where(id: boats.map(&:id))
+    # Much better
+    includes(:classifications).where(classifications: { name: 'Sailboat' })
   end
 
   def self.with_three_classifications
     # same convoluted logic - having problem figuring out how to get
     # BoatClassification to return boats as activerecord:relation
-    boats = BoatClassification.find_boats_by_number_classifications (3)
-    Boat.where(id: boats.map(&:id))
+    ## boats = BoatClassification.find_boats_by_number_classifications (3)
+    ## Boat.where(id: boats.map(&:id))
+    # A different approach
+    joins(:classifications).group("boats.id").having("COUNT(*) = 3").select("boats.*")
   end
 end
