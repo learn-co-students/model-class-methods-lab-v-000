@@ -28,14 +28,14 @@ class Boat < ActiveRecord::Base
   end 
   
   def self.with_three_classifications
-    @boats = Boat.joins(:classifications).count.collect {|c| c == 3}
+    @boats = Boat.joins(:classifications).group("boats.id").having("count(classifications.id) = 3")
   end
   
   
   
 end
 
-# Author.joins("INNER JOIN posts ON posts.author_id = authors.id AND posts.published = 't'")
+# Spree::Order.joins(:shipments).group("spree_shipments.order_id").having("count(spree_s
 # where("created_at >=?", Time.zone.today.beginning_of_day)
 # MyModel.where("description LIKE ?",keyword)
 
