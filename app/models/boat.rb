@@ -24,18 +24,20 @@ class Boat < ActiveRecord::Base
   end
   
   def self.sailboats 
-    @boats = Boat.join(:classifications).where("name = ?", "sailboat")
+    @boats = Boat.joins(:classifications).where("classifications.name LIKE ?", "sailboat")
   end 
   
   def self.with_three_classifications
-    @boats = Boat.classifications.count.collect {|c| c == 3}
+    @boats = Boat.joins(:classifications).count.collect {|c| c == 3}
   end
   
   
   
 end
 
+# Author.joins("INNER JOIN posts ON posts.author_id = authors.id AND posts.published = 't'")
 # where("created_at >=?", Time.zone.today.beginning_of_day)
+# MyModel.where("description LIKE ?",keyword)
 
 # describe Boat do
 #   describe "::first_five" do
