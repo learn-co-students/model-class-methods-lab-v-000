@@ -20,7 +20,7 @@ class Boat < ActiveRecord::Base
   end
   
   def self.without_a_captain 
-    Boat.where("captain_id = ?", nil)
+    Boat.where(captain_id: nil)
   end
   
   def self.sailboats
@@ -28,7 +28,7 @@ class Boat < ActiveRecord::Base
   end
   
   def self.with_three_classifications
-    Boat.joins(:classifications).where("classifications = ?", 3)
-    end
+    
+  end
   
 end
