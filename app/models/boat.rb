@@ -19,4 +19,14 @@ def self.last_three_alphabetically
   self.order(name: :desc).limit(3)
 end
 
+def self.without_a_captain
+  self.where(captain: nil)
+end
+
+def self.sailboats
+  self.joins(:classifications).where('classifications.name' => "Sailboat")
+end
+
+
+
 end
