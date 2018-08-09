@@ -28,7 +28,7 @@ def self.sailboats
 end
 
 def self.with_three_classifications
-#  self.joins(:classifications).where()
+self.joins(comments: :guest)
 end
 
 
