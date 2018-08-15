@@ -10,12 +10,16 @@ class Captain < ActiveRecord::Base
     all.includes(boats: :classifications).where(classifications:{name: 'Sailboat'} ).uniq
   end
 
+  def self.moatorboat_captains
+    all.includes(boats: :classifications).where(classifications:{name: 'Motorboat'} ).uniq
+  end
+
   def self.talented_seafarers
-    all.includes(boats: :classifications).where(classifications:{name: 'Sailboat'} && {name: 'Motorboat'} ).uniq
+    where(id: self.sailors & self.moatorboat_captains)  
   end
 
   def self.non_sailors
-    all.includes(boats: :classifications).where.not(classifications:{name: 'Sailboat'} ).uniq
+    where.not(id: self.sailors)
   end
 
 end
