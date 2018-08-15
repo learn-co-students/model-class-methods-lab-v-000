@@ -20,16 +20,19 @@ class Boat < ActiveRecord::Base
   end
 
   def self.without_a_captain
-    where(captain: nil)
+    all.where(captain_id:nil)
   end
 
   def self.sailboats
+    all.includes(:classifications).where(classifications: {name: 'Sailboat'} )
   end
 
   def self.with_three_classifications
+    includes(:classifications).group('boats.id').having('count(classification_id) = 3')
   end
 
   def self.longest_boat
+    Boat.all.sort {|a,b| b.length <=> a.length}.first
   end
 
 end
