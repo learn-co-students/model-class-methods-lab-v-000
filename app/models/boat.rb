@@ -4,7 +4,6 @@ class Boat < ActiveRecord::Base
   has_many    :classifications, through: :boat_classifications
 
   def self.first_five
-<<<<<<< HEAD
     Boat.all[0..4]
   end
 
@@ -12,15 +11,6 @@ class Boat < ActiveRecord::Base
    where("length <= 20" )
  end
 
-=======
-    where(:boat_id.to_i <6)
-  end
-  
-  def self.dinghy
-    where(:length.to_i >= 20 )
-  end
-  
->>>>>>> 0dcf51c4776a0e74b99f139e62a230b380371e03
   def self.ship
     where("length > 20" )
   end
@@ -38,7 +28,7 @@ class Boat < ActiveRecord::Base
 
   def self.with_three_classifications
   end
-  
+
   def self.longest_boat
   end
 
