@@ -4,6 +4,7 @@ class Boat < ActiveRecord::Base
   has_many    :classifications, through: :boat_classifications
   def self.first_five
     binding.pry
+    self.limit(5).pluck(:name)
     Boat.first(5)
   end
 end
