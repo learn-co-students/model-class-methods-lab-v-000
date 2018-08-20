@@ -3,8 +3,25 @@ class Boat < ActiveRecord::Base
   has_many    :boat_classifications
   has_many    :classifications, through: :boat_classifications
   def self.first_five
+    self.limit(5)
+  end
+
+  def self.dinghy
+    self.where("length <?", 20)
+  end
+  def self.ship
+    self.where("length >=?", 20)
+  end
+
+  def self.last_three_alphabetically
+    self.all.order("name DESC").limit(3)
+  end
+
+  def self.without_a_captain
+    self.where(captain: nil)
+  end
+
+  def self.sailboats
     binding.pry
-    self.limit(5).pluck(:name)
-    Boat.first(5)
   end
 end
