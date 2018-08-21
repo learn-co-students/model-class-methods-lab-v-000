@@ -13,8 +13,14 @@ class Captain < ActiveRecord::Base
   end
 
   def self.talented_seafarers
-    self.joins(:classifications).where(classifications: {name: ["Sailboat"]})
+    motorboats = Boat.joins(:classifications).where(classifications: {name: ["Motorboat"]})
+    motorboat_captains = motorboats.map(&:captain_id)
+    sailors = self.sailors.pluck(:id)
+    all = motorboat_captains & sailors
+    self.where(id: all)
+  end
 
-    Boat.sailors.where()
+  def self.non_sailors
+    self.where.not(id: self.sailors)
   end
 end
