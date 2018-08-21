@@ -22,6 +22,18 @@ class Boat < ActiveRecord::Base
   end
 
   def self.sailboats
-    binding.pry
+    self.joins(:classifications).where(classifications: {name: "Sailboat"})
+  end
+
+  def self.with_three_classifications
+    # binding.pry
+    Boat.joins(:classifications).group('boats.id').having('count(boat_id) == 3')
+    # Project.joins(:vacancies).group('projects.id').having('count(project_id) > 1')
+    #
+    # BoatClassification.group(:boat_id)
+    # Boat.joins(:boat_classifications).where(boat_classifications: {boat_id: })
+    # Boat.joins(:boat_classifications).select(:boat_id).group(:boat_id).having()
+    # Account.joins(:users).select('accounts.id').group('accounts.id').having('count(users.id) > 1')
+
   end
 end
