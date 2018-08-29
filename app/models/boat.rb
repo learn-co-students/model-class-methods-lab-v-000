@@ -8,7 +8,14 @@ class Boat < ActiveRecord::Base
     
 binding.pry    
 
-    take(5)
+    # take(5)
   end 
   
 end
+
+# self.connection.select_all("
+
+
+SELECT * FROM boats WHERE id < '6'
+
+")
