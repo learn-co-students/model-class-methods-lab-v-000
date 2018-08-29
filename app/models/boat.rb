@@ -13,9 +13,7 @@ binding.pry
   
 end
 
-# self.connection.select_all("
+# self.connection.select_all("WHERE id BETWEEN 1 AND 5")
 
+# SELECT * FROM boats WHERE id < '6'
 
-SELECT * FROM boats WHERE id < '6'
-
-")
