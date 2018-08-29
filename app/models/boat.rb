@@ -5,15 +5,9 @@ class Boat < ActiveRecord::Base
   has_many    :classifications, through: :boat_classifications
   
   def self.first_five
-    
-binding.pry    
-
-    # take(5)
+    self.where("id < ?", 6)
   end 
   
 end
 
-# self.connection.select_all("WHERE id BETWEEN 1 AND 5")
-
-# SELECT * FROM boats WHERE id < '6'
 
