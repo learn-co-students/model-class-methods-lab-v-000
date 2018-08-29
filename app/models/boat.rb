@@ -24,7 +24,11 @@ class Boat < ActiveRecord::Base
 binding.pry    
   end
   
-  def 
+  def self.sailboats
+binding.pry 
+  end
+  
+  def self.with_three_classifications
 binding.pry 
   end
   
