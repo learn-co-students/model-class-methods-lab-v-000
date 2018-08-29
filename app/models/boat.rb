@@ -17,8 +17,15 @@ class Boat < ActiveRecord::Base
   end
   
   def self.last_three_alphabetically
-binding.pry
-    # all.
+    all.order(name: :desc).limit(3)
+  end
+  
+  def self.without_a_captain
+binding.pry    
+  end
+  
+  def 
+binding.pry 
   end
   
 end
