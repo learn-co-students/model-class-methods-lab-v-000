@@ -5,7 +5,8 @@ class Boat < ActiveRecord::Base
   has_many    :classifications, through: :boat_classifications
   
   def self.first_five
-    self.where("id < ?", 6)
+    t = self.where("id < ?", 6)
+binding.pry     
   end 
   
 end
