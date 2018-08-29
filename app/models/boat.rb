@@ -21,7 +21,7 @@ class Boat < ActiveRecord::Base
   end
   
   def self.without_a_captain
-binding.pry    
+    all.where(captain: nil)   
   end
   
   def self.sailboats
@@ -29,7 +29,7 @@ binding.pry
   end
   
   def self.with_three_classifications
-binding.pry 
+# binding.pry 
   end
   
 end
