@@ -5,11 +5,7 @@ class Boat < ActiveRecord::Base
   has_many    :classifications, through: :boat_classifications
   
   def self.first_five
-
-  
-
-binding.pry
-
+    all.limit(5)
   end 
   
 end
