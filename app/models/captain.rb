@@ -4,7 +4,6 @@ class Captain < ActiveRecord::Base
   
   def self.catamaran_operators
     joins(boats: :classifications).where(classifications: {name: "Catamaran"})
-# binding.pry    
   end
   
   def self.sailors
@@ -12,8 +11,7 @@ class Captain < ActiveRecord::Base
   end
   
   def self.talented_seafarers
-    sailors.joins(boats: :classifications).where(classifications: {name: "Motorboat"}) 
-# binding.pry
+    where("id IN (?)", self.sailors.pluck(:id) & self.motorboats.pluck(:id)) 
   end
   
   def self.non_sailors
