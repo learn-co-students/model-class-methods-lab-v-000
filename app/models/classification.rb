@@ -8,13 +8,7 @@ class Classification < ActiveRecord::Base
   end
   
   def self.longest
-    relation_format = self.none
-    longests_classifications = Boat.order(length: :desc).first.classifications
-    longests_classifications.each do |classification|
-      relation_format << classification
-    end
-    relation_format
-binding.pry 
+    Boat.longest.classifications
   end
   
 end
