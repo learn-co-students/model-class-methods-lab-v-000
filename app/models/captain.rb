@@ -3,19 +3,20 @@ class Captain < ActiveRecord::Base
   has_many :boats
   
   def self.catamaran_operators
-    joins(boats: :classifications).where(classifications: {name: "Catamarans"})
+    # joins(boats: :classifications).where(classifications: {name: "Catamarans"})
+binding.pry    
   end
   
   def self.sailors
-    binding.pry
+binding.pry
   end
   
   def self.talented_seafarers
-    binding.pry
+binding.pry
   end
   
   def self.non_sailors
-    binding.pry
+binding.pry
   end
   
 end
