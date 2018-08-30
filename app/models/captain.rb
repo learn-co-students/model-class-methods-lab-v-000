@@ -2,19 +2,19 @@
 class Captain < ActiveRecord::Base
   has_many :boats
   
-  def
+  def self.catamaran_operators
     binding.pry
   end
   
-  def
+  def self.sailors
     binding.pry
   end
   
-  def
+  def self.talented_seafarers
     binding.pry
   end
   
-  def
+  def self.non_sailors
     binding.pry
   end
   
