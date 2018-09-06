@@ -8,7 +8,7 @@ class Classification < ActiveRecord::Base
    end
 
    def self.longest
-   
+   #we had to create the longest method in our boat class.
     Boat.longest.classifications
    end
 
