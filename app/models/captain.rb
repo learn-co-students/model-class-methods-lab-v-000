@@ -13,24 +13,23 @@ class Captain < ActiveRecord::Base
 
    end
 
+   def self.motorboaters # we created this manually
+    #returns captians with motorboats
+    self.includes(boats: :classifications).where(:classifications => {:name => "Motorboat"}).uniq
+
+  end
+
    def self.talented_seafarers
-    binding.pry
-
+    # binding.pry
     #returns captains of motorboats and sailboats
-    self.includes(boats: :classifications).where(:classifications => {:name => "Sailboat" + "Motorboat"}).uniq
-
+    #searching where IDs is inside both sailers and motorbaters which are both arrays of ids
+    self.where("id IN (?)", self.sailors.ids & self.motorboaters.ids)
    end
 
    def self.non_sailors
     # returns people who are not captains of sailboats
+    self.where.not("id IN (?)", self.sailors.ids)
    end
 
-   def self.my_all
-    #  returns all classifications
-   end
-
-   def self.longest_returns_the_classifications_for_the_longest_boats
-    # returns the classifications for the longest boat
-   end
-
+   
 end
