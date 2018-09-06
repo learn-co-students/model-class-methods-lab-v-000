@@ -7,9 +7,8 @@ class Classification < ActiveRecord::Base
     Classification.all
    end
 
-   def self.longest_returns_the_classifications_for_the_longest_boats
-    binding.pry
-    # returns the classifications for the longest boat
+   def self.longest
+   
     Boat.longest.classifications
    end
 
