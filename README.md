@@ -13,3 +13,6 @@ Keep in mind that this lab is focused primarily on ActiveRecord querying methods
 * [ThoughtBot](http://thoughtbot.com/) - [Using Arel to Compose SQL Queries](http://robots.thoughtbot.com/using-arel-to-compose-sql-queries)
 
 <p data-visibility='hidden'>View <a href='https://learn.co/lessons/arel-lab' title='AREL Lab'>AREL Lab</a> on Learn.co and start learning to code for free.</p>
+
+
+<!-- https://apidock.com/rails/ActiveRecord/QueryMethods/arel  -->
