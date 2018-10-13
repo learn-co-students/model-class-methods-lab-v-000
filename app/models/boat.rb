@@ -20,6 +20,14 @@ class Boat < ActiveRecord::Base
   end
 
   def self.without_a_captain
-    Boat.find_by(captain_id: 'nil')
+    Boat.all.where("captain_id = ?", nil)
+  end
+
+  def sailboats
+
+  end
+
+  def with_three_classifications
+
   end
 end
