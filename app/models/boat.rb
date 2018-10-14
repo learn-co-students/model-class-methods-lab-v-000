@@ -24,6 +24,7 @@ class Boat < ActiveRecord::Base
   end
 
   def sailboats
+    
 
   end
 
