@@ -8,7 +8,9 @@ class Classification < ActiveRecord::Base
   end
 
   def self.longest
-    binding.pry
+    #binding.pry
+    a = Boat.longest_boat
+    a.first.classifications
   end
 
 

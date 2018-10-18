@@ -22,6 +22,11 @@ class Boat < ActiveRecord::Base
     self.limit(3).order('name desc')
   end
 
+  def self.longest_boat
+    #self.order([:name]).last(3).reverse
+    self.limit(1).order('length desc')
+  end
+
   def self.without_a_captain
     where(captain: nil)
   end
