@@ -1,3 +1,4 @@
+require 'pry'
 class Boat < ActiveRecord::Base
   belongs_to  :captain
   has_many    :boat_classifications
@@ -24,5 +25,16 @@ class Boat < ActiveRecord::Base
   def self.without_a_captain
     where(captain: nil)
   end
+
+  def self.sailboats
+    #binding.pry
+    Classification.find_by(name: 'Sailboat').boats
+  end
+
+  def self.with_three_classifications
+    #binding.pry
+    joins(:classifications).group("boats.id").having("COUNT(boat_id)=3")
+  end
+
 
 end
