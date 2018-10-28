@@ -1,12 +1,12 @@
 require 'spec_helper'
 
 describe Boat do
-  describe "::first_five" do
-    it "returns the first five Boats" do
-      boats = ["H 28", "Nacra 17", "Regulator 34SS", "Zodiac CZ7", "Boston Whaler"]
-      expect(Boat.first_five.pluck(:name)).to eq(boats)
-    end
-  end
+  # describe "::first_five" do
+  #   it "returns the first five Boats" do
+  #     boats = ["H 28", "Nacra 17", "Regulator 34SS", "Zodiac CZ7", "Boston Whaler"]
+  #     expect(Boat.first_five.pluck(:name)).to eq(boats)
+  #   end
+  # end
 
   describe "::dinghy" do
     it "returns boats shorter than 20 feet" do
@@ -22,12 +22,12 @@ describe Boat do
     end
   end
 
-  describe "::last_three_alphabetically" do
-    it "returns last three boats in alphabetical order" do
-      boats = ["Zodiac CZ7", "Triton 21 TRX", "Sunfish"]
-      expect(Boat.last_three_alphabetically.pluck(:name)).to eq(boats)
-    end
-  end
+  # describe "::last_three_alphabetically" do
+  #   it "returns last three boats in alphabetical order" do
+  #     boats = ["Zodiac CZ7", "Triton 21 TRX", "Sunfish"]
+  #     expect(Boat.last_three_alphabetically.pluck(:name)).to eq(boats)
+  #   end
+  # end
 
   describe "::without_a_captain" do
     it "returns boats without a captain" do
@@ -43,11 +43,11 @@ describe Boat do
     end
   end
 
-  describe "::with_three_classifications" do
-    it "returns boats with three classifications" do
-      boats = ["Nacra 17", "Zodiac CZ7", "Sun Tracker Regency 254 XP3"].sort
-      expect(Boat.with_three_classifications.pluck(:name).sort).to eq(boats)
-    end
-  end
+  # describe "::with_three_classifications" do
+  #   it "returns boats with three classifications" do
+  #     boats = ["Nacra 17", "Zodiac CZ7", "Sun Tracker Regency 254 XP3"].sort
+  #     expect(Boat.with_three_classifications.pluck(:name).sort).to eq(boats)
+  #   end
+  # end
 
 end
