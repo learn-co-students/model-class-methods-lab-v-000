@@ -50,4 +50,8 @@ class Boat < ActiveRecord::Base
     end
     three
   end
+
+  def self.longest
+    all.order(length: :desc).limit(1)
+  end
 end

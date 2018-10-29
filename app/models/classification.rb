@@ -3,8 +3,10 @@ class Classification < ActiveRecord::Base
   has_many :boats, through: :boat_classifications
 
   def self.my_all
+    all
   end
 
   def self.longest
+    joins(:boats).where("boats.name = ?", Boat.longest.pluck(:name))
   end
 end
