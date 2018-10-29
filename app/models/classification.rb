@@ -8,5 +8,7 @@ class Classification < ActiveRecord::Base
 
   def self.longest
     joins(:boats).where("boats.name = ?", Boat.longest.pluck(:name))
+    # this should work but it doesn't:
+    # Boat.longest.classifications
   end
 end
