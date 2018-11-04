@@ -20,6 +20,11 @@ class Boat < ActiveRecord::Base
     Boat.order(name: :desc).limit(3)
   end
 
+  def self.longest
+    length = Boat.order(length: :desc).limit(1).first.length
+    Boat.where('length = ?', length)
+  end
+
   def self.without_a_captain
     Boat.where(captain_id: nil)
   end
