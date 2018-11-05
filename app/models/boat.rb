@@ -15,11 +15,20 @@ class Boat < ActiveRecord::Base
     all.where("length >= 20")
   end
 
-  def last_three_alphabetically
+  def self.last_three_alphabetically
     all.order(name: :desc).limit(3)
   end
 
-  def without_a_captain
+  def self.without_a_captain
+    all.where(captain_id: nil)
+  end
+
+  def self.sailboats
+    includes(:classifications).where(classifications: { name: 'Sailboat' })
+  end
+
+  def self.with_three_classifications
+    joins(:classifications).group("boats.id").having("COUNT(*) = 3").select("boats.*")
   end
 
 end
