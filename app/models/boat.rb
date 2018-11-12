@@ -9,23 +9,23 @@ class Boat < ActiveRecord::Base
   end
 
   def self.dinghy
-    Boat.where("length < 20")
+    Boat.all.where("length < 20")
   end
 
   def self.ship
-    Boat.where("length >= 20")
+    Boat.all.where("length >= 20")
   end
 
   def self.last_three_alphabetically
-    Boat.order(name: :desc).limit(3)
+    Boat.all.order(name: :desc).limit(3)
   end
 
   def self.without_a_captain
-    Boat.where(captain_id: nil)
+    Boat.all.where(captain_id: nil)
   end
 
   def self.sailboats
-    Boat.where("classifications == 'sailboat'")
+    Boat.includes(:classifications).where(classifications: {name: 'Sailboat'} )
   end
 
 end
