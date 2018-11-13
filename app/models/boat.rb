@@ -9,11 +9,11 @@ class Boat < ActiveRecord::Base
   end
 
   def self.dinghy
-    Boat.all.where("length < 20")
+    Boat.all.where("length < ?", 20)
   end
 
   def self.ship
-    Boat.all.where("length >= 20")
+    Boat.all.where("length >= ?", 20 )
   end
 
   def self.last_three_alphabetically
@@ -26,6 +26,10 @@ class Boat < ActiveRecord::Base
 
   def self.sailboats
     Boat.includes(:classifications).where(classifications: {name: 'Sailboat'} )
+  end
+
+  def self.with_three_classifications
+    Boat.joins(:classifications).group("boats.id").having("COUNT(*) = ?", 3)
   end
 
 end
