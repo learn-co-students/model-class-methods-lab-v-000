@@ -5,7 +5,32 @@ class Boat < ActiveRecord::Base
 
   def self.first_five
     #returns an array of the first five boat objects
-    
+    self.limit(5)
   end
+
+  def self.dinghy
+    where("length < 20")
+  end
+
+  def self.ship
+    where("length >= 20")
+  end
+
+  def self.last_three_alphabetically
+    self.order(name: :desc).limit(3)
+  end
+
+  def self.without_a_captain
+    where(captain_id: nil)
+  end
+
+  def self.sailboats
+    self.joins(:classifications).where(classifications:{name: "Sailboat"})
+  end
+
+  def self.with_three_classifications
+    self.all.joins(:classifications).group('boats.id').having("COUNT(*) = 3").select('boats.*')
+  end
+
 
 end
