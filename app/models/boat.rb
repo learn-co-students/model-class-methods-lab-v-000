@@ -28,9 +28,7 @@ class Boat < ActiveRecord::Base
   end
 
   def self.sailboats
-    Boat.all.each do |boat|
-      boat.classifications.select {|cl| cl.name == "Sailboat"}
-    end
+    Boat.includes(:classifications).where(classifications: {name: "Sailboat"})
   end
 
 end
