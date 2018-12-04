@@ -1,1 +1,5 @@
 <h1>Boat#index</h1>
+<% @boats.each do |boat| %>
+<%= boat.name is boat.length feet long %>
+<%= link_to boat.captain.name, captain_path(boat.captain.name) %>
+<% end %>
