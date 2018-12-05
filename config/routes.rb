@@ -11,7 +11,7 @@ ArelLab::Application.routes.draw do
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
-  # Example resource route (maps HTTP verbs to controller actions automatically):
+  # Examp  le re source route (maps HTTP verbs to controller actions automatically):
   #   resources :products
 
   # Example resource route with options:
