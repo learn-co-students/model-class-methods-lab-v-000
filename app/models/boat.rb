@@ -18,11 +18,18 @@ class Boat < ActiveRecord::Base
 
   def self.last_three_alphabetically
     order(name: :desc).limit(3)
-    # where(all: :desc).order(:name).limit(3)
   end
 
   def self.without_a_captain
     where(captain: nil)
+  end
+
+  def self.sailboats
+    joins(:classifications).where(classifications: {name: "Sailboat"})
+  end
+
+  def self.with_three_classifications
+    # where("classifications =?", 3)
   end
 
 end
