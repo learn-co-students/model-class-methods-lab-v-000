@@ -1,7 +1,5 @@
 class Captain < ActiveRecord::Base
   has_many :boats
-  has_many :classifications, through: :boats
-
 
   def self.catamaran_operators
     joins(boats: :classifications).where(classifications: {name: "Catamaran"})
@@ -11,8 +9,12 @@ class Captain < ActiveRecord::Base
     joins(boats: :classifications).where(classifications: {name: "Sailboat"}).uniq
   end
 
+  def self.motorboat_operators
+    joins(boats: :classifications).where(classifications: {name: "Motorboat"})
+  end
+
   def self.talented_seafarers
-    self.where("id IN (?)", self.sailors.pluck(:id) & self.motorboats.pluck(:id))
+    self.where("id IN (?)", self.sailors.pluck(:id) & self.motorboat_operators.pluck(:id))
   end
 
   def self.non_sailors

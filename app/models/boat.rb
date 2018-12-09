@@ -25,7 +25,7 @@ class Boat < ActiveRecord::Base
   end
 
   def self.sailboats
-    joins(:classifications).where(classifications: {name: "Sailboat"})
+    includes(:classifications).where(classifications: {name: "Sailboat"})
   end
 
   def self.with_three_classifications
@@ -36,11 +36,4 @@ class Boat < ActiveRecord::Base
     order('length DESC').first
   end
 
-  private
-  def table
-    Classification.arel_table
-  end
-  def sailboats
-    table[:name].eq("sailboat")
-  end
 end
