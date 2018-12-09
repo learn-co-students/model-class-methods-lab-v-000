@@ -9,8 +9,18 @@ class Captain < ActiveRecord::Base
     joins(boats: :classifications).where(classifications: {name: "Sailboat"}).uniq
   end
 
+  def self.motorboaters
+    joins(boats: :classifications).where(classifications: {name: "Motorboat"}).uniq
+  end
+
   def self.talented_seafarers
-    joins(boats: :classifications).where(classifications: {name: "Sailboat", name: "Motorboat"}).uniq
+    where("id IN (?)", self.sailors & self.motorboaters)
+  end
+
+  def self.non_sailors
+    # self.where.not(sailors)
+    where.not(id: self.sailors.pluck(:id))
+    # select("id NOT IN (?)", self.sailors)
   end
 
 end
