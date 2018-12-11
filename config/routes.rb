@@ -1,4 +1,19 @@
 ArelLab::Application.routes.draw do
+
+  get 'captain/index'
+
+  get 'captain/show'
+
+  get 'captain/new'
+
+  get 'captain/create'
+
+  get 'boat/index'
+
+  get 'boat/show'
+
+  resources :boat
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
