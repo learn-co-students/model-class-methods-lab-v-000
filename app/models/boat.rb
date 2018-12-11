@@ -9,7 +9,7 @@ class Boat < ActiveRecord::Base
   end
 
   def self.dinghy
-    where("length <?", 20)
+    where("length < ?", 20)
   end
 
   def self.ship
@@ -27,16 +27,13 @@ class Boat < ActiveRecord::Base
   def self.sailboats
     joins(:classifications).where(classifications: {name: "Sailboat"})
   end
-  def self.motorboats
-    joins(:classifications).where(classifications: {name: "Motorboat"})
-  end
 
   def self.with_three_classifications
-    joins(:classifications).group("boats.id").having("count(*) = 3")
+     joins(:classifications).group('boats.id').having('count(*) =3')
   end
 
   def self.longest
-    order(length: :desc).first
+    order("length DESC").first
   end
 
 end
