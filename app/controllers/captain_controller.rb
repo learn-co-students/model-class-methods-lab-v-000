@@ -1,0 +1,2 @@
+class CaptainController < ApplicationController
+end
