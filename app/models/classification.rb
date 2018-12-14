@@ -5,4 +5,12 @@ class Classification < ActiveRecord::Base
   def self.sailboats
     all.where(name: 'Sailboat')
   end
+
+  def self.my_all
+    all
+  end
+
+  def self.longest
+    Boat.longest.classifications
+  end
 end
