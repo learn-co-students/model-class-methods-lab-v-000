@@ -28,6 +28,7 @@ class Boat < ActiveRecord::Base
   #   Boat.classifications
   # end 
 
+    
 
 
 
