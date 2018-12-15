@@ -15,6 +15,21 @@ class Boat < ActiveRecord::Base
     Boat.where("length > 20")
   end 
 
+  def self.last_three_alphabetically 
+    Boat.order(name: :desc).limit(3)
+  end 
+
+  def self.without_a_captain 
+    Boat.where(captain_id: nil)
+  end 
+
+  # def self.sailboats #ask for help for this method
+  #   # binding.pry
+  #   Boat.classifications
+  # end 
+
+
+
 
 
 end
