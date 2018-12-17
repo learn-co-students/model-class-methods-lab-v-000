@@ -23,10 +23,10 @@ class Boat < ActiveRecord::Base
     Boat.where(captain_id: nil)
   end 
 
-  # def self.sailboats #ask for help for this method
-  #   # binding.pry
-  #   Boat.classifications
-  # end 
+  def self.sailboats 
+    # binding.pry
+    Boat.includes(:classifications).where("classifications.name = 'Sailboat'")
+  end 
 
     
 
