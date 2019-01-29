@@ -1,0 +1,10 @@
+<h1>Captain Show Page</h1>
+<h4>Captain Name: <%= @captain.name %></h4>
+<h4>Is the captain an admiral: <%= @captain.admiral %></h4>
+<h4>Captain's Boats: </h4>
+    <ul><% @captain.boats.each do |boat| %>
+      <li><%= boat.name %></li>
+    <% end %>
+  </ul>
+
+

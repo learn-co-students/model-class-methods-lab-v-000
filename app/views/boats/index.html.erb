@@ -1,0 +1,13 @@
+<h1>Boat Index</h1>
+
+<h3>Filter Boats:</h3>
+  <!--<%#= form_tag("/boats", method: "get") do %>
+    <%#= select_tag "captains", options_from_collection_for_select(@captain, "id", "name"), include_blank: true %>
+    <%#= submit_tag "Filter" %>
+  <%# end %>-->
+
+<% @boats.each do |boat| %>
+  <h3>Boat's Name: <%= boat.name %></h3>
+  <p>Boats's Length: <%= boat.length %></p>
+  <p>Boats's Captain: <%= boat.captain %></p>
+<% end %>

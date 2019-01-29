@@ -28,4 +28,5 @@ describe Captain do
       expect(Captain.non_sailors.pluck(:name)).to eq(captains)
     end
   end
+  
 end
