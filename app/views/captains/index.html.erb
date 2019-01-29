@@ -1,0 +1,10 @@
+<h1>Captain Index</h1>
+
+<% @captains.each do |captain| %> 
+  <h4>Captain's Name: <%= link_to captain.name, captain_path(captain) %></h4>
+  <h4>Boats: </h4>
+    <ul><% captain.boats.each do |boat| %>
+      <li><%= boat.name %></li>
+    <% end %>
+  </ul>
+<% end %>
