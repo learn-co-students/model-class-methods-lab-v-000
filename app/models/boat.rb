@@ -33,9 +33,9 @@ class Boat < ActiveRecord::Base
     boats = Boat.joins(boat_classifications: :classification)
     boats.each do |boat|
       if boat.classifications.count == 3
-        results << boat 
-      end 
-    end 
+        results << boat
+      end
+    end
     Boat.where('id' => results)
   end
 end
