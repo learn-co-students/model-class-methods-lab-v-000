@@ -30,6 +30,16 @@ class Boat < ActiveRecord::Base
 
 
   def self.sailboats
-    binding.pry
+    Classification.find_by(name: "Sailboat").boats
+  end
+
+
+  def self.with_three_classifications
+    joins(:classifications).group("boats.id").having("COUNT(*) = 3")
+  end
+
+
+  def self.longest
+    order("length DESC").first
   end
 end
