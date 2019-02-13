@@ -2,16 +2,23 @@ class Captain < ActiveRecord::Base
   has_many :boats
 
   def self.catamaran_operators
-    Captain.order_by(2,6)
+    all.includes(boats: :classifications).where("classifications.name = 'Catamaran'").distinct
   end
 
   def self.sailors
+   self.includes(boats: :classifications).where('classifications.name = ?', 'Sailboat').references(:classifications).uniq
+  end
+
+  def self.motorboat
+    self.includes(boats: :classification).where('classification.name = Motorboat').references(:classifications)
   end
 
   def self.talented_seafarers
+    where("name IN (?)", self.sailors.pluck(:name), self.motorboaters.pluck(:name))
   end
 
   def self.non_sailors
+    where.not("name IN (?)", self.sailors.pluck(:name))
   end
 
 end
