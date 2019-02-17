@@ -60,6 +60,7 @@ GEM
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     hike (1.2.3)
+    hirb (0.7.3)
     i18n (0.9.5)
       concurrent-ruby (~> 1.0)
     jbuilder (1.5.3)
@@ -164,6 +165,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   database_cleaner
   factory_girl_rails
+  hirb (~> 0.7.3)
   jbuilder (~> 1.2)
   jquery-rails
   pry
