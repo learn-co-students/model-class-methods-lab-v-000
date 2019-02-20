@@ -4,10 +4,12 @@ class Classification < ActiveRecord::Base
 
   def self.my_all
     # all classifications
+    #self.all.joins(:boat_classifications)
+    all
   end
 
   def self.longest
     # classification for the longest boat
-    order(:boats).last
+    Boat.longest.classifications
   end
 end
