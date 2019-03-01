@@ -1,3 +1,32 @@
 class Captain < ActiveRecord::Base
   has_many :boats
+
+  def self.catamaran_operators
+    includes(boats: :classifications).where(classifications: {name: 'Catamaran'}) 
+    # Boat.catamarans.map {|boat| boat.captain}
+#This returns an array of captain objects.
+#Boat.catamarans  returns an array of objects
+#Boat.catamarans.pluck(:name) returns just names of boats
+#Boat.catamarans.map {|boat| boat.captain} eturns an array of objects
+#Boat.catamarans.map {|boat| boat.captain}.pluck.(:name) gives 
+##NoMethodError: undefined method `pluck' for #<Array:0x007fbe94964060>
+  end
+
+  def self.sailors
+    includes(boats: :classifications).where(classifications: {name: 'Sailboat'}).uniq
+  end
+
+  def self.motors
+    includes(boats: :classifications).where(classifications: {name: 'Motorboat'})
+  end
+
+  def self.talented_seafarers
+    where("id IN (?)", self.sailors.pluck(:id) & self.motors.pluck(:id))
+  end
+
+  def self.non_sailors
+    where.not("id IN (?)", self.sailors.pluck(:id))
+  end
+
 end
+  

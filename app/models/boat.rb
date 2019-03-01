@@ -24,12 +24,19 @@ class Boat < ActiveRecord::Base
   end
 
   def self.sailboats
-    classification_id_sailboat = Classification.all.where(name: "Sailboat").pluck(:id)
-    BoatClassification.where(classification_id: classification_id_sailboat)                                                                                    
-#find boat_ids where BoatClassification' classification_id = classification_id_sailboat
-    binding.pry
+    includes(:classifications).where(classifications: {name: "Sailboat"})
+  end
+
+  def self.with_three_classifications
+    self.joins(:classifications).group('boat_id').having('count(boat_id) == 3')
+  end
+
+  def self.catamarans
+    includes(:classifications).where(classifications: {name: "Catamaran"})
+  end
+
+  def self.longest
+    order('length DESC').first
   end
 
 end
- # binding.pry
-    # self.order('name DESC')[0 , 3].map {|b|b.name}  
