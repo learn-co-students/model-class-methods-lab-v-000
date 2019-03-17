@@ -4,8 +4,11 @@ class Boat < ActiveRecord::Base
   has_many    :classifications, through: :boat_classifications
 
   def self.first_five
-    binding.pry
-    Boat.take(5)
+    Boat.first(5)
+  end
+
+  def self.dinghy
+    where("length < ?", 20)
   end
 
   # private
