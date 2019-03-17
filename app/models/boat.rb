@@ -4,16 +4,26 @@ class Boat < ActiveRecord::Base
   has_many    :classifications, through: :boat_classifications
 
   def self.first_five
-    Boat.first(5)
+    select(:name).limit(5)
   end
 
   def self.dinghy
     where("length < ?", 20)
   end
 
-  # private
+  def self.ship
+    where("length > ?", 20)
+  end
 
-  # def self.table
-  #   Boat.arel_table
-  # end
+  def self.last_three_alphabetically
+    select(:name).order(name: :desc).limit(3)
+  end
+
+  def self.without_a_captain
+    where('captain_id IS NULL')
+  end
+
+  def self.sailboats
+    select(boat_classifications).find_by('name' => 'Sailboat')
+  end
 end
