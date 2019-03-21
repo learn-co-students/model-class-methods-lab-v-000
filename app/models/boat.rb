@@ -24,6 +24,7 @@ class Boat < ActiveRecord::Base
   end
 
   def self.sailboats
-    select(boat_classifications).find_by('name' => 'Sailboat')
+    # select(boat_classifications).find_by('name' => 'Sailboat')
+    
   end
 end
