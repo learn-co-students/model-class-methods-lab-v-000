@@ -1,0 +1,3 @@
+class ClassificationsController < ApplicationController
+
+end
