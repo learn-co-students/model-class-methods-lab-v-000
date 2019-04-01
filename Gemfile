@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '5.0.7.1'
+gem 'bundler', '~> 1.16', '>= 1.16.1'
 gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'sass-rails'
