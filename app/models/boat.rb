@@ -28,4 +28,18 @@ class Boat < ActiveRecord::Base
     sailboat_classification.boats
   end
 
+  def self.with_three_classifications
+    boats = []
+    Boat.all.each do |boat|
+      if boat.classifications.length == 3
+        boats << boat
+      end
+    end
+    boats
+  end
+
+  def self.longest
+    order("length DESC").limit(1).first
+  end
+
 end

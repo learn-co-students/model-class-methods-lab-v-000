@@ -5,4 +5,17 @@ class Classification < ActiveRecord::Base
   def self.select_classifications(classification)
     find_by(:name => classification)
   end
+
+  def self.select_boats(classification)
+    @classification = select_classifications(classification)
+    @classification.boats
+  end
+
+  def self.my_all
+    Classification.all
+  end
+
+  def self.longest
+    Boat.longest.classifications
+  end
 end
