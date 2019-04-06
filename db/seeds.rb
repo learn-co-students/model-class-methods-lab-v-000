@@ -28,6 +28,7 @@ cape_dory.captain = cook
 laser.captain = cook
 triton.captain = arel
 sun_tracker.captain = samuel
+ 
 
 h_28.save
 nacra_17.save
