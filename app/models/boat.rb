@@ -41,4 +41,21 @@ class Boat < ActiveRecord::Base
     Boat.joins(:classifications).group("boat_id").having("COUNT(*) = 3")
   end
 
+  def self.longest_boat
+    Boat.order(length: :desc).limit(1)
+  end
+
+  #private
+  #def classifications_name=(name)
+  #  self.classification = Classification.find_or_create_by(name: name)
+#  end
+
+  #def classifcation_name
+  #  self.classification.name
+#  end
+
+
+
+
+
 end
