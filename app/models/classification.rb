@@ -7,7 +7,9 @@ class Classification < ActiveRecord::Base
   end
 
   def self.longest
-    Boat.longest_boat
+    Boat.find((Boat.longest_boat)[0].id).classifications
+    #boat = Boat.find(num)
+    #boat.classifications
     #Classification.joins(:boats).group('boats.length').having(boats: Boat.longest_boat)
     #Boat.longest_boat.classification_name
 
