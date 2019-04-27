@@ -12,8 +12,7 @@ class Captain < ActiveRecord::Base
   end
 
   def self.sailors
-    joins(:boats).group(:boats).includes({boat: classifications}).where({boat: classifications {name: "Sailboat"}})
-
+    joins(boats: :classifications).group(:boats).includes(:classifications).where(classifications: {name: "Sailboat"})
   end
 
   def self.talented_seafarers

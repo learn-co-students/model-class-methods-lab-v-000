@@ -7,7 +7,9 @@ class Classification < ActiveRecord::Base
   end
 
   def self.longest
-    includes(:boats).where(boats: {length: length}).order("length DESC").first.classifications
+    binding.pry
+    includes(:boats).where("length DESC").first
+    # try this as ean example joins(:classifications).group("boats.id").having('count(*)= ?', 3)
   end
 
 end
