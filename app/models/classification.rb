@@ -7,9 +7,14 @@ class Classification < ActiveRecord::Base
   end
 
   def self.longest
-    binding.pry
-    includes(:boats).where("length DESC").first
-    # try this as ean example joins(:boats).having("length DESC").first
+    Boat.longest_boat.classifications
   end
 
 end
+# SELECT MAX(Price) AS LargestPrice
+# maximum(:value)
+# where("SELECT MAX(?)", Boat.ship.pluck(:length))
+
+# def self.ship
+#   where("length >=?", 20)
+# # end

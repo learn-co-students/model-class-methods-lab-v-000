@@ -15,6 +15,10 @@ class Boat < ActiveRecord::Base
     where("length >=?", 20)
   end
 
+  def self.longest_boat
+    order('length DESC').first
+  end
+
   def self.last_three_alphabetically
     order(:name).last(3).reverse
   end
@@ -24,11 +28,11 @@ class Boat < ActiveRecord::Base
   end
 
   def self.sailboats
-    includes(:classifications ).where(classifications: {name: "Sailboat"})
+    includes(:classifications).where(classifications: {name: "Sailboat"})
   end
 
   def self.catamarans
-    includes(:classifications ).where(classifications: {name: "Catamaran"})
+    includes(:classifications).where(classifications: {name: "Catamaran"})
   end
 
   def self.with_three_classifications
