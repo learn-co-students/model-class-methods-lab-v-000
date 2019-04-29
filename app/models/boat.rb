@@ -24,8 +24,10 @@ class Boat < ActiveRecord::Base
   end
 
   def self.sailboats
-    # binding.pry
-    # includes('classifications').where(name: sailboat)
-    where(classifications: { name: 'Sailboat' })
+    includes(:classifications).where(classifications: { name: 'Sailboat' })
+  end
+
+  def self.with_three_classifications
+    
   end
 end
