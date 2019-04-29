@@ -24,7 +24,8 @@ class Boat < ActiveRecord::Base
   end
 
   def self.sailboats
-    # select(boat_classifications).find_by('name' => 'Sailboat')
-    
+    # binding.pry
+    # includes('classifications').where(name: sailboat)
+    where(classifications: { name: 'Sailboat' })
   end
 end
