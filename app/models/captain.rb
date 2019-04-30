@@ -18,6 +18,6 @@ class Captain < ActiveRecord::Base
   end
 
   def self.non_sailors
-    Captain.joins(:classifications).where.not(classifications: {name: "Sailboat"}).distinct
+    Captain.where.not("id IN (?)", self.sailors)
   end
 end
