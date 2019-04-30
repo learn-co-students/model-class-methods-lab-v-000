@@ -29,6 +29,6 @@ class Boat < ActiveRecord::Base
   end
 
   def self.with_three_classifications
-    find_by_sql("SELECT boat_id FROM boat_classifications WHERE COUNT(boat_id) >2")
+    Boat.
   end
 end
