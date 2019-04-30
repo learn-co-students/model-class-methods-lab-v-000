@@ -23,7 +23,10 @@ class Boat < ActiveRecord::Base
     Boat.where(captain_id: nil)
   end
 
-
+  def self.longest
+    Boat.max(length)
+  end
+  
   def self.sailboats
     Boat.joins(:classifications).where(classifications: {name: "Sailboat"})
   end
