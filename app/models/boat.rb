@@ -24,9 +24,9 @@ class Boat < ActiveRecord::Base
   end
 
   def self.longest
-    Boat.max(length)
+    find_by_sql("SELECT boat_id FROM boats ORDER BY length DESC LIMIT 1")
   end
-  
+
   def self.sailboats
     Boat.joins(:classifications).where(classifications: {name: "Sailboat"})
   end
