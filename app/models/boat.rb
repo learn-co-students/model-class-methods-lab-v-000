@@ -24,8 +24,8 @@ class Boat < ActiveRecord::Base
   end
 
   def self.longest
-    l = Boat.order(:length).limit(1)
-    Boat.where("length = ?", l)
+    length = Boat.order(length: :desc).limit(1).first.length
+    Boat.where('length = ?', length)
   end
 
   def self.sailboats
