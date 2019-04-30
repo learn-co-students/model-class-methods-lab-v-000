@@ -24,7 +24,8 @@ class Boat < ActiveRecord::Base
   end
 
   def self.longest
-    find_by_sql("SELECT * FROM boats ORDER BY length DESC LIMIT 1")
+    l = Boat.order(:length).limit(1)
+    Boat.where("length = ?", l)
   end
 
   def self.sailboats
