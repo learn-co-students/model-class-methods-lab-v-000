@@ -24,7 +24,7 @@ class Boat < ActiveRecord::Base
   end
 
   def self.longest
-    find_by_sql("SELECT boat_id FROM boats ORDER BY length DESC LIMIT 1")
+    find_by_sql("SELECT * FROM boats ORDER BY length DESC LIMIT 1")
   end
 
   def self.sailboats
