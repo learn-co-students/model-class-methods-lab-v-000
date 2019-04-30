@@ -14,7 +14,7 @@ class Captain < ActiveRecord::Base
   end
 
   def self.talented_seafarers
-    Captain.where("id IN (?)", self.motorboats && self.sailors)
+    Captain.where("id IN (?)", self.motorboats & self.sailors)
   end
 
 
