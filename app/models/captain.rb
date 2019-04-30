@@ -9,12 +9,12 @@ class Captain < ActiveRecord::Base
     Captain.joins(boats: :classifications).where(classifications: {name: "Sailboat"}).distinct
   end
 
-  def self.sailors
+  def self.motorboats
     Captain.joins(boats: :classifications).where(classifications: {name: "Motorboat"}).distinct
   end
 
   def self.talented_seafarers
-    self.sailors.joins(boats: :classifications).where(classifications: {name: "Motorboat"})
+    Captain.where("id IN (?)", self.motorboats && self.sailors)
   end
 
 
