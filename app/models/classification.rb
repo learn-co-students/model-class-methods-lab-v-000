@@ -5,4 +5,8 @@ class Classification < ActiveRecord::Base
   def self.my_all
     Classification.select(:name).distinct
   end
+
+  def self.longest
+    Classification.joins(:boats).select(maximum(boats: :length))
+  end
 end
