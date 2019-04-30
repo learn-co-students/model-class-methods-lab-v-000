@@ -29,6 +29,6 @@ class Boat < ActiveRecord::Base
   end
 
   def self.with_three_classifications
-    Boat.joins(:classifications).group(:classification_id).where(count(:classification_id) == 3)
+    Boat.joins(:classifications).group(:boat_id).having("count(classification_id) = ?", 3)
   end
 end
