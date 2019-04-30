@@ -25,7 +25,7 @@ class Boat < ActiveRecord::Base
 
 
   def self.sailboats
-    
+    Boat.joins(:classifications)
   end
 
   def self.with_three_classifications
