@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'rb-readline'
 gem 'rails', '5.0.7.1'
 gem 'coffee-rails'
 gem 'jquery-rails'
