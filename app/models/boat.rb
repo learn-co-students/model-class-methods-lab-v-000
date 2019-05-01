@@ -21,6 +21,6 @@ class Boat < ActiveRecord::Base
   end
 
   def self.without_a_captain
-    where.not(:captain_id).pluck(:name)
+    where(captain_id: nil).pluck(:name)
   end
 end
