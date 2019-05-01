@@ -3,6 +3,10 @@ class Boat < ActiveRecord::Base
   has_many    :boat_classifications
   has_many    :classifications, through: :boat_classifications
 
+  def self.longest
+    order("length DESC").first
+  end
+
   def self.first_five
     all.limit(5)
   end
@@ -29,8 +33,10 @@ class Boat < ActiveRecord::Base
   end
 
   def self.with_three_classifications
-    includes(:classifications).where(classifications.count)
+    #binding.pry
+    includes(:boat_classifications).having('COUNT(boat_classifications.boat_id) = 3').group('boat_classifications.boat_id')
   end
+
 
 
 
