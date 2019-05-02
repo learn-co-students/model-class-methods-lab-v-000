@@ -21,6 +21,14 @@ class Boat < ActiveRecord::Base
   end
 
   def self.without_a_captain
-    where(captain_id: nil).pluck(:name)
+    where(captain_id: nil)
+  end
+
+  def classification_name
+    self.classification.name
+
+  end
+  def self.sailboats
+    joins(:classifications).where(:sailboat)
   end
 end
