@@ -2,7 +2,7 @@ class Captain < ActiveRecord::Base
   has_many :boats
 
   def self.catamaran_operators
-    includes(:boats).where(boats: {name: "Catamaran"}).distinct
+    includes(boats: :classifications).where(classifications: {name: "Catamaran"}).distinct
   end
 
   def self.sailors
@@ -10,10 +10,10 @@ class Captain < ActiveRecord::Base
   end
 
   def self.talented_seafarers
-    sailors.includes(boats: :classifications).where(classifications: {name: "Motorboat"})
+    includes(boats: :classifications).where(classifications: {name: "Motorboat"}).distinct.or(self.sailors)
   end
 
   def self.non_sailors
-    includes(boats: :classifications).where.not(classifications: {name: "Sailboat"}).distinct
+    includes(boats: :classifications).where.not(classifications: {name: "Sailboat"})
   end
 end

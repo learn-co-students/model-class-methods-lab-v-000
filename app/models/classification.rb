@@ -3,7 +3,7 @@ class Classification < ActiveRecord::Base
   has_many :boats, through: :boat_classifications
 
   def self.my_all
-    take(Classification.all.count)
+    take(Classification.count)
   end
 
   def self.longest
