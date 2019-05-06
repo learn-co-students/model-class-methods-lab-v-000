@@ -20,14 +20,14 @@ class Boat < ActiveRecord::Base
   end
 
   def self.without_a_captain
-    take(Boat.all.count) - self.joins(:captain)
+    includes(:captain).where(captain: nil)
   end
 
   def self.sailboats
-    
+    includes(:classifications).where(classifications: {name: "Sailboat"}).distinct
   end
 
   def self.with_three_classifications
-
+    includes(:classifications).where(count == 3)
   end
 end
