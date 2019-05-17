@@ -16,4 +16,9 @@ class Boat < ActiveRecord::Base
     Boat.where( "length > ?", 20)
   end
 
+  def self.last_three_alphabetically
+    #Boat.find(:all, :order => "name", :limit => 3)
+    Boat.order(:name).last(3).reverse
+  end
+
 end
