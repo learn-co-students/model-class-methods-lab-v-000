@@ -21,4 +21,16 @@ class Boat < ActiveRecord::Base
     Boat.order(:name).last(3).reverse
   end
 
+  def self.without_a_captain
+    Boat.all.select { |boat| boat.captain_id == nil }
+  end
+
+  def self.sailboats
+#    Boat.all.select { |boat| boat.classifications.name == 'Sailboat' }
+    Boat.includes(:classifications).where('classifications.name = ?', 'Sailboat')
+  end
+
+  def self.with_three_classifications
+  #  Boat.includes(:classifications).where('classifications.name = ?', 'Sailboat')
+  end
 end
