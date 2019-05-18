@@ -19,6 +19,6 @@ class Captain < ActiveRecord::Base
   end
 
   def self.non_sailors
-    includes(boats: :classifications).where(classifications: {name: 'Motorboat', name: 'Sailboat'}).distinct
+    
   end
 end
