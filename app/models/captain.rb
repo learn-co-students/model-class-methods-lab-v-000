@@ -2,11 +2,6 @@ class Captain < ActiveRecord::Base
   has_many :boats
 
   def self.catamaran_operators
-    # self.all.select do |captain|
-    #   captain.boats.each do |boat|
-    #     boat.classifications.find_by(name: 'Catamaran')
-    #   end
-    # end
     includes(boats: :classifications).where(classifications: {name: 'Catamaran'}).distinct
   end
 
@@ -15,10 +10,14 @@ class Captain < ActiveRecord::Base
   end
 
   def self.talented_seafarers
-    includes(boats: :classifications).where(classifications: {name: 'Motorboat', name: 'Sailboat'}).distinct
+    where(id: self.sailors & self.motorboaters)
+  end
+
+  def self.motorboaters
+    includes(boats: :classifications).where(classifications: {name: 'Motorboat'}).distinct
   end
 
   def self.non_sailors
-    
+    where(id: self.all - self.sailors).distinct
   end
 end
