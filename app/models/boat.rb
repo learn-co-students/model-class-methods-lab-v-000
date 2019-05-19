@@ -5,32 +5,37 @@ class Boat < ActiveRecord::Base
 
   def self.first_five
     #Boat.find(:all, :order => "boat_id", :limit => 5)
-    Boat.first(5)
+    first(5)
   end
 
   def self.dinghy
-    Boat.where( "length < ?", 20)
+    where( "length < ?", 20)
   end
 
   def self.ship
-    Boat.where( "length > ?", 20)
+    where( "length > ?", 20)
   end
 
   def self.last_three_alphabetically
     #Boat.find(:all, :order => "name", :limit => 3)
-    Boat.order(:name).last(3).reverse
+    order(:name).last(3).reverse
   end
 
   def self.without_a_captain
-    Boat.all.select { |boat| boat.captain_id == nil }
+    all.select { |boat| boat.captain_id == nil }
   end
 
   def self.sailboats
 #    Boat.all.select { |boat| boat.classifications.name == 'Sailboat' }
-    Boat.includes(:classifications).where('classifications.name = ?', 'Sailboat')
+    includes(:classifications).where('classifications.name = ?', 'Sailboat')
   end
 
   def self.with_three_classifications
-  #  Boat.includes(:classifications).where('classifications.name = ?', 'Sailboat')
+    joins(:classifications).group("boats.id").having("COUNT(*) = 3")
   end
+
+  def self.longest
+    order('length DESC').first
+  end
+
 end

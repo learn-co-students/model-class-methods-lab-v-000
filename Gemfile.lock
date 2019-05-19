@@ -196,6 +196,7 @@ DEPENDENCIES
   coffee-rails
   database_cleaner
   jquery-rails
+  pry
   pry-byebug
   rack_session_access
   rails (= 5.0.7.1)
