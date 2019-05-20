@@ -17,4 +17,8 @@ class Captain < ActiveRecord::Base
   def self.talented_seafarers
     where(id: self.sailors & self.motorboaters)
   end
+
+  def self.non_sailors
+    where.not(id: self.sailors)
+  end
 end
