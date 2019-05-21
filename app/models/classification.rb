@@ -7,7 +7,8 @@ class Classification < ActiveRecord::Base
   end
 
   def self.longest
-    binding.pry
-    where(id: Boat.longest)
+    bid = Boat.longest.pluck(:id)
+    bcids = BoatClassification.where(boat_id: bid).pluck(:classification_id)
+    Classification.where(id: [bcids])
   end
 end
