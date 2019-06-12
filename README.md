@@ -22,21 +22,21 @@ database, we want to ask the DATABASE to do as much of that work as possible.
 That's what it's good at. That's what it likes to do. It has sacrificed some
 capabilities in order to do other capabilities ***extremely well***.
 
-While:
+If you use this code:
 
 ```ruby
 doctors = Doctor.all
-first_five_drs = doctors[0..5]
+first_six_drs = doctors[0..5]
 ```
 
-Will get you five doctors, using _RUBY_ to "section off" six doctors using
+You will get you six doctors by using _RUBY_ to "section off" six doctors using
 Ruby's range method (`[]`). But under the covers we asked the database for
 **all** the doctors and then took six of them. Wouldn't it make more sense to
 ask the database to get us ***only*** six `Doctor`s in the first place? That's
 what the following code does:
 
 ```ruby
-Doctor.limit(5).to_a
+Doctor.limit(6).to_a
 ```
 
 Functions like `limit` are provided by the "AREL" engine that's built into
