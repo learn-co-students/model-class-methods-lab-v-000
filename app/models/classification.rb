@@ -9,4 +9,8 @@ class Classification < ActiveRecord::Base
   def self.longest
     Boat.longest.classifications
   end
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7d6cc46bc457996e46d2e6c53e607d1705ff9c8a
 end
