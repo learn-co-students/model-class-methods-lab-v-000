@@ -8,11 +8,11 @@ class Boat < ActiveRecord::Base
   end
 
   def self.dinghy
-    all.where('length < ?', 20)
+    all.where('length < 20')
   end
 
   def self.ship
-    all.where('length > ?', 20)
+    all.where('length > 20')
   end
 
   def self.last_three_alphabetically
