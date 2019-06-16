@@ -1,4 +1,4 @@
-class CreateCaptains < ActiveRecord::Migration
+class CreateCaptains < ActiveRecord::Migration[5.0]
   def change
     create_table :captains do |t|
       t.string  :name
