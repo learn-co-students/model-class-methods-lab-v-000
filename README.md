@@ -12,7 +12,7 @@ In programming, a good maxim is this:
 
 For example, you don't want to use JavaScript to build a computer for flying to
 the Moon. JavaScript doesn't have very good decimal precision and, at distances
-as far as the Moon, getting a number off in the hundred-thousandths point after
+as far as the Moon, getting a number off in the hundred-thousandths place after
 the decimal is the difference between landing on that celestial orb or taking a
 long trip through nothing, forever.
 
@@ -29,7 +29,7 @@ doctors = Doctor.all
 first_six_drs = doctors[0..5]
 ```
 
-You will get you six doctors by using _RUBY_ to "section off" six doctors using
+You will get six doctors by using _RUBY_ to "section off" six doctors using
 Ruby's range method (`[]`). But under the covers we asked the database for
 **all** the doctors and then took six of them. Wouldn't it make more sense to
 ask the database to get us ***only*** six `Doctor`s in the first place? That's
@@ -43,8 +43,8 @@ Functions like `limit` are provided by the "AREL" engine that's built into
 ActiveRecord. AREL stands for "A Relational Algebra." If that sounds like some
 complex, awesome Mathematics and set theory stuff, it is! Fortunately, we don't
 have to get advanced degrees in mathematics to benefit from this engine. AREL
-lets us query the database, via ActiveRecord in an object-oriented-looking way
-***but*** that uses as much of the database's power as possible.
+lets us query the database, via ActiveRecord, in an object-oriented-looking way
+that uses as much of the database's power as possible.
 
 ## Use ActiveRecord's AREL Library To Build Optimized Queries
 
@@ -61,8 +61,8 @@ result "gets to Ruby-land."
 
 While it's not necessary to memorize all the chainable methods AREL provides
 ActiveRecord, it's best to know some of the common methods you saw in this
-lab. If you are working in a Rails environment realizing that AREL can make
-your queries more efficient can literally speed up your applications 1000x!
+lab. If you are working in a Rails environment, AREL can make your queries
+more efficient, which can literally speed up your applications 1000x!
 
 ## Resources
 
